@@ -1,0 +1,22 @@
+cc_library(
+    name = "line_plot",
+    srcs = ["src/line_plot.cpp"],
+    hdrs = ["src/line_plot.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//Plot/Common:axis",
+        "//Plot/Common:config",
+        "@fmtlib//:fmt",
+        "@sfmllib//:sfml",
+    ],
+)
+
+cc_test(
+    name = "line_plot_test",
+    srcs = ["test/line_plot_test.cpp"],
+    tags = ["test"],
+    deps = [
+        ":line_plot",
+        "@googletest//:gtest",
+    ],
+)

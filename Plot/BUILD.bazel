@@ -1,15 +1,8 @@
 cc_binary(
     name = "main",
     srcs = ["main.cpp"],
+    visibility = ["//visibility:public"],
     deps = [
-        "@fmtlib//:fmt",
-        "@sfmllib//:sfml",
+        "//Plot/LinePlot:line_plot",
     ],
-)
-
-cc_test(
-    name = "test",
-    srcs = ["test.cpp"],
-    tags = ["test"],
-    deps = ["@googletest//:gtest"],
 )

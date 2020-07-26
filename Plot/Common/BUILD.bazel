@@ -1,0 +1,17 @@
+cc_library(
+    name = "config",
+    srcs = ["src/config.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_library(
+    name = "axis",
+    srcs = ["src/axis.cpp"],
+    hdrs = ["src/axis.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":config",
+        "@fmtlib//:fmt",
+        "@sfmllib//:sfml",
+    ],
+)

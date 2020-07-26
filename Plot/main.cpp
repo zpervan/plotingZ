@@ -1,25 +1,9 @@
-#include "include/fmt/core.h"
-#include "include/SFML/Graphics.hpp"
+#include "LinePlot/src/line_plot.h"
 
 int main() {
-    fmt::print("Hellllouuuu!");
 
-    sf::RenderWindow window{{640,480}, "The title!"};
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if(event.type == sf::Event::Closed)
-            {
-                window.close();
-            }
-        }
-        window.clear();
-
-        window.display();
-    }
+    LinePlot line_plot;
+    line_plot.Plot();
 
     return 0;
 }
