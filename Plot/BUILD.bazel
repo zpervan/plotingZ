@@ -1,0 +1,15 @@
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    deps = [
+        "@fmtlib//:fmt",
+        "@sfmllib//:sfml",
+    ],
+)
+
+cc_test(
+    name = "test",
+    srcs = ["test.cpp"],
+    tags = ["test"],
+    deps = ["@googletest//:gtest"],
+)

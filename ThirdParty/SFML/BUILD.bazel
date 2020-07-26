@@ -1,0 +1,6 @@
+cc_library(
+    name = "sfml",
+    srcs = glob(["lib/*.so"]),
+    hdrs = glob(["include/SFML/*.hpp"]),
+    visibility = ["//visibility:public"],
+)
