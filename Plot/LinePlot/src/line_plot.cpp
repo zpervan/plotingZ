@@ -16,8 +16,11 @@ void LinePlot::Plot(const std::string &title) {
             }
         }
         window.clear(sf::Color::White);
-//        window.draw(DrawXAxis());
-//        window.draw(DrawYAxis());
+
+        for(const auto shape : axis_.DrawAxis())
+        {
+            window.draw(shape);
+        }
 
         window.display();
     }
@@ -25,8 +28,4 @@ void LinePlot::Plot(const std::string &title) {
 
 void LinePlot::SetData(const std::vector<int> &data) {
     std::move(data.cbegin(), data.cend(), data_.begin());
-}
-
-void LinePlot::DrawGrid() {
-
 }

@@ -10,9 +10,16 @@ public:
 
     void SetYAxisSize(const std::size_t size);
 
-    void DrawAxis();
+    const std::vector<sf::RectangleShape> DrawAxis();
+
 
 protected:
+    sf::RectangleShape CreateXAxis();
+
+    sf::RectangleShape CreateYAxis();
+
+    const std::vector<sf::RectangleShape> DrawAxisMarkers(std::size_t marker_count, bool is_y_axis);
+
     std::vector<sf::RectangleShape> axis_shape_;
     std::size_t x_axis_size_{0};
     std::size_t y_axis_size_{0};
