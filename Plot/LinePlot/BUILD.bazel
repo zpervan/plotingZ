@@ -2,12 +2,16 @@ cc_library(
     name = "line_plot",
     srcs = ["src/line_plot.cpp"],
     hdrs = ["src/line_plot.h"],
+    linkopts = [
+        "-L/usr/local/lib",
+        "-lsfml-window",
+        "-lsfml-system",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         "//Plot/Common:axis",
         "//Plot/Common:config",
         "@fmtlib//:fmt",
-        "@sfmllib//:sfml",
     ],
 )
 

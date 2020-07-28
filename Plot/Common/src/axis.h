@@ -1,7 +1,8 @@
 #ifndef PLOTINGZ_AXIS_H
 #define PLOTINGZ_AXIS_H
 
-#include "include/SFML/Graphics.hpp"
+#include "Plot/Common/src/config.h"
+#include <SFML/Graphics.hpp>
 #include <cstddef>
 
 class Axis {

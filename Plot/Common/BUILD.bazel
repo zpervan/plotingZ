@@ -1,6 +1,10 @@
 cc_library(
     name = "config",
     srcs = ["src/config.h"],
+    linkopts = [
+        "-L/usr/local/lib",
+        "-lsfml-system",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -8,10 +12,24 @@ cc_library(
     name = "axis",
     srcs = ["src/axis.cpp"],
     hdrs = ["src/axis.h"],
+    linkopts = [
+        "-L/usr/local/lib",
+        "-lsfml-graphics",
+        "-lsfml-system",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         ":config",
         "@fmtlib//:fmt",
-        "@sfmllib//:sfml",
+    ],
+)
+
+cc_test(
+    name = "axis_test",
+    timeout = "short",
+    srcs = ["test/axis_test.cpp"],
+    deps = [
+        ":axis",
+        "@googletest//:gtest",
     ],
 )

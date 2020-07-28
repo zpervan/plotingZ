@@ -29,5 +29,11 @@ jobs:
           sudo apt-key add - echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" |
           sudo tee /etc/apt/sources.list.d/bazel.list
 
-      - name: Install Bazel
-        run: sudo apt update && sudo apt install bazel
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install bazel
+          sudo apt install libsfml-dev
+
+      - name: Build Project | All
+        run: bazel build //...

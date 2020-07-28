@@ -1,7 +1,7 @@
 #include "line_plot.h"
 
 #include "ThirdParty/fmt/include/fmt/core.h"
-#include "ThirdParty/SFML/include/SFML/Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include "Plot/Common/src/config.h"
 
 void LinePlot::Plot(const std::string &title) {
