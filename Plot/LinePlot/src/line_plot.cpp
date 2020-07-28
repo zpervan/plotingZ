@@ -1,6 +1,7 @@
 #include "line_plot.h"
 
-#include "include/fmt/core.h"
+#include "ThirdParty/fmt/include/fmt/core.h"
+#include "ThirdParty/SFML/include/SFML/Graphics.hpp"
 #include "Plot/Common/src/config.h"
 
 void LinePlot::Plot(const std::string &title) {
@@ -17,8 +18,7 @@ void LinePlot::Plot(const std::string &title) {
         }
         window.clear(sf::Color::White);
 
-        for(const auto shape : axis_.DrawAxis())
-        {
+        for (const auto shape : axis_.DrawAxis()) {
             window.draw(shape);
         }
 

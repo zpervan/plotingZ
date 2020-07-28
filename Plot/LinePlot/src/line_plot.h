@@ -3,7 +3,6 @@
 
 #include "Plot/Common/src/axis.h"
 
-#include "include/SFML/Graphics.hpp"
 #include <cstddef>
 #include <vector>
 
