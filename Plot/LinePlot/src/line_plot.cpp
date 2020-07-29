@@ -8,6 +8,9 @@ void LinePlot::Plot(const std::string &title) {
     fmt::print("Called plot function...");
 
     sf::RenderWindow window{{Config::WindowWidth, Config::WindowHeight}, title};
+    axis_.SetYAxis(5);
+    axis_.SetXAxis(100);
+    const auto axis = axis_.DrawAxis();
 
     while (window.isOpen()) {
         sf::Event event;
@@ -18,7 +21,8 @@ void LinePlot::Plot(const std::string &title) {
         }
         window.clear(sf::Color::White);
 
-        for (const auto shape : axis_.DrawAxis()) {
+
+        for (const auto shape : axis) {
             window.draw(shape);
         }
 
