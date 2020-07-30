@@ -7,9 +7,9 @@
 void LinePlot::Plot(const std::string &title) {
     fmt::print("Called plot function...");
 
-    sf::RenderWindow window{{Config::WindowWidth, Config::WindowHeight}, title};
+    sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, title};
     axis_.SetYAxis(5);
-    axis_.SetXAxis(100);
+    axis_.SetXAxis(2);
     const auto axis = axis_.DrawAxis();
 
     while (window.isOpen()) {
