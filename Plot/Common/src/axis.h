@@ -5,6 +5,9 @@
 #include <SFML/Graphics.hpp>
 #include <cstddef>
 
+/// @todo: Add values on XY axis
+/// @todo: Grid?
+/// @todo: Consider smoothing axis lines and a grayish color
 class Axis {
 public:
     /// Sets the number of markers on the X-axis
