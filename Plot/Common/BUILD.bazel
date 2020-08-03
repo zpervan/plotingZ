@@ -15,6 +15,7 @@ cc_library(
     name = "axis",
     srcs = ["src/axis.cpp"],
     hdrs = ["src/axis.h"],
+    data = ["//Plot/Fonts:fonts"],
     visibility = ["//visibility:public"],
     deps = [
         ":config",

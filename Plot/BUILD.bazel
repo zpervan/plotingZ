@@ -1,7 +1,6 @@
 cc_binary(
     name = "main",
     srcs = ["main.cpp"],
-    visibility = ["//visibility:public"],
     deps = [
         "//Plot/LinePlot:line_plot",
     ],
