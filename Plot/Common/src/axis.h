@@ -8,6 +8,7 @@
 /// @todo: Add values on XY axis
 /// @todo: Grid?
 /// @todo: Consider smoothing axis lines and a grayish color
+
 class Axis {
 public:
     /// Sets the number of markers on the X-axis
@@ -21,18 +22,27 @@ public:
     /// Fills the vector of rectangle shape with the XY axis shape
     /// @return X and Y axis shape
     /// @todo: A better name? CreateAxis perhaps?
-    const std::vector<sf::RectangleShape> DrawAxis();
+    void DrawAxis();
 
-    std::vector<sf::RectangleShape> GetAxisShapes();
+    const std::vector<sf::RectangleShape> GetAxisShapes() const;
+
+    const std::vector<sf::Text> GetAxisMarkerValues() const;
 
 protected:
-    sf::RectangleShape CreateXAxis();
+    const sf::RectangleShape CreateXAxis();
 
-    sf::RectangleShape CreateYAxis();
+    const sf::RectangleShape CreateYAxis();
 
     const std::vector<sf::RectangleShape> CreateAxisMarkers(std::size_t axis_size, bool is_x_axis);
 
-    std::vector<sf::RectangleShape> axis_shape_;
+    const std::size_t ReserveAxisShapeSpace() const;
+
+    const std::vector<sf::Text> AddAxisMarkerValues(const size_t marker_count, bool is_x_axis);
+
+    sf::Text CreateMarkerValueText(const std::size_t value, bool is_x_axis, const float offset_percentage);
+
+    std::vector<sf::RectangleShape> axis_shapes_;
+    std::vector<sf::Text> axis_marker_values_;
     std::size_t x_axis_size_{0};
     std::size_t y_axis_size_{0};
 };

@@ -1,3 +1,4 @@
+#include "Plot/Common/src/config.h"
 #include "LinePlot/src/line_plot.h"
 
 int main() {

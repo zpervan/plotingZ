@@ -10,7 +10,7 @@ void LinePlot::Plot(const std::string &title) {
     sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, title};
     axis_.SetYAxis(5);
     axis_.SetXAxis(2);
-    const auto axis = axis_.DrawAxis();
+    axis_.DrawAxis();
 
     while (window.isOpen()) {
         sf::Event event;
@@ -21,11 +21,13 @@ void LinePlot::Plot(const std::string &title) {
         }
         window.clear(sf::Color::White);
 
-
-        for (const auto shape : axis) {
+        for (const auto &shape : axis_.GetAxisShapes()) {
             window.draw(shape);
         }
 
+        for (const auto &marker_value : axis_.GetAxisMarkerValues()) {
+            window.draw(marker_value);
+        }
         window.display();
     }
 }
