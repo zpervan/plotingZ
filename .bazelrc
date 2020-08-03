@@ -1,0 +1,9 @@
+# avoid ccache (can't build when ccache is installed)
+build --client_env=CC=/usr/bin/clang
+build --client_env=CXX=/usr/bin/clang
+
+# Compiler options
+build --cxxopt=-std=c++17
+
+# Test environmentx
+test --test_env="GTEST_COLOR=1"
