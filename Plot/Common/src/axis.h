@@ -5,7 +5,8 @@
 #include <SFML/Graphics.hpp>
 #include <cstddef>
 
-/// @todo: Add values on XY axis
+/// @todo: At origin of axis, render 0 only once!
+/// @todo: Scale axis values text when values are more than one character
 /// @todo: Grid?
 /// @todo: Consider smoothing axis lines and a grayish color
 
@@ -21,8 +22,7 @@ public:
 
     /// Fills the vector of rectangle shape with the XY axis shape
     /// @return X and Y axis shape
-    /// @todo: A better name? CreateAxis perhaps?
-    void DrawAxis();
+    void CreateAxis();
 
     const std::vector<sf::RectangleShape> GetAxisShapes() const;
 

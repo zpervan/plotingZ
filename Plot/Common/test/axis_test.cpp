@@ -16,7 +16,7 @@ TEST_F(AxisTestFixture, GivenAxisSizes_WhenCreating_ThenCorrectNumberOfShapesPre
     Axis axis;
     axis.SetXAxis(23);
     axis.SetYAxis(47);
-    axis.DrawAxis();
+    axis.CreateAxis();
 
     ASSERT_EQ(axis.GetAxisShapes().size(), expected_number_of_shape_elements);
 }
@@ -29,7 +29,7 @@ TEST_F(AxisTestFixture, GivenAxisSizes_WhenCreating_ThenMarkerPositionAreCorrect
     Axis axis;
     axis.SetYAxis(2);
     axis.SetXAxis(2);
-    axis.DrawAxis();
+    axis.CreateAxis();
 
     ASSERT_EQ(axis.GetAxisShapes().size(), expected_number_of_shape_elements);
 

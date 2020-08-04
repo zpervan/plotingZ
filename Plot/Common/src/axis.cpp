@@ -12,7 +12,7 @@ const std::size_t Axis::ReserveAxisShapeSpace() const {
     return x_axis_size_ + y_axis_size_ + number_of_axis + number_of_zero_markers;
 }
 
-void Axis::DrawAxis() {
+void Axis::CreateAxis() {
     axis_shapes_.reserve(ReserveAxisShapeSpace());
 
     axis_shapes_.emplace_back(CreateXAxis());
@@ -105,14 +105,15 @@ sf::Text Axis::CreateMarkerValueText(const std::size_t value, bool is_x_axis, co
     Global::SetFont();
     sf::Text axis_marker_value_text;
     axis_marker_value_text.setFont(Config::FONT);
-    axis_marker_value_text.setPosition(Config::REFERENCE_POINT);
     axis_marker_value_text.setFillColor(sf::Color::Black);
-    axis_marker_value_text.setCharacterSize(16);
+    axis_marker_value_text.setCharacterSize(Config::FONT_SIZE);
     axis_marker_value_text.setString(std::to_string(value));
 
     if (is_x_axis) {
+        axis_marker_value_text.setPosition(Config::X_AXIS_REFERENCE_POINT);
         axis_marker_value_text.move({Config::X_AXIS_DIMENSION.x * offset_percentage, 0});
     } else {
+        axis_marker_value_text.setPosition(Config::Y_AXIS_REFERENCE_POINT);
         axis_marker_value_text.move({0, -(Config::Y_AXIS_DIMENSION.y * offset_percentage)});
     }
 

@@ -9,8 +9,8 @@ void LinePlot::Plot(const std::string &title) {
 
     sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, title};
     axis_.SetYAxis(5);
-    axis_.SetXAxis(2);
-    axis_.DrawAxis();
+    axis_.SetXAxis(5);
+    axis_.CreateAxis();
 
     while (window.isOpen()) {
         sf::Event event;
