@@ -1,4 +1,4 @@
-#include "../src/line_plot.h"
+#include "Plot/LinePlot/src/line_plot.h"
 
 #include "gtest/gtest.h"
 

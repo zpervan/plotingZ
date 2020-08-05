@@ -2,7 +2,6 @@ cc_library(
     name = "line_plot",
     srcs = ["src/line_plot.cpp"],
     hdrs = ["src/line_plot.h"],
-    data = ["//Plot/Fonts:fonts"],
     visibility = ["//visibility:public"],
     deps = [
         "//Plot/Common:axis",
