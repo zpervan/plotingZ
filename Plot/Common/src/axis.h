@@ -28,7 +28,7 @@ public:
 
     const std::vector<sf::Text> GetAxisMarkerValues() const;
 
-protected:
+private:
     const sf::RectangleShape CreateXAxis();
 
     const sf::RectangleShape CreateYAxis();
