@@ -3,5 +3,6 @@ cc_binary(
     srcs = ["main.cpp"],
     deps = [
         "//Plot/LinePlot:line_plot",
+        "//Plot/ScatterPlot:scatter_plot",
     ],
 )

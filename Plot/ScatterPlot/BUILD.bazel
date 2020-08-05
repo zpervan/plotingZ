@@ -1,0 +1,19 @@
+cc_library(
+    name = "scatter_plot",
+    srcs = ["src/scatter_plot.cpp"],
+    hdrs = ["src/scatter_plot.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//Plot/Common:axis",
+        "//Plot/Common:config",
+    ],
+)
+
+cc_test(
+    name = "scatter_plot_test",
+    srcs = ["test/scatter_plot_test.cpp"],
+    deps = [
+        ":scatter_plot",
+        "@googletest//:gtest",
+    ],
+)
