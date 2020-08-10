@@ -14,7 +14,7 @@ public:
 private:
     Axis axis_;
     std::vector<int> data_{};
-    bool draw_grid{true};
+//    bool draw_grid{true};
 };
 
 #endif //PLOTINGZ_LINE_PLOT_H
