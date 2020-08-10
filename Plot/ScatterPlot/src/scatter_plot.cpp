@@ -6,7 +6,6 @@
 
 void ScatterPlot::Plot() {
 
-    /// @todo: Add check if size of xy data containers are equal
     if (xy_data_.empty()) {
         throw std::invalid_argument("Data is not set!");
     }
@@ -44,6 +43,14 @@ void ScatterPlot::Plot() {
 }
 
 void ScatterPlot::SetData(const std::vector<float> &x_data, const std::vector<float> &y_data) {
+    if (x_data.empty() || y_data.empty()) {
+        throw std::invalid_argument("Input data is empty! Check data,");
+    }
+
+
+    if (x_data.size() != y_data.size()) {
+        throw std::invalid_argument("Size of given input XY data does not match! Check data.");
+    }
 
     std::vector<float> x_data_points;
     x_data_points.reserve(x_data.size());
