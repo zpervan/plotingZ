@@ -6,6 +6,7 @@ cc_library(
     deps = [
         "//Plot/Common:axis",
         "//Plot/Common:config",
+        "//Plot/Common:types",
     ],
 )
 

@@ -4,6 +4,8 @@
 #include "Plot/Common/src/axis.h"
 
 /// @todo: Extend plotting of other data types!
+using XYData = std::pair<std::vector<float>, std::vector<float>>;
+
 class ScatterPlot : private Axis {
 public:
     void Plot();
@@ -12,24 +14,26 @@ public:
 
     void SetTitle(const std::string &title);
 
-    const std::vector<float> &GetXData() const;
-
-    const std::vector<float> &GetYData() const;
-
-    const std::vector<sf::CircleShape> &GetDataPoints() const;
+    const std::vector<std::vector<sf::CircleShape>> &GetDataPointsCollections() const;
 
 private:
-    const float MaxElement(const std::vector<float> &elements);
+    void SetAxis();
 
     void CreateDataPoints();
 
-    std::vector<sf::CircleShape> data_points_{};
+    void SetMaxXElement(const std::vector<float> &x_data);
+    void SetMaxYElement(const std::vector<float> &y_data);
 
-    std::vector<float> x_data_{};
-    std::vector<float> y_data_{};
+    sf::CircleShape CreateCircleDataPointSkeleton();
+
+    std::vector<std::vector<sf::CircleShape>> data_points_collections_{};
+    std::vector<XYData> xy_data_{};
+
     std::string title_{"Scatter Plot"};
-    float x_max_element_{0};
-    float y_max_element_{0};
+
+    float x_max_element_{0.f};
+    float y_max_element_{0.f};
+    std::size_t color_count_{0};
 };
 
 

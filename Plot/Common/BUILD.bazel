@@ -23,6 +23,28 @@ cc_library(
     ],
 )
 
+cc_library(
+    name = "legend",
+    srcs = ["src/legend.cpp"],
+    hdrs = ["src/legend.h"],
+    data = ["//Plot/Fonts:fonts"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":config",
+        "@fmtlib//:fmt",
+    ],
+)
+
+cc_library(
+    name = "types",
+    srcs = ["src/types.h"],
+    hdrs = ["src/types.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "@fmtlib//:fmt",
+    ],
+)
+
 cc_test(
     name = "axis_test",
     timeout = "short",
