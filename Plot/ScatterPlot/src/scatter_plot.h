@@ -16,12 +16,13 @@ public:
 
     const std::vector<std::vector<sf::CircleShape>> &GetDataPointsCollections() const;
 
-private:
+protected:
     void SetAxis();
 
     void CreateDataPoints();
 
     void SetMaxXElement(const std::vector<float> &x_data);
+
     void SetMaxYElement(const std::vector<float> &y_data);
 
     sf::CircleShape CreateCircleDataPointSkeleton();

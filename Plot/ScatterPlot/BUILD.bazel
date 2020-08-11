@@ -15,6 +15,7 @@ cc_test(
     srcs = ["test/scatter_plot_test.cpp"],
     deps = [
         ":scatter_plot",
+        "@fmtlib//:fmt",
         "@googletest//:gtest",
     ],
 )
