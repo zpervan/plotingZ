@@ -6,7 +6,7 @@
 
 void ScatterPlot::Plot() {
 
-    if (xy_data_.empty()) {
+    if (data_points_.empty()) {
         throw std::invalid_argument("Data is not set!");
     }
 
@@ -32,7 +32,7 @@ void ScatterPlot::Plot() {
             window.draw(marker_value);
         }
 
-        for (const auto &data_points : GetDataPointsCollections()) {
+        for (const auto &data_points : data_points_collections_) {
             for (const auto &data_point : data_points) {
                 window.draw(data_point);
             }
@@ -63,7 +63,7 @@ void ScatterPlot::SetData(const std::vector<float> &x_data, const std::vector<fl
     SetMaxXElement(x_data);
     SetMaxYElement(y_data);
 
-    xy_data_.emplace_back(XYData{x_data_points, y_data_points});
+    data_points_.emplace_back(XYData{x_data_points, y_data_points});
 }
 
 void ScatterPlot::SetTitle(const std::string &title) {
@@ -87,9 +87,9 @@ sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() {
 void ScatterPlot::CreateDataPoints() {
 
     std::vector<sf::CircleShape> data_points;
-    for (std::size_t i{0}; i < xy_data_.size(); i++) {
-        const auto &x_data = xy_data_.at(i).first;
-        const auto &y_data = xy_data_.at(i).second;
+    for (std::size_t i{0}; i < data_points_.size(); i++) {
+        const auto &x_data = data_points_.at(i).first;
+        const auto &y_data = data_points_.at(i).second;
 
         for (std::size_t j{0}; j < x_data.size(); j++) {
 
@@ -121,9 +121,3 @@ void ScatterPlot::SetMaxYElement(const std::vector<float> &y_data) {
         y_max_element_ = max_y_value;
     }
 }
-
-const std::vector<std::vector<sf::CircleShape>> &ScatterPlot::GetDataPointsCollections() const {
-    return data_points_collections_;
-}
-
-

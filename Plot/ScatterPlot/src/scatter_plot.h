@@ -14,9 +14,8 @@ public:
 
     void SetTitle(const std::string &title);
 
-    const std::vector<std::vector<sf::CircleShape>> &GetDataPointsCollections() const;
-
 protected:
+
     void SetAxis();
 
     void CreateDataPoints();
@@ -28,7 +27,7 @@ protected:
     sf::CircleShape CreateCircleDataPointSkeleton();
 
     std::vector<std::vector<sf::CircleShape>> data_points_collections_{};
-    std::vector<XYData> xy_data_{};
+    std::vector<XYData> data_points_{};
 
     std::string title_{"Scatter Plot"};
 
