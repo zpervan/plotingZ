@@ -6,7 +6,7 @@ void Axis::SetXAxis(const std::size_t size) { x_axis_size_ = size; }
 
 void Axis::SetYAxis(const std::size_t size) { y_axis_size_ = size; }
 
-const std::size_t Axis::ReserveAxisShapeSpace() const {
+std::size_t Axis::ReserveAxisShapeSpace() const {
     constexpr std::size_t number_of_axis{2};
     constexpr std::size_t number_of_zero_markers{2};
     return x_axis_size_ + y_axis_size_ + number_of_axis + number_of_zero_markers;
@@ -34,15 +34,15 @@ void Axis::CreateAxis() {
     std::move(y_axis_values.cbegin(), y_axis_values.cend(), std::back_inserter(axis_marker_values_));
 }
 
-const std::vector<sf::RectangleShape> Axis::GetAxisShapes() const {
+std::vector<sf::RectangleShape> Axis::GetAxisShapes() const {
     return axis_shapes_;
 }
 
-const std::vector<sf::Text> Axis::GetAxisMarkerValues() const {
+std::vector<sf::Text> Axis::GetAxisMarkerValues() const {
     return axis_marker_values_;
 }
 
-const sf::RectangleShape Axis::CreateXAxis() {
+sf::RectangleShape Axis::CreateXAxis() {
     sf::RectangleShape x_axis;
     x_axis.setPosition(Config::REFERENCE_POINT);
     x_axis.setSize(Config::X_AXIS_DIMENSION);
@@ -51,7 +51,7 @@ const sf::RectangleShape Axis::CreateXAxis() {
     return x_axis;
 }
 
-const sf::RectangleShape Axis::CreateYAxis() {
+sf::RectangleShape Axis::CreateYAxis() {
     sf::RectangleShape y_axis;
     y_axis.setPosition(Config::REFERENCE_POINT);
     y_axis.setSize(Config::Y_AXIS_DIMENSION);
@@ -61,13 +61,12 @@ const sf::RectangleShape Axis::CreateYAxis() {
     return y_axis;
 }
 
-const std::vector<sf::RectangleShape>
+std::vector<sf::RectangleShape>
 Axis::CreateAxisMarkers(const std::size_t axis_size, bool is_x_axis) {
 
     std::vector<sf::RectangleShape> axis_markers;
     axis_markers.reserve(axis_size);
 
-    // @todo: Create one Rectangle shape and copy it to the vector?
     for (std::size_t i{0}; i <= axis_size; i++) {
         sf::RectangleShape axis_marker;
         axis_marker.setPosition(Config::REFERENCE_POINT);
@@ -89,7 +88,7 @@ Axis::CreateAxisMarkers(const std::size_t axis_size, bool is_x_axis) {
     return axis_markers;
 }
 
-const std::vector<sf::Text>
+std::vector<sf::Text>
 Axis::AddAxisMarkerValues(const std::size_t marker_count, bool is_x_axis) {
     std::vector<sf::Text> axis_marker_values;
     axis_marker_values.reserve(marker_count);

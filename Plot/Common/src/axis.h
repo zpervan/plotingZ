@@ -12,34 +12,33 @@
 
 class Axis {
 public:
-    /// Sets the number of markers on the X-axis
+    /// Sets the values (markers) on the X-axis. The highest marker value should be the max value of the input data.
     /// @param size Number of markers
-    void SetXAxis(const std::size_t size);
+    void SetXAxis(std::size_t size);
 
-    /// Sets the number of markers on the Y-axis
+    /// Sets the values (markers) on the Y-axis. The highest marker value should be the max value of the input data.
     /// @param size Number of markers
-    void SetYAxis(const std::size_t size);
+    void SetYAxis(std::size_t size);
 
-    /// Fills the vector of rectangle shape with the XY axis shape
-    /// @return X and Y axis shape
+    /// Creates the axis shapes
     void CreateAxis();
 
-    const std::vector<sf::RectangleShape> GetAxisShapes() const;
+    std::vector<sf::RectangleShape> GetAxisShapes() const;
 
-    const std::vector<sf::Text> GetAxisMarkerValues() const;
+    std::vector<sf::Text> GetAxisMarkerValues() const;
 
 private:
-    const sf::RectangleShape CreateXAxis();
+    sf::RectangleShape CreateXAxis();
 
-    const sf::RectangleShape CreateYAxis();
+    sf::RectangleShape CreateYAxis();
 
-    const std::vector<sf::RectangleShape> CreateAxisMarkers(std::size_t axis_size, bool is_x_axis);
+    std::vector<sf::RectangleShape> CreateAxisMarkers(std::size_t axis_size, bool is_x_axis);
 
-    const std::size_t ReserveAxisShapeSpace() const;
+    std::size_t ReserveAxisShapeSpace() const;
 
-    const std::vector<sf::Text> AddAxisMarkerValues(const size_t marker_count, bool is_x_axis);
+    std::vector<sf::Text> AddAxisMarkerValues(size_t marker_count, bool is_x_axis);
 
-    sf::Text CreateMarkerValueText(const std::size_t value, bool is_x_axis, const float offset_percentage);
+    sf::Text CreateMarkerValueText(std::size_t value, bool is_x_axis, float offset_percentage);
 
     std::vector<sf::RectangleShape> axis_shapes_;
     std::vector<sf::Text> axis_marker_values_;
