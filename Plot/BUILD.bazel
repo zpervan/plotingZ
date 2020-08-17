@@ -1,8 +1,7 @@
 cc_binary(
-    name = "main",
-    srcs = ["main.cpp"],
+    name = "main_run",
+    srcs = ["main_run.cpp"],
     deps = [
-        "//Plot/LinePlot:line_plot",
-        "//Plot/ScatterPlot:scatter_plot",
+        "//Plot/Main:main",
     ],
 )

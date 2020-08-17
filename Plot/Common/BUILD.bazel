@@ -19,6 +19,7 @@ cc_library(
     visibility = ["//visibility:public"],
     deps = [
         ":config",
+        ":plotting_data",
         "@fmtlib//:fmt",
     ],
 )
@@ -32,6 +33,17 @@ cc_library(
     deps = [
         ":config",
         "@fmtlib//:fmt",
+    ],
+)
+
+cc_library(
+    name = "plotting_data",
+    srcs = ["src/plotting_data.cpp"],
+    hdrs = ["src/plotting_data.h"],
+    data = ["//Plot/Fonts:fonts"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":config",
     ],
 )
 
@@ -51,6 +63,16 @@ cc_test(
     srcs = ["test/axis_test.cpp"],
     deps = [
         ":axis",
+        "@googletest//:gtest",
+    ],
+)
+
+cc_test(
+    name = "legend_test",
+    timeout = "short",
+    srcs = ["test/legend_test.cpp"],
+    deps = [
+        ":legend",
         "@googletest//:gtest",
     ],
 )

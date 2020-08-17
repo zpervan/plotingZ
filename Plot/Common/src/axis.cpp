@@ -1,4 +1,4 @@
-#include "axis.h"
+#include "Plot/Common/src/axis.h"
 #include "ThirdParty/fmt/include/fmt/format.h"
 #include "config.h"
 
@@ -12,34 +12,34 @@ std::size_t Axis::ReserveAxisShapeSpace() const {
     return x_axis_size_ + y_axis_size_ + number_of_axis + number_of_zero_markers;
 }
 
-void Axis::CreateAxis() {
-    axis_shapes_.reserve(ReserveAxisShapeSpace());
 
-    axis_shapes_.emplace_back(CreateXAxis());
-    axis_shapes_.emplace_back(CreateYAxis());
+void Axis::CreateAxis() {
+    std::vector<sf::RectangleShape> axis_shape;
+    axis_shape.reserve(ReserveAxisShapeSpace());
+
+    axis_shape.emplace_back(CreateXAxis());
+    axis_shape.emplace_back(CreateYAxis());
 
     const auto x_axis_markers = CreateAxisMarkers(x_axis_size_, true);
-    std::move(x_axis_markers.cbegin(), x_axis_markers.cend(), std::back_inserter(axis_shapes_));
-
+    std::move(x_axis_markers.cbegin(), x_axis_markers.cend(), std::back_inserter(axis_shape));
+/// @todo: Move data directly to plotting data members?
     const auto y_axis_markers = CreateAxisMarkers(y_axis_size_, false);
-    std::move(y_axis_markers.cbegin(), y_axis_markers.cend(), std::back_inserter(axis_shapes_));
+    std::move(y_axis_markers.cbegin(), y_axis_markers.cend(), std::back_inserter(axis_shape));
+
+    plotting_data_.SetAxisShapes(axis_shape);
+
+    std::vector<sf::Text> axis_marker_values;
 
     constexpr std::size_t number_of_zeros{2};
-    axis_marker_values_.reserve(x_axis_size_ + y_axis_size_ + number_of_zeros);
+    axis_marker_values.reserve(x_axis_size_ + y_axis_size_ + number_of_zeros);
 
     const auto x_axis_values = AddAxisMarkerValues(x_axis_size_, true);
-    std::copy(x_axis_values.cbegin(), x_axis_values.cend(), std::back_inserter(axis_marker_values_));
+    std::copy(x_axis_values.cbegin(), x_axis_values.cend(), std::back_inserter(axis_marker_values));
 
     const auto y_axis_values = AddAxisMarkerValues(y_axis_size_, false);
-    std::move(y_axis_values.cbegin(), y_axis_values.cend(), std::back_inserter(axis_marker_values_));
-}
+    std::move(y_axis_values.cbegin(), y_axis_values.cend(), std::back_inserter(axis_marker_values));
 
-std::vector<sf::RectangleShape> Axis::GetAxisShapes() const {
-    return axis_shapes_;
-}
-
-std::vector<sf::Text> Axis::GetAxisMarkerValues() const {
-    return axis_marker_values_;
+    plotting_data_.SetAxisMarkerValues(axis_marker_values);
 }
 
 sf::RectangleShape Axis::CreateXAxis() {

@@ -2,6 +2,7 @@
 #define PLOTINGZ_AXIS_H
 
 #include "Plot/Common/src/config.h"
+#include "Plot/Common/src/plotting_data.h"
 #include <SFML/Graphics.hpp>
 #include <cstddef>
 
@@ -12,6 +13,10 @@
 
 class Axis {
 public:
+    explicit Axis(PlottingData &plotting_data) : plotting_data_{plotting_data} {}
+
+    ~Axis() = default;
+
     /// Sets the values (markers) on the X-axis. The highest marker value should be the max value of the input data.
     /// @param size Number of markers
     void SetXAxis(std::size_t size);
@@ -23,11 +28,8 @@ public:
     /// Creates the axis shapes
     void CreateAxis();
 
-    std::vector<sf::RectangleShape> GetAxisShapes() const;
-
-    std::vector<sf::Text> GetAxisMarkerValues() const;
-
 private:
+
     sf::RectangleShape CreateXAxis();
 
     sf::RectangleShape CreateYAxis();
@@ -40,8 +42,7 @@ private:
 
     sf::Text CreateMarkerValueText(std::size_t value, bool is_x_axis, float offset_percentage);
 
-    std::vector<sf::RectangleShape> axis_shapes_;
-    std::vector<sf::Text> axis_marker_values_;
+    PlottingData &plotting_data_;
     std::size_t x_axis_size_{0};
     std::size_t y_axis_size_{0};
 };

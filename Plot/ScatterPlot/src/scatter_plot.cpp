@@ -1,78 +1,35 @@
 #include "Plot/ScatterPlot/src/scatter_plot.h"
 #include "Plot/Common/src/config.h"
 #include "Plot/Common/src/types.h"
-
+#include <assert.h>
 #include <algorithm>
+#include <iostream>
 
-void ScatterPlot::Plot() {
+void ScatterPlot::CreateDataPoints() {
 
-    if (data_points_.empty()) {
-        throw std::invalid_argument("Data is not set!");
-    }
+    assert(plotting_data_ != nullptr);
 
-    SetAxis();
-    CreateAxis();
-    CreateDataPoints();
+    const auto& input_data_points = plotting_data_->GetInputDataValuesCollection();
 
-    sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, title_};
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
+    std::vector<sf::CircleShape> data_points;
+    for (std::size_t i{0}; i < input_data_points.size(); i++) {
+        const auto &x_data = input_data_points.at(i).first;
+        const auto &y_data = input_data_points.at(i).second;
+
+        for (std::size_t j{0}; j < x_data.size(); j++) {
+
+            sf::CircleShape data_point = CreateCircleDataPointSkeleton();
+            const float normalized_x_data_point = x_data.at(j) / plotting_data_->GetMaxXValue();
+            const float normalized_y_data_point = y_data.at(j) / plotting_data_->GetMaxYValue();
+
+            data_point.move(
+                    {Config::X_AXIS_DIMENSION.x * normalized_x_data_point,
+                     -Config::Y_AXIS_DIMENSION.y * normalized_y_data_point});
+            data_points.emplace_back(data_point);
         }
-        window.clear(sf::Color::White);
-
-        for (const auto &shape : GetAxisShapes()) {
-            window.draw(shape);
-        }
-
-        for (const auto &marker_value : GetAxisMarkerValues()) {
-            window.draw(marker_value);
-        }
-
-        for (const auto &data_points : data_points_collections_) {
-            for (const auto &data_point : data_points) {
-                window.draw(data_point);
-            }
-        }
-
-        window.display();
+        ++color_count_;
+        plotting_data_->SetDataPointsCollections(data_points);
     }
-}
-
-void ScatterPlot::SetData(const std::vector<float> &x_data, const std::vector<float> &y_data) {
-    if (x_data.empty() || y_data.empty()) {
-        throw std::invalid_argument("Input data is empty! Check data,");
-    }
-
-
-    if (x_data.size() != y_data.size()) {
-        throw std::invalid_argument("Size of given input XY data does not match! Check data.");
-    }
-
-    std::vector<float> x_data_points;
-    x_data_points.reserve(x_data.size());
-    std::move(x_data.cbegin(), x_data.cend(), std::back_inserter(x_data_points));
-
-    std::vector<float> y_data_points;
-    y_data_points.reserve(y_data.size());
-    std::move(y_data.cbegin(), y_data.cend(), std::back_inserter(y_data_points));
-
-    SetMaxXElement(x_data);
-    SetMaxYElement(y_data);
-
-    data_points_.emplace_back(XYData{x_data_points, y_data_points});
-}
-
-void ScatterPlot::SetTitle(const std::string &title) {
-    title_ = title;
-}
-
-void ScatterPlot::SetAxis() {
-    SetXAxis(x_max_element_);
-    SetYAxis(y_max_element_);
 }
 
 sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() {
@@ -84,40 +41,8 @@ sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() {
     return data_point_skeleton;
 }
 
-void ScatterPlot::CreateDataPoints() {
-
-    std::vector<sf::CircleShape> data_points;
-    for (std::size_t i{0}; i < data_points_.size(); i++) {
-        const auto &x_data = data_points_.at(i).first;
-        const auto &y_data = data_points_.at(i).second;
-
-        for (std::size_t j{0}; j < x_data.size(); j++) {
-
-            sf::CircleShape data_point = CreateCircleDataPointSkeleton();
-            const float normalized_x_data_point = x_data.at(j) / x_max_element_;
-            const float normalized_y_data_point = y_data.at(j) / y_max_element_;
-
-            data_point.move(
-                    {Config::X_AXIS_DIMENSION.x * normalized_x_data_point,
-                     -Config::Y_AXIS_DIMENSION.y * normalized_y_data_point});
-            data_points.emplace_back(data_point);
-        }
-        ++color_count_;
-        data_points_collections_.emplace_back(data_points);
-    }
+PlottingData *ScatterPlot::GetPlottingData() const {
+    return plotting_data_;
 }
 
-/// @todo: Consider moving it to a common utility class
-void ScatterPlot::SetMaxXElement(const std::vector<float> &x_data) {
-    const float max_x_value = *std::max_element(x_data.cbegin(), x_data.cend());
-    if (max_x_value > x_max_element_) {
-        x_max_element_ = max_x_value;
-    }
-}
 
-void ScatterPlot::SetMaxYElement(const std::vector<float> &y_data) {
-    const float max_y_value = *std::max_element(y_data.cbegin(), y_data.cend());
-    if (max_y_value > y_max_element_) {
-        y_max_element_ = max_y_value;
-    }
-}

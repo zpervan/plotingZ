@@ -1,11 +1,7 @@
 #include "Plot/Common/src/config.h"
-#include "LinePlot/src/line_plot.h"
-#include "ScatterPlot/src/scatter_plot.h"
+#include "Plot/Main/src/main.h"
 
 int main() {
-
-//    LinePlot line_plot;
-//    line_plot.Plot();
 
     std::vector<float> x{1.5, 2.1, 3.3, 4.1, 3.9, 2.8, 7.5};
     std::vector<float> y{6.3, 6.1, 5.56, 4.58, 3.91, 2.63, 1};
@@ -18,11 +14,11 @@ int main() {
     const std::vector<float> valid_x_data{4.0, 3.0, 2.0, 1.0};
     const std::vector<float> valid_y_data{1.0, 2.0, 3.0, 4.0};
 
-    ScatterPlot scatter_plot;
-    scatter_plot.SetAndCreateDataPoints(x, y);
-    scatter_plot.SetAndCreateDataPoints(x1, y1);
-    scatter_plot.SetAndCreateDataPoints(x2, y2);
-    scatter_plot.SetAndCreateDataPoints(valid_x_data, valid_y_data);
-    scatter_plot.Plot();
+    PlottingZ plottingZ;
+    plottingZ.SetData(x, y);
+    plottingZ.SetData(x1, y1);
+    plottingZ.SetData(x2, y2);
+    plottingZ.SetData(valid_x_data, valid_y_data);
+//    plottingZ.Plot();
     return 0;
 }

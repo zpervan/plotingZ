@@ -1,22 +1,24 @@
 cc_library(
-    name = "scatter_plot",
-    srcs = ["src/scatter_plot.cpp"],
-    hdrs = ["src/scatter_plot.h"],
+    name = "main",
+    srcs = ["src/main.cpp"],
+    hdrs = ["src/main.h"],
     visibility = ["//visibility:public"],
     deps = [
         "//Plot/Common:axis",
         "//Plot/Common:config",
         "//Plot/Common:plotting_data",
         "//Plot/Common:types",
+        "//Plot/LinePlot:line_plot",
+        "//Plot/ScatterPlot:scatter_plot",
+        "@fmtlib//:fmt",
     ],
 )
 
 cc_test(
-    name = "scatter_plot_test",
-    srcs = ["test/scatter_plot_test.cpp"],
+    name = "main_test",
+    srcs = ["test/main_test.cpp"],
     deps = [
-        ":scatter_plot",
-        "@fmtlib//:fmt",
+        ":main",
         "@googletest//:gtest",
     ],
 )

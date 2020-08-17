@@ -2,37 +2,25 @@
 #define PLOTINGZ_SCATTER_PLOT_H
 
 #include "Plot/Common/src/axis.h"
+#include "Plot/Common/src/plotting_data.h"
 
-/// @todo: Extend plotting of other data types!
-using XYData = std::pair<std::vector<float>, std::vector<float>>;
 
-class ScatterPlot : private Axis {
+/// @brief This class contains the logic visualizing input in the form of points/dots/circles.
+class ScatterPlot {
 public:
-    void Plot();
+    ScatterPlot(PlottingData* plotting_data) : plotting_data_(plotting_data) {};
 
-    void SetData(const std::vector<float> &x_data, const std::vector<float> &y_data);
+    ScatterPlot() = default;
 
-    void SetTitle(const std::string &title);
-
-protected:
-
-    void SetAxis();
+    ~ScatterPlot() = default;
 
     void CreateDataPoints();
 
-    void SetMaxXElement(const std::vector<float> &x_data);
-
-    void SetMaxYElement(const std::vector<float> &y_data);
+    PlottingData *GetPlottingData() const;
+protected:
 
     sf::CircleShape CreateCircleDataPointSkeleton();
-
-    std::vector<std::vector<sf::CircleShape>> data_points_collections_{};
-    std::vector<XYData> data_points_{};
-
-    std::string title_{"Scatter Plot"};
-
-    float x_max_element_{0.f};
-    float y_max_element_{0.f};
+    PlottingData* plotting_data_{nullptr};
     std::size_t color_count_{0};
 };
 
