@@ -12,8 +12,8 @@ void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vecto
         throw std::invalid_argument("Size of given input data does not match and should be of the same size!");
     }
 
-    plotting_data_.SetMaxXValue(input_data_x);
-    plotting_data_.SetMaxYValue(input_data_y);
+    plotting_data_.FindAndSetMaxXValue(input_data_x);
+    plotting_data_.FindAndSetMaxYValue(input_data_y);
     plotting_data_.AppendToInputDataValuesCollection(input_data_x, input_data_y);
 }
 

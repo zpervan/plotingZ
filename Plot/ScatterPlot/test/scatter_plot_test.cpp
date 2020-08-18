@@ -14,8 +14,8 @@ protected:
 
     PlottingData *CreateMockPlottingData() {
         PlottingData *plotting_data{new PlottingData()};
-        plotting_data->SetMaxXValue(valid_x_data);
-        plotting_data->SetMaxYValue(valid_y_data);
+        plotting_data->FindAndSetMaxXValue(valid_x_data);
+        plotting_data->FindAndSetMaxYValue(valid_y_data);
         plotting_data->AppendToInputDataValuesCollection(valid_x_data, valid_y_data);
         return plotting_data;
     }

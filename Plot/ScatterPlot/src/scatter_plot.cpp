@@ -28,7 +28,7 @@ void ScatterPlot::CreateDataPoints() {
             data_points.emplace_back(data_point);
         }
         ++color_count_;
-        plotting_data_->SetDataPointsCollections(data_points);
+        plotting_data_->EmplaceDataPointsCollections(data_points);
     }
 }
 

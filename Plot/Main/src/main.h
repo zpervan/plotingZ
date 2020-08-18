@@ -9,16 +9,20 @@
 
 class PlottingZ {
 public:
-    void Plot();
-
-    void SetPlotType(PlotType plot_type);
-
-    /// @brief Process given input data and create the data points which will be visualized.
-    /// @param [in] input_x_data Input data for X axis
-    /// @param [in] input_y_data Input data for Y axis
+    /// @brief Sets the raw input data.
+    /// @param [in] input_x_data Raw input data X
+    /// @param [in] input_y_data Input data for Y
     void SetData(const std::vector<float> &input_data_x, const std::vector<float> &input_data_y);
 
+    /// @brief Sets the type of plot which will be shown. Default plot type - scatter plot.
+    /// @param [in] plot_type Type of plot which will be visualized
+    void SetPlotType(PlotType plot_type);
+
+    /// @brief Plots the processed data.
+    void Plot();
+
     const PlottingData &GetPlottingData() const;
+
 private:
 
     void SetAxis();

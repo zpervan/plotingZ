@@ -5,22 +5,25 @@
 #include "Plot/Common/src/plotting_data.h"
 
 
-/// @brief This class contains the logic visualizing input in the form of points/dots/circles.
+/// @brief Contains the logic for converting input data to points/dots/circle shapes.
 class ScatterPlot {
 public:
-    ScatterPlot(PlottingData* plotting_data) : plotting_data_(plotting_data) {};
+    explicit ScatterPlot(PlottingData *plotting_data) : plotting_data_(plotting_data) {};
 
     ScatterPlot() = default;
 
     ~ScatterPlot() = default;
 
+    /// @brief Creates data points from given raw input data.
     void CreateDataPoints();
 
     PlottingData *GetPlottingData() const;
+
 protected:
 
     sf::CircleShape CreateCircleDataPointSkeleton();
-    PlottingData* plotting_data_{nullptr};
+
+    PlottingData *plotting_data_{nullptr};
     std::size_t color_count_{0};
 };
 

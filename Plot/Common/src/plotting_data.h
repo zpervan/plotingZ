@@ -5,20 +5,40 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 
-/// @todo: Extend plotting of other data types!
-/// @todo: Refactor pls...
+/// @todo: Extend plotting of other data types! Is this needed?
 using InputDataValues = std::pair<std::vector<float>, std::vector<float>>;
 using DataPoints = std::vector<sf::CircleShape>;
 
+/// @brief Serves as a central data container for raw and processed data. This data will be used for visualization.
 class PlottingData {
 public:
-    void SetTitle(const std::string &title);
+    /// @brief Pairs and appends the raw input data to a vector.
+    /// @param [in] input_data_x Raw input data X
+    /// @param [in] input_data_y Raw input data Y
+    void AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
+                                           const std::vector<float> &input_data_y);
+
+    /// @brief Finds and sets the maximum value (if possible) for given input data X.
+    /// @param [in] input_data_x Raw input data X
+    void FindAndSetMaxXValue(const std::vector<float> &input_data_x);
+
+    /// @brief Finds and sets the maximum value (if possible) for given input data Y.
+    /// @param [in] input_data_y Raw input data Y
+    void FindAndSetMaxYValue(const std::vector<float> &input_data_y);
+
+    /// @brief Adds new data points to a vector.
+    /// @param [in] data_points Processed circle shaped data
+    void EmplaceDataPointsCollections(DataPoints &data_points);
+
+    /// @section Setters
 
     void SetAxisShapes(std::vector<sf::RectangleShape> &axis_shapes);
 
     void SetAxisMarkerValues(std::vector<sf::Text> &axis_marker_values);
 
-    void SetDataPointsCollections(DataPoints &data_points);
+    void SetTitle(const std::string &title);
+
+    /// @section Getters
 
     const std::vector<sf::RectangleShape> &GetAxisShapes() const;
 
@@ -26,18 +46,11 @@ public:
 
     float GetMaxXValue() const;
 
-    void SetMaxXValue(const std::vector<float> &x_data);
-
     float GetMaxYValue() const;
-
-    void SetMaxYValue(const std::vector<float> &y_data);
 
     const std::vector<DataPoints> &GetDataPointsCollections() const;
 
     const std::vector<InputDataValues> &GetInputDataValuesCollection() const;
-
-    void AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
-                                           const std::vector<float> &input_data_y);
 
 protected:
     std::unique_ptr<std::vector<InputDataValues>> input_data_values_collection_ = std::make_unique<std::vector<InputDataValues>>();

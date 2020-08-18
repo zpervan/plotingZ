@@ -17,15 +17,15 @@ public:
 
     ~Axis() = default;
 
-    /// Sets the values (markers) on the X-axis. The highest marker value should be the max value of the input data.
-    /// @param size Number of markers
+    /// @brief Sets the values (markers) on the X-axis. The highest marker value should be the max value of the input data.
+    /// @param [in] size Number of markers
     void SetXAxis(std::size_t size);
 
-    /// Sets the values (markers) on the Y-axis. The highest marker value should be the max value of the input data.
-    /// @param size Number of markers
+    /// @brief Sets the values (markers) on the Y-axis. The highest marker value should be the max value of the input data.
+    /// @param [in] size Number of markers
     void SetYAxis(std::size_t size);
 
-    /// Creates the axis shapes
+    /// @brief Creates the axis shapes
     void CreateAxis();
 
 private:
