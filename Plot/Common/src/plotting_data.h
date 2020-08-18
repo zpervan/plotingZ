@@ -37,6 +37,10 @@ public:
 
     void SetAxisMarkerValues(std::vector<sf::Text> &axis_marker_values);
 
+    void SetLegendShapes(std::vector<sf::RectangleShape> &legend_shapes);
+
+    void SetLegendLabels(std::vector<sf::Text> &legend_labels);
+
     void SetTitle(const std::string &title);
 
     /// @section Getters
@@ -44,6 +48,10 @@ public:
     const std::vector<sf::RectangleShape> &GetAxisShapes() const;
 
     const std::vector<sf::Text> &GetAxisMarkerValues() const;
+
+    const std::vector<sf::RectangleShape> &GetLegendShapes() const;
+
+    const std::vector<sf::Text> &GetLegendLabels() const;
 
     float GetMaxXValue() const;
 
@@ -59,6 +67,8 @@ protected:
     /// @todo: Group into "Axis data"
     std::unique_ptr<std::vector<sf::RectangleShape>> axis_shapes_ = std::make_unique<std::vector<sf::RectangleShape>>();
     std::unique_ptr<std::vector<sf::Text>> axis_marker_values_ = std::make_unique<std::vector<sf::Text>>();
+    std::unique_ptr<std::vector<sf::RectangleShape>> legend_shapes_ = std::make_unique<std::vector<sf::RectangleShape>>();
+    std::unique_ptr<std::vector<sf::Text>> legend_labels_ = std::make_unique<std::vector<sf::Text>>();
     std::string title_{"Plot"};
     float max_x_value_{0.f};
     float max_y_value_{0.f};

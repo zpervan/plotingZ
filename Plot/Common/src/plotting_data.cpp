@@ -24,6 +24,7 @@ void PlottingData::EmplaceDataPointsCollections(DataPoints &data_points) {
     data_points_collection_->emplace_back(data_points);
 }
 
+/// Setters
 void PlottingData::SetAxisShapes(std::vector<sf::RectangleShape> &axis_shapes) {
     *axis_shapes_ = std::move(axis_shapes);
 }
@@ -32,16 +33,33 @@ void PlottingData::SetAxisMarkerValues(std::vector<sf::Text> &axis_marker_values
     std::move(axis_marker_values.begin(), axis_marker_values.end(), std::back_inserter(*axis_marker_values_));
 }
 
+void PlottingData::SetLegendShapes(std::vector<sf::RectangleShape> &legend_shapes) {
+    *legend_shapes_ = std::move(legend_shapes);
+}
+
+void PlottingData::SetLegendLabels(std::vector<sf::Text> &legend_labels) {
+    *legend_labels_ = std::move(legend_labels);
+}
+
 void PlottingData::SetTitle(const std::string &title) {
     title_ = title;
 }
 
+/// Getters
 const std::vector<sf::RectangleShape> &PlottingData::GetAxisShapes() const {
     return *axis_shapes_;
 }
 
 const std::vector<sf::Text> &PlottingData::GetAxisMarkerValues() const {
     return *axis_marker_values_;
+}
+
+const std::vector<sf::RectangleShape> &PlottingData::GetLegendShapes() const {
+    return *legend_shapes_;
+}
+
+const std::vector<sf::Text> &PlottingData::GetLegendLabels() const {
+    return *legend_labels_;
 }
 
 float PlottingData::GetMaxXValue() const {
@@ -59,4 +77,3 @@ const std::vector<DataPoints> &PlottingData::GetDataPointsCollections() const {
 const std::vector<InputDataValues> &PlottingData::GetInputDataValuesCollection() const {
     return *input_data_values_collection_;
 }
-
