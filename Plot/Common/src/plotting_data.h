@@ -8,6 +8,7 @@
 /// @todo: Extend plotting of other data types! Is this needed?
 using InputDataValues = std::pair<std::vector<float>, std::vector<float>>;
 using DataPoints = std::vector<sf::CircleShape>;
+using DataPointsCollection =
 
 /// @brief Serves as a central data container for raw and processed data. This data will be used for visualization.
 class PlottingData {

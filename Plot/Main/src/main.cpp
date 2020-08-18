@@ -17,11 +17,13 @@ void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vecto
     plotting_data_->AppendToInputDataValuesCollection(input_data_x, input_data_y);
 
     SetAxis();
+    InitializePlot();
 }
 
 void PlottingZ::Plot() {
 
     axis_.CreateAxis();
+
 
     sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, "wot"};
 
@@ -42,9 +44,19 @@ void PlottingZ::Plot() {
             window.draw(axis_marker_values);
         }
 
+        for (const auto &data_points : plotting_data_->GetDataPointsCollections()) {
+            for (const auto &data_point : data_points) {
+                window.draw(data_point);
+            }
+        }
+
         window.display();
     }
 
+}
+
+void PlottingZ::SetPlotType(PlotType plot_type) {
+    plot_type_ = plot_type;
 }
 
 void PlottingZ::SetAxis() {
@@ -52,8 +64,14 @@ void PlottingZ::SetAxis() {
     axis_.SetYAxis(plotting_data_->GetMaxYValue());
 }
 
-void PlottingZ::SetPlotType(PlotType plot_type) {
-    plot_type_ = plot_type;
+void PlottingZ::InitializePlot() {
+    if (plot_type_ == PlotType::ScatterPlot) {
+        scatter_plot_ = ScatterPlot(plotting_data_.get());
+        scatter_plot_.CreateDataPoints();
+    }
+    if (plot_type_ == PlotType::LinePlot) {
+        // Add LinePlot code...
+    }
 }
 
 const PlottingData &PlottingZ::GetPlottingData() const {

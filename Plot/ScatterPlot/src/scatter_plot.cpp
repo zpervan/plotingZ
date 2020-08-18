@@ -1,15 +1,29 @@
 #include "Plot/ScatterPlot/src/scatter_plot.h"
 #include "Plot/Common/src/config.h"
 #include "Plot/Common/src/types.h"
+#include "ThirdParty/fmt/include/fmt/core.h"
 #include <assert.h>
 #include <algorithm>
-#include <iostream>
+
+ScatterPlot::ScatterPlot(const ScatterPlot &source) {
+    fmt::print("Scatter plot: Copy Ctor");
+    this->plotting_data_ = source.plotting_data_;
+    this->color_count_ = source.color_count_;
+}
+
+
+ScatterPlot &ScatterPlot::operator=(const ScatterPlot &rhs) {
+    fmt::print("Scatter plot: Copy operator");
+    this->plotting_data_ = rhs.plotting_data_;
+    this->color_count_ = rhs.color_count_;
+    return *this;
+}
 
 void ScatterPlot::CreateDataPoints() {
 
     assert(plotting_data_ != nullptr);
 
-    const auto& input_data_points = plotting_data_->GetInputDataValuesCollection();
+    const auto &input_data_points = plotting_data_->GetInputDataValuesCollection();
 
     std::vector<sf::CircleShape> data_points;
     for (std::size_t i{0}; i < input_data_points.size(); i++) {
@@ -45,4 +59,15 @@ PlottingData *ScatterPlot::GetPlottingData() const {
     return plotting_data_;
 }
 
+ScatterPlot::ScatterPlot(ScatterPlot &&source) noexcept {
+    fmt::print("Scatter plot: Move Ctor");
+    this->plotting_data_ = source.plotting_data_;
+    this->color_count_ = source.color_count_;
+}
 
+ScatterPlot &ScatterPlot::operator=(ScatterPlot &&rhs) noexcept {
+    fmt::print("Scatter plot: Move operator");
+    this->plotting_data_ = rhs.plotting_data_;
+    this->color_count_ = rhs.color_count_;
+    return *this;
+}

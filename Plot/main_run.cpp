@@ -15,6 +15,7 @@ int main() {
     const std::vector<float> valid_y_data{1.0, 2.0, 3.0, 4.0};
 
     PlottingZ plottingZ;
+    plottingZ.SetPlotType(PlotType::ScatterPlot);
     plottingZ.SetData(x, y);
     plottingZ.SetData(x1, y1);
     plottingZ.SetData(x2, y2);
