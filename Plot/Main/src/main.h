@@ -27,11 +27,11 @@ private:
 
     void SetAxis();
 
-    PlotType plot_type_;
-    PlottingData plotting_data_{};
-//    Axis axis_{plotting_data_};
-//    ScatterPlot scatter_plot_{};
+    std::unique_ptr<PlottingData> plotting_data_ = std::make_unique<PlottingData>();
+    Axis axis_{plotting_data_.get()};
 //    LinePlot line_plot_{};
+//    ScatterPlot scatter_plot_{};
+    PlotType plot_type_;
 };
 
 

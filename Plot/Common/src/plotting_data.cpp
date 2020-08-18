@@ -29,7 +29,7 @@ void PlottingData::SetAxisShapes(std::vector<sf::RectangleShape> &axis_shapes) {
 }
 
 void PlottingData::SetAxisMarkerValues(std::vector<sf::Text> &axis_marker_values) {
-    *axis_marker_values_ = std::move(axis_marker_values);
+    std::move(axis_marker_values.begin(), axis_marker_values.end(), std::back_inserter(*axis_marker_values_));
 }
 
 void PlottingData::SetTitle(const std::string &title) {

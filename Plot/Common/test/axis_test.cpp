@@ -5,7 +5,7 @@
 
 class AxisTestFixture : public ::testing::Test {
 protected:
-    PlottingData plotting_data_{};
+    PlottingData *plotting_data_{new PlottingData};
     Axis axis_{plotting_data_};
 };
 
@@ -20,7 +20,7 @@ TEST_F(AxisTestFixture, GivenAxisSizes_WhenCreating_ThenCorrectNumberOfAxisShape
     axis_.SetYAxis(47);
     axis_.CreateAxis();
 
-    ASSERT_EQ(plotting_data_.GetAxisShapes().size(), expected_number_of_shape_elements);
+    ASSERT_EQ(plotting_data_->GetAxisShapes().size(), expected_number_of_shape_elements);
 }
 
 TEST_F(AxisTestFixture, GivenAxisSizes_WhenCreating_ThenMarkerPositionsAreCorrect) {
@@ -32,12 +32,12 @@ TEST_F(AxisTestFixture, GivenAxisSizes_WhenCreating_ThenMarkerPositionsAreCorrec
     axis_.SetXAxis(2);
     axis_.CreateAxis();
 
-    ASSERT_EQ(plotting_data_.GetAxisShapes().size(), expected_number_of_shape_elements);
+    ASSERT_EQ(plotting_data_->GetAxisShapes().size(), expected_number_of_shape_elements);
 
     for (std::size_t i{0}; i < expected_marker_positions.size(); i++) {
-        EXPECT_EQ(plotting_data_.GetAxisShapes()[i + 2].getPosition().x, expected_marker_positions[i].x)
+        EXPECT_EQ(plotting_data_->GetAxisShapes()[i + 2].getPosition().x, expected_marker_positions[i].x)
                             << fmt::format("X at shape element with index {}", i + 2);
-        EXPECT_EQ(plotting_data_.GetAxisShapes()[i + 2].getPosition().y, expected_marker_positions[i].y)
+        EXPECT_EQ(plotting_data_->GetAxisShapes()[i + 2].getPosition().y, expected_marker_positions[i].y)
                             << fmt::format("Y at shape element with index {}", i + 2);;
     }
 }

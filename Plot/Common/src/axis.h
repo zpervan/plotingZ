@@ -13,7 +13,7 @@
 
 class Axis {
 public:
-    explicit Axis(PlottingData &plotting_data) : plotting_data_{plotting_data} {}
+    explicit Axis(PlottingData *plotting_data) : plotting_data_{plotting_data} {}
 
     ~Axis() = default;
 
@@ -42,7 +42,7 @@ private:
 
     sf::Text CreateMarkerValueText(std::size_t value, bool is_x_axis, float offset_percentage);
 
-    PlottingData &plotting_data_;
+    PlottingData *plotting_data_;
     std::size_t x_axis_size_{0};
     std::size_t y_axis_size_{0};
 };

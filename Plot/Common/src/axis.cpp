@@ -14,19 +14,19 @@ std::size_t Axis::ReserveAxisShapeSpace() const {
 
 
 void Axis::CreateAxis() {
-    std::vector<sf::RectangleShape> axis_shape;
-    axis_shape.reserve(ReserveAxisShapeSpace());
+    std::vector<sf::RectangleShape> axis_shapes;
+    axis_shapes.reserve(ReserveAxisShapeSpace());
 
-    axis_shape.emplace_back(CreateXAxis());
-    axis_shape.emplace_back(CreateYAxis());
+    axis_shapes.emplace_back(CreateXAxis());
+    axis_shapes.emplace_back(CreateYAxis());
 
     const auto x_axis_markers = CreateAxisMarkers(x_axis_size_, true);
-    std::move(x_axis_markers.cbegin(), x_axis_markers.cend(), std::back_inserter(axis_shape));
-/// @todo: Move data directly to plotting data members?
-    const auto y_axis_markers = CreateAxisMarkers(y_axis_size_, false);
-    std::move(y_axis_markers.cbegin(), y_axis_markers.cend(), std::back_inserter(axis_shape));
+    std::move(x_axis_markers.cbegin(), x_axis_markers.cend(), std::back_inserter(axis_shapes));
 
-    plotting_data_.SetAxisShapes(axis_shape);
+    const auto y_axis_markers = CreateAxisMarkers(y_axis_size_, false);
+    std::move(y_axis_markers.cbegin(), y_axis_markers.cend(), std::back_inserter(axis_shapes));
+
+    plotting_data_->SetAxisShapes(axis_shapes);
 
     std::vector<sf::Text> axis_marker_values;
 
@@ -39,7 +39,7 @@ void Axis::CreateAxis() {
     const auto y_axis_values = AddAxisMarkerValues(y_axis_size_, false);
     std::move(y_axis_values.cbegin(), y_axis_values.cend(), std::back_inserter(axis_marker_values));
 
-    plotting_data_.SetAxisMarkerValues(axis_marker_values);
+    plotting_data_->SetAxisMarkerValues(axis_marker_values);
 }
 
 sf::RectangleShape Axis::CreateXAxis() {
@@ -73,14 +73,14 @@ Axis::CreateAxisMarkers(const std::size_t axis_size, bool is_x_axis) {
         axis_marker.setSize(Config::MARKER_DIMENSION);
         axis_marker.setFillColor(sf::Color::Black);
 
-        const float offset_percentage = static_cast<float>(i) / axis_size;
+        const float position_offset_percentage = static_cast<float>(i) / axis_size;
 
         if (is_x_axis) {
             axis_marker.rotate(90.f);
-            axis_marker.move({Config::X_AXIS_DIMENSION.x * offset_percentage, 0});
+            axis_marker.move({Config::X_AXIS_DIMENSION.x * position_offset_percentage, 0});
         } else {
             axis_marker.setRotation(180.f);
-            axis_marker.move({0, -(Config::Y_AXIS_DIMENSION.y * offset_percentage)});
+            axis_marker.move({0, -(Config::Y_AXIS_DIMENSION.y * position_offset_percentage)});
         }
 
         axis_markers.emplace_back(std::move(axis_marker));
@@ -94,8 +94,8 @@ Axis::AddAxisMarkerValues(const std::size_t marker_count, bool is_x_axis) {
     axis_marker_values.reserve(marker_count);
 
     for (std::size_t i{0}; i <= marker_count; i++) {
-        const float offset_percentage = static_cast<float>(i) / marker_count;
-        axis_marker_values.emplace_back(CreateMarkerValueText(i, is_x_axis, offset_percentage));
+        const float position_offset_percentage = static_cast<float>(i) / marker_count;
+        axis_marker_values.emplace_back(CreateMarkerValueText(i, is_x_axis, position_offset_percentage));
     }
     return axis_marker_values;
 }

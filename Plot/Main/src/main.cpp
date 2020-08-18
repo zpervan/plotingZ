@@ -12,15 +12,19 @@ void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vecto
         throw std::invalid_argument("Size of given input data does not match and should be of the same size!");
     }
 
-    plotting_data_.FindAndSetMaxXValue(input_data_x);
-    plotting_data_.FindAndSetMaxYValue(input_data_y);
-    plotting_data_.AppendToInputDataValuesCollection(input_data_x, input_data_y);
+    plotting_data_->FindAndSetMaxXValue(input_data_x);
+    plotting_data_->FindAndSetMaxYValue(input_data_y);
+    plotting_data_->AppendToInputDataValuesCollection(input_data_x, input_data_y);
+
+    SetAxis();
 }
 
 void PlottingZ::Plot() {
 
+    axis_.CreateAxis();
 
-    sf::RenderWindow window{{Config::WINDOW_HEIGHT, Config::WINDOW_WIDTH}, "wot"};
+    sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, "wot"};
+
     while (window.isOpen()) {
         sf::Event event{};
         while (window.pollEvent(event)) {
@@ -29,18 +33,29 @@ void PlottingZ::Plot() {
             }
         }
         window.clear(sf::Color::White);
-        // Add drawing logic
+
+        for (const auto &axis_shape : plotting_data_->GetAxisShapes()) {
+            window.draw(axis_shape);
+        }
+
+        for (const auto &axis_marker_values : plotting_data_->GetAxisMarkerValues()) {
+            window.draw(axis_marker_values);
+        }
+
         window.display();
     }
 
 }
 
-void PlottingZ::SetAxis() {}
+void PlottingZ::SetAxis() {
+    axis_.SetXAxis(plotting_data_->GetMaxXValue());
+    axis_.SetYAxis(plotting_data_->GetMaxYValue());
+}
 
 void PlottingZ::SetPlotType(PlotType plot_type) {
     plot_type_ = plot_type;
 }
 
 const PlottingData &PlottingZ::GetPlottingData() const {
-    return plotting_data_;
+    return *plotting_data_;
 }
