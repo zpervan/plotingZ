@@ -6,6 +6,7 @@
 #include "Plot/Common/src/types.h"
 #include "Plot/ScatterPlot/src/scatter_plot.h"
 #include "Plot/LinePlot/src/line_plot.h"
+#include "Plot/Common/src/legend.h"
 #include <vector>
 
 class PlottingZ {
@@ -27,9 +28,11 @@ public:
 private:
 
     void SetAxis();
+
     void InitializePlot();
 
     std::unique_ptr<PlottingData> plotting_data_ = std::make_unique<PlottingData>();
+    Legend legend_{plotting_data_.get()};
     Axis axis_{plotting_data_.get()};
     LinePlot line_plot_{};
     ScatterPlot scatter_plot_{};

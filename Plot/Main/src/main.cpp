@@ -23,6 +23,7 @@ void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vecto
 void PlottingZ::Plot() {
 
     axis_.CreateAxis();
+    legend_.CreateLegend();
 
 
     sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, "wot"};
@@ -42,6 +43,11 @@ void PlottingZ::Plot() {
 
         for (const auto &axis_marker_values : plotting_data_->GetAxisMarkerValues()) {
             window.draw(axis_marker_values);
+        }
+
+        for(const auto& legend_shape : plotting_data_->GetLegendShapes())
+        {
+            window.draw(legend_shape);
         }
 
         for (const auto &data_points : plotting_data_->GetDataPointsCollections()) {
