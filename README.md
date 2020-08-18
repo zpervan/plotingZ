@@ -14,7 +14,7 @@ After that, build the project, set some input data and you should be ready to go
 
 ## Preview
 Visualization of input data with the scatter plot:
-
+![](Preview/scatter_plot_preview.png)
 
 ## Notes
 Following plots types are currently available:
