@@ -105,7 +105,7 @@ sf::Text Axis::CreateMarkerValueText(const std::size_t value, bool is_x_axis, co
     sf::Text axis_marker_value_text;
     axis_marker_value_text.setFont(Config::FONT);
     axis_marker_value_text.setFillColor(sf::Color::Black);
-    axis_marker_value_text.setCharacterSize(Config::FONT_SIZE);
+    axis_marker_value_text.setCharacterSize(Config::AXIS_FONT_SIZE);
     axis_marker_value_text.setString(std::to_string(value));
 
     if (is_x_axis) {

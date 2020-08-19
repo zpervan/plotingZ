@@ -14,6 +14,9 @@ void Legend::CreateLegend() {
     legend_shapes.emplace_back(CreateLegendFrame());
 
     plotting_data_->SetLegendShapes(legend_shapes);
+
+    std::vector<sf::Text> label_texts = CreateLabelText();
+    plotting_data_->SetLegendLabels(label_texts);
 }
 
 std::vector<sf::RectangleShape> Legend::CreateLabelBoxes() {
@@ -27,17 +30,29 @@ std::vector<sf::RectangleShape> Legend::CreateLabelBoxes() {
     return std::vector<sf::RectangleShape>();
 }
 
-std::vector<sf::Font> Legend::CreateLabelText() {
-    return std::vector<sf::Font>();
+std::vector<sf::Text> Legend::CreateLabelText() {
+    Global::SetFont();
+    std::vector<sf::Text> label_texts;
+    for (std::size_t i{0}; i < labels_.size(); ++i) {
+        sf::Text label_text;
+        label_text.setFont(Config::FONT);
+        label_text.setFillColor(sf::Color::Black);
+        label_text.setCharacterSize(Config::LEGEND_FONT_SIZE);
+        label_text.setString(labels_.at(i));
+        label_text.setPosition(Config::WINDOW_WIDTH * 0.65, Config::WINDOW_HEIGHT * 0.05);
+        label_text.move({Config::LABEL_POSITION_OFFSET.x, Config::LABEL_POSITION_OFFSET.y * i});
+        label_texts.emplace_back(label_text);
+    }
+    return label_texts;
 }
 
 sf::RectangleShape Legend::CreateLegendFrame() {
     sf::RectangleShape legend_frame;
     legend_frame.setPosition(
             {Config::WINDOW_WIDTH * 0.65, Config::WINDOW_HEIGHT * 0.05});
-    legend_frame.setSize({200.f, 25.f * labels_.size()});
+    legend_frame.setSize({200.f, 18.f * labels_.size()});
     legend_frame.setFillColor(sf::Color::White);
-    legend_frame.setOutlineThickness(Config::LINE_THICKNESS);
+    legend_frame.setOutlineThickness(Config::LEGEND_FRAME_LINE_THICKNESS);
     legend_frame.setOutlineColor(sf::Color::Black);
     return legend_frame;
 }

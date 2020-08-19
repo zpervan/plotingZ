@@ -28,7 +28,7 @@ TEST_F(LegendTestFixture, GivenLabels_WhenSettingLegendLabels_ThenCorrectLabelsA
 }
 
 TEST_F(LegendTestFixture, GivenLabels_WhenCreatingLegendFrame_ThenFrameSizeIsCorrect) {
-    const sf::Vector2f expected_legend_frame_size{200.f, 125.f};
+    const sf::Vector2f expected_legend_frame_size{200.0f, 90.0f};
 
     legend_.SetLegendLabels(legend_labels);
     legend_.CreateLegend();
@@ -37,7 +37,8 @@ TEST_F(LegendTestFixture, GivenLabels_WhenCreatingLegendFrame_ThenFrameSizeIsCor
 
     const auto &legend_frame_shape = plotting_data_->GetLegendShapes().front();
 
-    EXPECT_EQ(legend_frame_shape.getSize(), expected_legend_frame_size);
+    EXPECT_EQ(legend_frame_shape.getSize().x, expected_legend_frame_size.x);
+    EXPECT_EQ(legend_frame_shape.getSize().y, expected_legend_frame_size.y);
 }
 
 int main(int argc, char **argv) {

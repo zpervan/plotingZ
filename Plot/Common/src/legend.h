@@ -24,7 +24,7 @@ public:
 protected:
     std::vector<sf::RectangleShape> CreateLabelBoxes();
 
-    std::vector<sf::Font> CreateLabelText();
+    std::vector<sf::Text> CreateLabelText();
 
     sf::RectangleShape CreateLegendFrame();
 
