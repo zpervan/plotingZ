@@ -18,6 +18,9 @@ public:
 
     void CreateLegend();
 
+    const std::vector<std::string> &GetLabels() const;
+
+
 protected:
     std::vector<sf::RectangleShape> CreateLabelBoxes();
 
@@ -26,6 +29,7 @@ protected:
     sf::RectangleShape CreateLegendFrame();
 
     std::vector<std::string> labels_;
+
     PlottingData *plotting_data_;
 };
 
