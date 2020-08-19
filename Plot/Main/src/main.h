@@ -23,20 +23,27 @@ public:
     /// @brief Plots the processed data.
     void Plot();
 
+    /// @brief Wrapper function for setting legend labels.
+    /// @param labels Labels which represent the meaning for each data points collection
+    /// @todo: Try to avoid the wrapper function... Looks-a not very nice!
+    void SetLegendLabels(const std::vector<std::string> &labels);
+
     const PlottingData &GetPlottingData() const;
 
-private:
+protected:
 
     void SetAxis();
 
     void InitializePlot();
 
-    std::unique_ptr<PlottingData> plotting_data_ = std::make_unique<PlottingData>();
+    std::unique_ptr<PlottingData> plotting_data_{std::make_unique<PlottingData>()};
     Legend legend_{plotting_data_.get()};
     Axis axis_{plotting_data_.get()};
     LinePlot line_plot_{};
     ScatterPlot scatter_plot_{};
     PlotType plot_type_;
+
+    bool show_legend{false};
 };
 
 

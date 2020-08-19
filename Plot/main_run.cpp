@@ -20,6 +20,7 @@ int main() {
     plottingZ.SetData(x1, y1);
     plottingZ.SetData(x2, y2);
     plottingZ.SetData(valid_x_data, valid_y_data);
+    plottingZ.SetLegendLabels({"Ajnc", "Cvaj", "Draj", "Fir"});
     plottingZ.Plot();
     return 0;
 }

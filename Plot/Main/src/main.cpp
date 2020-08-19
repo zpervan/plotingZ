@@ -23,8 +23,11 @@ void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vecto
 void PlottingZ::Plot() {
 
     axis_.CreateAxis();
-    legend_.CreateLegend();
 
+    if(show_legend)
+    {
+        legend_.CreateLegend();
+    }
 
     sf::RenderWindow window{{Config::WINDOW_WIDTH, Config::WINDOW_HEIGHT}, "wot"};
 
@@ -45,8 +48,7 @@ void PlottingZ::Plot() {
             window.draw(axis_marker_values);
         }
 
-        for(const auto& legend_shape : plotting_data_->GetLegendShapes())
-        {
+        for (const auto &legend_shape : plotting_data_->GetLegendShapes()) {
             window.draw(legend_shape);
         }
 
@@ -78,6 +80,11 @@ void PlottingZ::InitializePlot() {
     if (plot_type_ == PlotType::LinePlot) {
         // Add LinePlot code...
     }
+}
+
+void PlottingZ::SetLegendLabels(const std::vector<std::string> &labels) {
+    show_legend = true;
+    legend_.SetLegendLabels(labels);
 }
 
 const PlottingData &PlottingZ::GetPlottingData() const {

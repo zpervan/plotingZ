@@ -27,7 +27,7 @@ TEST_F(PlottingZTestFixture, GivenValidInputData_WhenSettingData_ThenCorrectValu
     const std::size_t expected_size{4};
     SetData(valid_x_data, valid_y_data);
 
-    const auto &data_points_values_collection = GetPlottingData().GetInputDataValuesCollection();
+    const auto &data_points_values_collection = plotting_data_->GetInputDataValuesCollection();
 
     const auto &x_data_points = data_points_values_collection.front().first;
     ASSERT_EQ(x_data_points.size(), expected_size);
@@ -47,8 +47,17 @@ TEST_F(PlottingZTestFixture, GivenValidInputData_WhenSettingData_ThenCorrectMaxi
 
     SetData(x_data, y_data);
 
-    EXPECT_EQ(GetPlottingData().GetMaxXValue(), expected_max_x_value);
-    EXPECT_EQ(GetPlottingData().GetMaxYValue(), expected_max_y_value);
+    EXPECT_EQ(plotting_data_->GetMaxXValue(), expected_max_x_value);
+    EXPECT_EQ(plotting_data_->GetMaxYValue(), expected_max_y_value);
+}
+
+TEST_F(PlottingZTestFixture, GivenLabelData_WhenSettingLegendLabelData_ThenLabelDataIsShown) {
+    const std::size_t expected_legend_label_size{3};
+    const std::vector<std::string> legend_labels{"Cool", "Data", "Bruh"};
+    SetLegendLabels(legend_labels);
+
+    ASSERT_TRUE(show_legend);
+    ASSERT_EQ(legend_labels.size(), expected_legend_label_size);
 }
 
 int main(int argc, char **argv) {
