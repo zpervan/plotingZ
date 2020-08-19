@@ -1,4 +1,5 @@
 #include "Plot/Common/src/legend.h"
+#include "Plot/Common/src/types.h"
 
 void Legend::SetLegendLabels(const std::vector<std::string> &labels) {
     labels_.reserve(labels.size());
@@ -11,7 +12,11 @@ void Legend::CreateLegend() {
     }
 
     std::vector<sf::RectangleShape> legend_shapes;
+    legend_shapes.reserve(1 + labels_.size());
     legend_shapes.emplace_back(CreateLegendFrame());
+
+    const auto label_boxes = CreateLabelBoxes();
+    std::move(label_boxes.cbegin(), label_boxes.cend(), std::back_inserter(legend_shapes));
 
     plotting_data_->SetLegendShapes(legend_shapes);
 
@@ -26,8 +31,14 @@ std::vector<sf::RectangleShape> Legend::CreateLabelBoxes() {
 
     for (std::size_t i{0}; i < labels_.size(); i++) {
         sf::RectangleShape label_box;
+        /// @todo: Set fill color based on input data shape color
+        label_box.setSize({10.0f, 10.0f});
+        label_box.setFillColor(mapped_colors.at(i));
+        label_box.setPosition(Config::WINDOW_WIDTH * 0.65, Config::WINDOW_HEIGHT * 0.056);
+        label_box.move(5.0f, Config::LABEL_POSITION_OFFSET.y * i);
+        label_boxes.emplace_back(label_box);
     }
-    return std::vector<sf::RectangleShape>();
+    return label_boxes;
 }
 
 std::vector<sf::Text> Legend::CreateLabelText() {
@@ -40,7 +51,7 @@ std::vector<sf::Text> Legend::CreateLabelText() {
         label_text.setCharacterSize(Config::LEGEND_FONT_SIZE);
         label_text.setString(labels_.at(i));
         label_text.setPosition(Config::WINDOW_WIDTH * 0.65, Config::WINDOW_HEIGHT * 0.05);
-        label_text.move({Config::LABEL_POSITION_OFFSET.x, Config::LABEL_POSITION_OFFSET.y * i});
+        label_text.move(Config::LABEL_POSITION_OFFSET.x, Config::LABEL_POSITION_OFFSET.y * i);
         label_texts.emplace_back(label_text);
     }
     return label_texts;

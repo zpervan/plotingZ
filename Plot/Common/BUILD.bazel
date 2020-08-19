@@ -33,6 +33,7 @@ cc_library(
     deps = [
         ":config",
         ":plotting_data",
+        ":types",
         "@fmtlib//:fmt",
     ],
 )
