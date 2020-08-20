@@ -101,9 +101,9 @@ Axis::AddAxisMarkerValues(const std::size_t marker_count, bool is_x_axis) {
 }
 
 sf::Text Axis::CreateMarkerValueText(const std::size_t value, bool is_x_axis, const float offset_percentage) {
-    Global::SetFont();
+    Config::Global::SetFont();
     sf::Text axis_marker_value_text;
-    axis_marker_value_text.setFont(Config::FONT);
+    axis_marker_value_text.setFont(Config::Global::FONT);
     axis_marker_value_text.setFillColor(sf::Color::Black);
     axis_marker_value_text.setCharacterSize(Config::AXIS_FONT_SIZE);
     axis_marker_value_text.setString(std::to_string(value));

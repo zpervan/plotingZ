@@ -13,13 +13,14 @@ public:
 
     ~Legend() = default;
 
-    /// @todo: For every XY data, there should be a entry in the legend, also, the appropriate colour is used for each data point
+    /// @brief Set the text/name for the legend labels
+    /// @param labels Texts/names for given data
     void SetLegendLabels(const std::vector<std::string> &labels);
 
+    /// @brief Creates the legend with names for each label
     void CreateLegend();
 
     const std::vector<std::string> &GetLabels() const;
-
 
 protected:
     std::vector<sf::RectangleShape> CreateLabelBoxes();
@@ -28,9 +29,8 @@ protected:
 
     sf::RectangleShape CreateLegendFrame();
 
-    std::vector<std::string> labels_;
-
-    PlottingData *plotting_data_;
+    std::vector<std::string> labels_{};
+    PlottingData *plotting_data_{nullptr};
 };
 
 #endif //PLOTINGZ_LEGEND_H
