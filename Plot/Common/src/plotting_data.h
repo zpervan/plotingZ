@@ -8,7 +8,7 @@
 /// @todo: Extend plotting of other data types! Is this needed?
 using InputDataValues = std::pair<std::vector<float>, std::vector<float>>;
 using DataPoints = std::vector<sf::CircleShape>;
-using DataPointsCollection =
+using DataLines = std::vector<sf::RectangleShape>;
 
 /// @brief Serves as a central data container for raw and processed data. This data will be used for visualization.
 class PlottingData {
@@ -51,7 +51,7 @@ public:
 
     const std::vector<sf::RectangleShape> &GetLegendShapes() const;
 
-    const std::vector<sf::Text> &GetLegendLabels() const;
+    const std::vector<sf::Text> &GetLegendLabelTexts() const;
 
     float GetMaxXValue() const;
 

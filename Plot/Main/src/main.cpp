@@ -50,7 +50,7 @@ void PlottingZ::Plot() {
             window.draw(legend_shape);
         }
 
-        for (const auto &legend_labels : plotting_data_->GetLegendLabels()) {
+        for (const auto &legend_labels : plotting_data_->GetLegendLabelTexts()) {
             window.draw(legend_labels);
         }
 

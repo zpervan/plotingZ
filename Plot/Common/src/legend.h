@@ -4,7 +4,7 @@
 #include "Plot/Common/src/config.h"
 #include "Plot/Common/src/plotting_data.h"
 
-
+/// @todo: Legend frame should be non-transparent
 class Legend {
 public:
     explicit Legend(PlottingData *plotting_data) : plotting_data_(plotting_data) {};

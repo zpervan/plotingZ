@@ -58,7 +58,7 @@ const std::vector<sf::RectangleShape> &PlottingData::GetLegendShapes() const {
     return *legend_shapes_;
 }
 
-const std::vector<sf::Text> &PlottingData::GetLegendLabels() const {
+const std::vector<sf::Text> &PlottingData::GetLegendLabelTexts() const {
     return *legend_labels_;
 }
 

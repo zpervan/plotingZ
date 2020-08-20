@@ -33,6 +33,7 @@ sf::RectangleShape Legend::CreateLegendFrame() {
     legend_frame.setOutlineThickness(Config::Legend::FRAME_LINE_THICKNESS);
     legend_frame.setFillColor(sf::Color::White);
     legend_frame.setOutlineColor(sf::Color::Black);
+
     return legend_frame;
 }
 
