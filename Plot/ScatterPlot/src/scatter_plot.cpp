@@ -6,15 +6,15 @@
 #include <algorithm>
 
 ScatterPlot::ScatterPlot(ScatterPlot &&source) noexcept {
-    fmt::print("Scatter plot: Move Ctor");
     this->plotting_data_ = source.plotting_data_;
     this->color_count_ = source.color_count_;
 }
 
 ScatterPlot &ScatterPlot::operator=(ScatterPlot &&rhs) noexcept {
-    fmt::print("Scatter plot: Move operator");
-    this->plotting_data_ = rhs.plotting_data_;
-    this->color_count_ = rhs.color_count_;
+    if (this != &rhs) {
+        this->plotting_data_ = rhs.plotting_data_;
+        this->color_count_ = rhs.color_count_;
+    }
     return *this;
 }
 
