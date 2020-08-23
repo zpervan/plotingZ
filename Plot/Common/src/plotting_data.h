@@ -4,7 +4,7 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
-
+/// @todo: Should we really append the raw input data?
 /// @todo: Extend plotting of other data types! Is this needed?
 using InputDataValues = std::pair<std::vector<float>, std::vector<float>>;
 using DataPoints = std::vector<sf::CircleShape>;
