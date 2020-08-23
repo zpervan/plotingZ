@@ -10,17 +10,17 @@ class ScatterPlot {
 public:
     explicit ScatterPlot(PlottingData *plotting_data) : plotting_data_(plotting_data) {};
 
-    ScatterPlot(const ScatterPlot &source);
+    ScatterPlot(ScatterPlot &&source) noexcept;
 
-    ScatterPlot &operator=(const ScatterPlot &rhs);
+    ScatterPlot &operator=(ScatterPlot &&rhs) noexcept;
 
     ScatterPlot() = default;
 
     ~ScatterPlot() = default;
 
-    ScatterPlot(ScatterPlot &&source) noexcept;
+    ScatterPlot(const ScatterPlot &source) = delete;
 
-    ScatterPlot &operator=(ScatterPlot &&rhs) noexcept;
+    ScatterPlot &operator=(const ScatterPlot &rhs) = delete;
 
     /// @brief Creates data points from given raw input data.
     void CreateDataPoints();
@@ -29,7 +29,7 @@ public:
 
 protected:
 
-    sf::CircleShape CreateCircleDataPointSkeleton();
+    sf::CircleShape CreateCircleDataPointSkeleton() const;
 
     PlottingData *plotting_data_{nullptr};
     std::size_t color_count_{0};

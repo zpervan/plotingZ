@@ -5,15 +5,14 @@
 #include <assert.h>
 #include <algorithm>
 
-ScatterPlot::ScatterPlot(const ScatterPlot &source) {
-    fmt::print("Scatter plot: Copy Ctor");
+ScatterPlot::ScatterPlot(ScatterPlot &&source) noexcept {
+    fmt::print("Scatter plot: Move Ctor");
     this->plotting_data_ = source.plotting_data_;
     this->color_count_ = source.color_count_;
 }
 
-
-ScatterPlot &ScatterPlot::operator=(const ScatterPlot &rhs) {
-    fmt::print("Scatter plot: Copy operator");
+ScatterPlot &ScatterPlot::operator=(ScatterPlot &&rhs) noexcept {
+    fmt::print("Scatter plot: Move operator");
     this->plotting_data_ = rhs.plotting_data_;
     this->color_count_ = rhs.color_count_;
     return *this;
@@ -46,9 +45,9 @@ void ScatterPlot::CreateDataPoints() {
     }
 }
 
-sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() {
+sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() const {
     sf::CircleShape data_point_skeleton;
-    data_point_skeleton.setRadius(3.f);
+    data_point_skeleton.setRadius(2.5);
     data_point_skeleton.setPosition(Config::REFERENCE_POINT);
     data_point_skeleton.setFillColor(mapped_colors.at(color_count_));
 
@@ -57,17 +56,4 @@ sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() {
 
 PlottingData *ScatterPlot::GetPlottingData() const {
     return plotting_data_;
-}
-
-ScatterPlot::ScatterPlot(ScatterPlot &&source) noexcept {
-    fmt::print("Scatter plot: Move Ctor");
-    this->plotting_data_ = source.plotting_data_;
-    this->color_count_ = source.color_count_;
-}
-
-ScatterPlot &ScatterPlot::operator=(ScatterPlot &&rhs) noexcept {
-    fmt::print("Scatter plot: Move operator");
-    this->plotting_data_ = rhs.plotting_data_;
-    this->color_count_ = rhs.color_count_;
-    return *this;
 }
