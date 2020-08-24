@@ -4,8 +4,8 @@
 #include <vector>
 #include <memory>
 #include <SFML/Graphics.hpp>
+
 /// @todo: Should we really append the raw input data?
-/// @todo: Extend plotting of other data types! Is this needed?
 using InputDataValues = std::pair<std::vector<float>, std::vector<float>>;
 using DataPoints = std::vector<sf::CircleShape>;
 using DataLines = std::vector<sf::RectangleShape>;
@@ -19,11 +19,11 @@ public:
     void AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
                                            const std::vector<float> &input_data_y);
 
-    /// @brief Finds and sets the maximum value (if possible) for given input data X.
+    /// @brief Finds and sets the maximum value (if possible) for given raw input data X.
     /// @param [in] input_data_x Raw input data X
     void FindAndSetMaxXValue(const std::vector<float> &input_data_x);
 
-    /// @brief Finds and sets the maximum value (if possible) for given input data Y.
+    /// @brief Finds and sets the maximum value (if possible) for given raw input data Y.
     /// @param [in] input_data_y Raw input data Y
     void FindAndSetMaxYValue(const std::vector<float> &input_data_y);
 
@@ -33,15 +33,23 @@ public:
 
     /// @section Setters
 
-    void SetAxisShapes(std::vector<sf::RectangleShape> &axis_shapes);
+    void SetAxisShapes(std::vector<sf::RectangleShape> &&axis_shapes);
 
-    void SetAxisMarkerValues(std::vector<sf::Text> &axis_marker_values);
+    void SetAxisMarkerValues(std::vector<sf::Text> &&axis_marker_values);
 
     void SetLegendShapes(std::vector<sf::RectangleShape> &legend_shapes);
 
     void SetLegendLabels(std::vector<sf::Text> &legend_labels);
 
     void SetTitle(const std::string &title);
+
+    void SetMaxXMarkerValue(size_t maxXMarkerValue);
+
+    void SetMaxYMarkerValue(size_t maxYMarkerValue);
+
+    void SetMinXMarkerValue(size_t minXMarkerValue);
+
+    void SetMinYMarkerValue(size_t minYMarkerValue);
 
     /// @section Getters
 
@@ -61,6 +69,14 @@ public:
 
     const std::vector<InputDataValues> &GetInputDataValuesCollection() const;
 
+    size_t GetMaxXMarkerValue() const;
+
+    size_t GetMaxYMarkerValue() const;
+
+    size_t GetMinXMarkerValue() const;
+
+    size_t GetMinYMarkerValue() const;
+
 protected:
     std::unique_ptr<std::vector<InputDataValues>> input_data_values_collection_ = std::make_unique<std::vector<InputDataValues>>();
     std::unique_ptr<std::vector<DataPoints>> data_points_collection_ = std::make_unique<std::vector<DataPoints>>();
@@ -69,10 +85,14 @@ protected:
     std::unique_ptr<std::vector<sf::Text>> axis_marker_values_ = std::make_unique<std::vector<sf::Text>>();
     std::unique_ptr<std::vector<sf::RectangleShape>> legend_shapes_ = std::make_unique<std::vector<sf::RectangleShape>>();
     std::unique_ptr<std::vector<sf::Text>> legend_labels_ = std::make_unique<std::vector<sf::Text>>();
-    std::string title_{"Plot"};
-    float max_x_value_{0.f};
-    float max_y_value_{0.f};
 
+    std::string title_{"Plot"};
+    float max_x_value_{0.0};
+    float max_y_value_{0.0};
+    std::size_t max_x_marker_value_{0};
+    std::size_t max_y_marker_value_{0};
+    std::size_t min_x_marker_value_{0};
+    std::size_t min_y_marker_value_{0};
 };
 
 #endif //PLOTINGZ_PLOTTING_DATA_H

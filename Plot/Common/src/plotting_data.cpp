@@ -25,11 +25,11 @@ void PlottingData::EmplaceDataPointsCollections(DataPoints &data_points) {
 }
 
 /// Setters
-void PlottingData::SetAxisShapes(std::vector<sf::RectangleShape> &axis_shapes) {
+void PlottingData::SetAxisShapes(std::vector<sf::RectangleShape> &&axis_shapes) {
     *axis_shapes_ = std::move(axis_shapes);
 }
 
-void PlottingData::SetAxisMarkerValues(std::vector<sf::Text> &axis_marker_values) {
+void PlottingData::SetAxisMarkerValues(std::vector<sf::Text> &&axis_marker_values) {
     std::move(axis_marker_values.begin(), axis_marker_values.end(), std::back_inserter(*axis_marker_values_));
 }
 
@@ -44,6 +44,23 @@ void PlottingData::SetLegendLabels(std::vector<sf::Text> &legend_labels) {
 void PlottingData::SetTitle(const std::string &title) {
     title_ = title;
 }
+
+void PlottingData::SetMaxXMarkerValue(size_t maxXMarkerValue) {
+    max_x_marker_value_ = maxXMarkerValue;
+}
+
+void PlottingData::SetMaxYMarkerValue(size_t maxYMarkerValue) {
+    max_y_marker_value_ = maxYMarkerValue;
+}
+
+void PlottingData::SetMinXMarkerValue(size_t minXMarkerValue) {
+    min_x_marker_value_ = minXMarkerValue;
+}
+
+void PlottingData::SetMinYMarkerValue(size_t minYMarkerValue) {
+    min_y_marker_value_ = minYMarkerValue;
+}
+
 
 /// Getters
 const std::vector<sf::RectangleShape> &PlottingData::GetAxisShapes() const {
@@ -76,4 +93,20 @@ const std::vector<DataPoints> &PlottingData::GetDataPointsCollections() const {
 
 const std::vector<InputDataValues> &PlottingData::GetInputDataValuesCollection() const {
     return *input_data_values_collection_;
+}
+
+size_t PlottingData::GetMaxXMarkerValue() const {
+    return max_x_marker_value_;
+}
+
+size_t PlottingData::GetMaxYMarkerValue() const {
+    return max_y_marker_value_;
+}
+
+size_t PlottingData::GetMinXMarkerValue() const {
+    return min_x_marker_value_;
+}
+
+size_t PlottingData::GetMinYMarkerValue() const {
+    return min_y_marker_value_;
 }
