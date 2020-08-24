@@ -21,7 +21,8 @@ protected:
     }
 };
 
-TEST_F(ScatterPlotTestFixture, GivenValidInputData_WhenVisualizingData_ThenDataPointsAbsolutePositionsAreCorrect) {
+TEST_F(ScatterPlotTestFixture,
+       DISABLED_GivenValidInputData_WhenVisualizingData_ThenDataPointsAbsolutePositionsAreCorrect) {
     const std::array<sf::Vector2f, 4> expected_data_point_absolute_position{{{600.0, 340.0}, {460.0, 240.0}, {320.0, 140.0}, {180.0, 40.0}}};
 
     ScatterPlot scatter_plot(CreateMockPlottingData());

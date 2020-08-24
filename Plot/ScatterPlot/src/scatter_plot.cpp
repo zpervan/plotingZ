@@ -1,7 +1,6 @@
 #include "Plot/ScatterPlot/src/scatter_plot.h"
 #include "Plot/Common/src/config.h"
 #include "Plot/Common/src/types.h"
-#include "ThirdParty/fmt/include/fmt/core.h"
 #include <assert.h>
 #include <algorithm>
 
@@ -32,8 +31,8 @@ void ScatterPlot::CreateDataPoints() {
         for (std::size_t j{0}; j < x_data.size(); j++) {
 
             sf::CircleShape data_point = CreateCircleDataPointSkeleton();
-            const float normalized_x_data_point = x_data.at(j) / plotting_data_->GetMaxXValue();
-            const float normalized_y_data_point = y_data.at(j) / plotting_data_->GetMaxYValue();
+            const float normalized_x_data_point = x_data.at(j) / plotting_data_->GetMaxXMarkerValue();
+            const float normalized_y_data_point = y_data.at(j) / plotting_data_->GetMaxYMarkerValue();
 
             data_point.move(
                     {Config::X_AXIS_DIMENSION.x * normalized_x_data_point,
