@@ -70,8 +70,8 @@ void PlottingZ::SetPlotType(PlotType plot_type) {
 }
 
 void PlottingZ::SetAxis() {
-    axis_.SetXAxis(plotting_data_->GetMaxXValue());
-    axis_.SetYAxis(plotting_data_->GetMaxYValue());
+    axis_.SetXAxisMaxMarkerValue(plotting_data_->GetMaxXValue());
+    axis_.SetYAxisMaxMarkerValue(plotting_data_->GetMaxYValue());
 }
 
 void PlottingZ::InitializePlot() {

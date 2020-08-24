@@ -14,24 +14,27 @@ namespace Config {
 
     static constexpr uint WINDOW_WIDTH{640};
     static constexpr uint WINDOW_HEIGHT{480};
-    static constexpr uint AXIS_FONT_SIZE{16};
+    static constexpr uint AXIS_FONT_SIZE{14};
 
     static constexpr float MARKER_LENGTH{10.0};
     static constexpr float AXIS_LINE_THICKNESS{2.0};
     static constexpr float EDGE_OFFSET{80.0};
 
-    static const sf::Vector2f REFERENCE_POINT{WINDOW_WIDTH * 0.0625, WINDOW_HEIGHT * 0.916666667};
-    static const sf::Vector2f X_AXIS_REFERENCE_POINT{REFERENCE_POINT.x - MARKER_LENGTH / 2,
-                                                     REFERENCE_POINT.y + AXIS_FONT_SIZE / 2};
-    static const sf::Vector2f Y_AXIS_REFERENCE_POINT{REFERENCE_POINT.x - MARKER_LENGTH * 2,
-                                                     REFERENCE_POINT.y - AXIS_FONT_SIZE / 2};
+    static const sf::Vector2f REFERENCE_POINT{WINDOW_WIDTH * 0.1, WINDOW_HEIGHT * 0.9};
+    static const sf::Vector2f X_AXIS_MARKER_REFERENCE_POINT{REFERENCE_POINT.x - MARKER_LENGTH / 2,
+                                                            REFERENCE_POINT.y + AXIS_FONT_SIZE / 2};
+    static const sf::Vector2f Y_AXIS_MARKER_REFERENCE_POINT{REFERENCE_POINT.x - MARKER_LENGTH * 3,
+                                                            REFERENCE_POINT.y - AXIS_FONT_SIZE / 2};
 
     static const sf::Vector2f MARKER_DIMENSION{MARKER_LENGTH, AXIS_LINE_THICKNESS};
     static const sf::Vector2f X_AXIS_DIMENSION{WINDOW_WIDTH - EDGE_OFFSET, AXIS_LINE_THICKNESS};
     static const sf::Vector2f Y_AXIS_DIMENSION{AXIS_LINE_THICKNESS, WINDOW_HEIGHT - EDGE_OFFSET};
-    namespace Axis {
 
+    namespace Axis {
+        static std::size_t MIN_NUMBER_OF_MARKERS{3};
+        static std::size_t MAX_NUMBER_OF_MARKERS{10};
     }
+
     namespace Legend {
         static constexpr uint FONT_SIZE{13};
 

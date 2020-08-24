@@ -4,7 +4,7 @@
 int main() {
 
     std::vector<float> x{1.5, 2.1, 3.3, 4.1, 3.9, 2.8, 7.5};
-    std::vector<float> y{6.3, 6.1, 5.56, 4.58, 3.91, 2.63, 1};
+    std::vector<float> y{13.3, 6.1, 5.56, 4.58, 3.91, 2.63, 1};
     std::vector<float> x1{4.8, 1.2, 3.58, 0.5, 2.63, 9.91, 1};
     std::vector<float> y1{8.3, 2.1, 9.56, 0.58, 2.91, 4.63, 2};
 
@@ -20,7 +20,7 @@ int main() {
     plottingZ.SetData(x1, y1);
     plottingZ.SetData(x2, y2);
     plottingZ.SetData(valid_x_data, valid_y_data);
-    plottingZ.SetLegendLabels({"Data black", "Data red", "Data green", "Data blue"});
+//    plottingZ.SetLegendLabels({"Data black", "Data red", "Data green", "Data blue"});
     plottingZ.Plot();
     return 0;
 }
