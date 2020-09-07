@@ -17,7 +17,7 @@ An example can be seen in the `Plot/main_run.cpp` file.
 ## Preview
 Input data visualization with the scatter plot:
 
-![](Preview/plot_example.png)
+![](Preview/scatter_plot_example.png)
 
 ## Notes
 Following features are available:
