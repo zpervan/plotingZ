@@ -50,7 +50,7 @@ std::vector<sf::RectangleShape> Axis::CreateXAxisMarkerShapes() {
         const float position_offset_percentage = static_cast<float>(i) / x_axis_marker_count_;
 
         sf::RectangleShape axis_marker{CreateAxisShapeSkeleton(Config::MARKER_DIMENSION, 90.0)};
-        axis_marker.move({Config::X_AXIS_DIMENSION.x * position_offset_percentage, 0});
+        axis_marker.move({Config::X_AXIS_DIMENSION.x * position_offset_percentage + Config::AXIS_LINE_THICKNESS, 0});
 
         axis_markers.emplace_back(std::move(axis_marker));
     }

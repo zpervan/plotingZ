@@ -46,8 +46,9 @@ void ScatterPlot::CreateDataPoints() {
 
 sf::CircleShape ScatterPlot::CreateCircleDataPointSkeleton() const {
     sf::CircleShape data_point_skeleton;
-    data_point_skeleton.setRadius(2.5);
-    data_point_skeleton.setPosition(Config::REFERENCE_POINT);
+    data_point_skeleton.setRadius(Config::ScatterPlot::DATA_POINT_RADIUS);
+    data_point_skeleton.setPosition(Config::REFERENCE_POINT.x - Config::ScatterPlot::DATA_POINT_X_OFFSET,
+                                    Config::REFERENCE_POINT.y - Config::ScatterPlot::DATA_POINT_Y_OFFSET);
     data_point_skeleton.setFillColor(mapped_colors.at(color_count_));
 
     return data_point_skeleton;

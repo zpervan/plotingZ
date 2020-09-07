@@ -14,7 +14,7 @@ namespace Config {
 
     static constexpr uint WINDOW_WIDTH{640};
     static constexpr uint WINDOW_HEIGHT{480};
-    static constexpr uint AXIS_FONT_SIZE{14};
+    static constexpr uint AXIS_FONT_SIZE{16};
 
     static constexpr float MARKER_LENGTH{10.0};
     static constexpr float AXIS_LINE_THICKNESS{2.0};
@@ -49,6 +49,11 @@ namespace Config {
         static const sf::Vector2f FRAME_SIZE{200.0, 18.0};
     }
 
+    namespace ScatterPlot {
+        static constexpr float DATA_POINT_RADIUS{2.5};
+        static constexpr float DATA_POINT_X_OFFSET{DATA_POINT_RADIUS / 2};
+        static constexpr float DATA_POINT_Y_OFFSET{DATA_POINT_RADIUS + Config::AXIS_LINE_THICKNESS};
+    }
 
     namespace Global {
         static sf::Font FONT{};
