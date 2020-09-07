@@ -1,7 +1,7 @@
 #include "Plot/Main/src/main.h"
 #include "Plot/Common/src/config.h"
-#include <SFML/Graphics.hpp>
 
+#include <SFML/Graphics.hpp>
 
 void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vector<float> &input_data_y) {
     if (input_data_x.empty() || input_data_y.empty()) {
@@ -21,6 +21,10 @@ void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vecto
 }
 
 void PlottingZ::Plot() {
+    if (plot_type_ == PlotType::Unknown) {
+        throw std::invalid_argument("Plot type not set!");
+    }
+
     axis_.CreateAxis();
 
     if (show_legend) {

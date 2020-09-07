@@ -14,8 +14,9 @@ static const std::map<std::size_t, sf::Color> mapped_colors{
         {6, sf::Color::Cyan}};
 
 enum class PlotType {
-    ScatterPlot = 0,
-    LinePlot = 1
+    Unknown = 0,
+    ScatterPlot,
+    LinePlot
 };
 
 #endif //PLOTINGZ_TYPES_H
