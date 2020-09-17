@@ -60,5 +60,29 @@
         "regex": "cpp",
         "thread": "cpp"
     },
-    "cmake.configureOnOpen": true
+    "testMate.cpp.test.executables": "bazel-out/k8-dbg/bin/Plot/{**, !**.runfiles}/*{_test}",
+    "testMate.cpp.test.workingDirectory": "${workspaceFolder}",
+    "cmake.configureOnOpen": false,
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": "googletest.failed",
+                "settings": {
+                    "foreground": "#f00"
+                }
+            },
+            {
+                "scope": "googletest.passed",
+                "settings": {
+                    "foreground": "#0f0"
+                }
+            },
+            {
+                "scope": "googletest.run",
+                "settings": {
+                    "foreground": "#0f0"
+                }
+            }
+        ]
+    }
 }
