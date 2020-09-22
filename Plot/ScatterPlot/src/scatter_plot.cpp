@@ -23,24 +23,21 @@ void ScatterPlot::CreateDataPoints() {
 
     const auto &input_data_points = plotting_data_->GetInputDataValuesCollection();
 
-    std::vector<sf::CircleShape> data_points;
-    for (std::size_t i{0}; i < input_data_points.size(); i++) {
-        const auto &x_data = input_data_points.at(i).first;
-        const auto &y_data = input_data_points.at(i).second;
+    std::vector<sf::CircleShape> points;
 
-        for (std::size_t j{0}; j < x_data.size(); j++) {
-
+    for (const auto &data_points : input_data_points) {
+        for (const auto &point : data_points) {
             sf::CircleShape data_point = CreateCircleDataPointSkeleton();
-            const float normalized_x_data_point = x_data.at(j) / plotting_data_->GetMaxXMarkerValue();
-            const float normalized_y_data_point = y_data.at(j) / plotting_data_->GetMaxYMarkerValue();
+            const float normalized_x_data_point = point.x / plotting_data_->GetMaxXMarkerValue();
+            const float normalized_y_data_point = point.y / plotting_data_->GetMaxYMarkerValue();
 
             data_point.move(
                     {Config::X_AXIS_DIMENSION.x * normalized_x_data_point,
                      -Config::Y_AXIS_DIMENSION.y * normalized_y_data_point});
-            data_points.emplace_back(data_point);
+            points.emplace_back(data_point);
         }
         ++color_count_;
-        plotting_data_->EmplaceDataPointsCollections(data_points);
+        plotting_data_->EmplaceDataPointsCollections(points);
     }
 }
 

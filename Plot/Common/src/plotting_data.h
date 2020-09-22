@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 
 /// @todo: Should we really append the raw input data?
-using InputDataValues = std::pair<std::vector<float>, std::vector<float>>;
+using InputDataValues = std::vector<sf::Vector2f>;
 using DataPoints = std::vector<sf::CircleShape>;
 using DataLines = std::vector<sf::RectangleShape>;
 
@@ -69,13 +69,13 @@ public:
 
     const std::vector<InputDataValues> &GetInputDataValuesCollection() const;
 
-    size_t GetMaxXMarkerValue() const;
+    std::size_t GetMaxXMarkerValue() const;
 
-    size_t GetMaxYMarkerValue() const;
+    std::size_t GetMaxYMarkerValue() const;
 
-    size_t GetMinXMarkerValue() const;
+    std::size_t GetMinXMarkerValue() const;
 
-    size_t GetMinYMarkerValue() const;
+    std::size_t GetMinYMarkerValue() const;
 
 protected:
     std::unique_ptr<std::vector<InputDataValues>> input_data_values_collection_ = std::make_unique<std::vector<InputDataValues>>();

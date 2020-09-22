@@ -3,9 +3,11 @@
 
 class PlottingZTestFixture : public ::testing::Test {
 protected:
-    void CheckDataPoints(const std::vector<float> &data_points, const std::vector<float> &expected_data_points) {
+    void CheckDataPoints(const std::vector<sf::Vector2f> &data_points,
+                         const std::vector<sf::Vector2f> &expected_data_points) {
         for (std::size_t i{0}; i < expected_data_points.size(); ++i) {
-            EXPECT_EQ(data_points[i], expected_data_points[i]);
+            EXPECT_EQ(data_points[i].x, expected_data_points[i].x);
+            EXPECT_EQ(data_points[i].y, expected_data_points[i].y);
         }
     }
 
@@ -14,6 +16,10 @@ protected:
     const std::vector<float> empty_y_data{};
     const std::vector<float> valid_x_data{4.0, 3.0, 2.0, 1.0};
     const std::vector<float> valid_y_data{1.0, 2.0, 3.0, 4.0};
+    const std::vector<sf::Vector2f> valid_data_points{{4.0, 1.0},
+                                                      {3.0, 2.0},
+                                                      {2.0, 3.0},
+                                                      {1.0, 4.0}};
 };
 
 TEST_F(PlottingZTestFixture, GivenNoInputData_WhenInitializing_ThenExceptionIsThrown) {
@@ -29,19 +35,18 @@ TEST_F(PlottingZTestFixture, GivenPlotTypeNotSet_WhenPlottingData_ThenExceptionI
 }
 
 TEST_F(PlottingZTestFixture, GivenValidInputData_WhenSettingData_ThenCorrectValuesAreSet) {
-    const std::size_t expected_size{4};
+    const std::size_t expected_values_collection_size{1};
+    const std::size_t expected_data_points_size{4};
+
     plottingZ.SetData(valid_x_data, valid_y_data);
 
     const auto &data_points_values_collection = plottingZ.GetPlottingData().GetInputDataValuesCollection();
+    ASSERT_EQ(data_points_values_collection.size(), expected_values_collection_size);
 
-    const auto &x_data_points = data_points_values_collection.front().first;
-    ASSERT_EQ(x_data_points.size(), expected_size);
+    const auto &data_points = data_points_values_collection.front();
+    ASSERT_EQ(data_points.size(), expected_data_points_size);
 
-    const auto &y_data_points = data_points_values_collection.front().second;
-    ASSERT_EQ(y_data_points.size(), expected_size);
-
-    CheckDataPoints(x_data_points, valid_x_data);
-    CheckDataPoints(y_data_points, valid_y_data);
+    CheckDataPoints(data_points, valid_data_points);
 }
 
 TEST_F(PlottingZTestFixture, GivenValidInputData_WhenSettingData_ThenCorrectMaximumValuesAreSet) {

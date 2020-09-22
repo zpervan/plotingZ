@@ -3,7 +3,13 @@
 
 void PlottingData::AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
                                                      const std::vector<float> &input_data_y) {
-    input_data_values_collection_->push_back({input_data_x, input_data_y});
+    std::vector<sf::Vector2f> data;
+    data.reserve(input_data_x.size());
+
+    for (std::size_t i{0}; i < input_data_x.size(); i++) {
+        data.emplace_back(sf::Vector2f{input_data_x.at(i), input_data_y.at(i)});
+    }
+    input_data_values_collection_->emplace_back(data);
 }
 
 void PlottingData::FindAndSetMaxXValue(const std::vector<float> &input_data_x) {
