@@ -1,0 +1,17 @@
+cc_library(
+    name = "math_utility",
+    srcs = ["src/math_utility.cpp"],
+    hdrs = ["src/math_utility.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "math_utility_test",
+    timeout = "short",
+    srcs = ["test/math_utility.cpp"],
+    deps = [
+        ":math_utility",
+        "@fmtlib//:fmt",
+        "@googletest//:gtest",
+    ],
+)

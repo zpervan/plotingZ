@@ -1,4 +1,4 @@
-#include "Plot/Common/src/math_utility.h"
+#include "Plot/Utility/src/math_utility.h"
 
 #include <cmath>
 
