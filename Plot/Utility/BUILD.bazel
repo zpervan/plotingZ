@@ -5,12 +5,31 @@ cc_library(
     visibility = ["//visibility:public"],
 )
 
+cc_library(
+    name = "convert_utility",
+    srcs = ["src/convert_utility.cpp"],
+    hdrs = ["src/convert_utility.h"],
+    visibility = ["//visibility:public"],
+    deps = ["//Plot/Common:config"],
+)
+
 cc_test(
     name = "math_utility_test",
     timeout = "short",
     srcs = ["test/math_utility.cpp"],
     deps = [
         ":math_utility",
+        "@fmtlib//:fmt",
+        "@googletest//:gtest",
+    ],
+)
+
+cc_test(
+    name = "convert_utility_test",
+    timeout = "short",
+    srcs = ["test/convert_utility_test.cpp"],
+    deps = [
+        ":convert_utility",
         "@fmtlib//:fmt",
         "@googletest//:gtest",
     ],
