@@ -64,11 +64,18 @@ void PlottingZ::Plot() {
             }
         }
 
+        for (const auto &data_lines : plotting_data_->GetLineDataValueCollection()) {
+            for (const auto &data_line : data_lines) {
+                window.draw(data_line);
+            }
+        }
+
         window.display();
     }
 
 }
 
+/// @todo: Pass string instead of PlotType so that the user does not need to know about the PlotType data type!
 void PlottingZ::SetPlotType(PlotType plot_type) {
     plot_type_ = plot_type;
 }
@@ -84,7 +91,8 @@ void PlottingZ::InitializePlot() {
         scatter_plot_.CreateDataPoints();
     }
     if (plot_type_ == PlotType::LinePlot) {
-        /// @todo: Add LinePlot code...
+        line_plot_ = LinePlot(plotting_data_.get());
+        line_plot_.CreateLinePlot();
     }
 }
 

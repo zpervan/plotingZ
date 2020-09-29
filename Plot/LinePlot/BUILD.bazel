@@ -6,9 +6,11 @@ cc_library(
     hdrs = ["src/line_plot.h"],
     visibility = ["//visibility:public"],
     deps = [
-        "//Plot/Common:axis",
         "//Plot/Common:config",
-        "@fmtlib//:fmt",
+        "//Plot/Common:plotting_data",
+        "//Plot/Common:types",
+        "//Plot/Utility:convert_utility",
+        "//Plot/Utility:math_utility",
     ],
 )
 
@@ -18,6 +20,7 @@ cc_test(
     tags = ["test"],
     deps = [
         ":line_plot",
+        "@fmtlib//:fmt",
         "@googletest//:gtest",
     ],
 )

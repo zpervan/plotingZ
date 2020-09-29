@@ -1,15 +1,16 @@
 #include "Plot/Common/src/plotting_data.h"
 #include "Plot/Common/src/config.h"
 
-void PlottingData::AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
-                                                     const std::vector<float> &input_data_y) {
-    std::vector<sf::Vector2f> data;
-    data.reserve(input_data_x.size());
+void PlottingData::AppendToInputDataValuesCollection(
+    const std::vector<float> &input_data_x,
+    const std::vector<float> &input_data_y) {
+  std::vector<sf::Vector2f> data;
+  data.reserve(input_data_x.size());
 
-    for (std::size_t i{0}; i < input_data_x.size(); i++) {
-        data.emplace_back(sf::Vector2f{input_data_x.at(i), input_data_y.at(i)});
-    }
-    input_data_values_collection_->emplace_back(data);
+  for (std::size_t i{0}; i < input_data_x.size(); i++) {
+    data.emplace_back(sf::Vector2f{input_data_x.at(i), input_data_y.at(i)});
+  }
+  input_data_values_collection_->emplace_back(data);
 }
 
 void PlottingData::FindAndSetMaxXValue(const std::vector<float> &input_data_x) {
@@ -27,92 +28,90 @@ void PlottingData::FindAndSetMaxYValue(const std::vector<float> &input_data_y) {
 }
 
 void PlottingData::EmplaceDataPointsCollections(DataPoints &data_points) {
-    data_points_collection_->emplace_back(data_points);
+  data_points_collection_->emplace_back(std::move(data_points));
+}
+
+void PlottingData::EmplaceDataLinesCollections(DataLines &data_lines) {
+  data_lines_collection_->emplace_back(std::move(data_lines));
 }
 
 /// Setters
-void PlottingData::SetAxisShapes(std::vector<sf::RectangleShape> &&axis_shapes) {
-    *axis_shapes_ = std::move(axis_shapes);
+void PlottingData::SetAxisShapes(
+    std::vector<sf::RectangleShape> &&axis_shapes) {
+  *axis_shapes_ = std::move(axis_shapes);
 }
 
-void PlottingData::SetAxisMarkerValues(std::vector<sf::Text> &&axis_marker_values) {
-    std::move(axis_marker_values.begin(), axis_marker_values.end(), std::back_inserter(*axis_marker_values_));
+void PlottingData::SetAxisMarkerValues(
+    std::vector<sf::Text> &&axis_marker_values) {
+  std::move(axis_marker_values.begin(), axis_marker_values.end(),
+            std::back_inserter(*axis_marker_values_));
 }
 
-void PlottingData::SetLegendShapes(std::vector<sf::RectangleShape> &legend_shapes) {
-    *legend_shapes_ = std::move(legend_shapes);
+void PlottingData::SetLegendShapes(
+    std::vector<sf::RectangleShape> &legend_shapes) {
+  *legend_shapes_ = std::move(legend_shapes);
 }
 
 void PlottingData::SetLegendLabels(std::vector<sf::Text> &legend_labels) {
-    *legend_labels_ = std::move(legend_labels);
+  *legend_labels_ = std::move(legend_labels);
 }
 
-void PlottingData::SetTitle(const std::string &title) {
-    title_ = title;
-}
+void PlottingData::SetTitle(const std::string &title) { title_ = title; }
 
 void PlottingData::SetMaxXMarkerValue(size_t maxXMarkerValue) {
-    max_x_marker_value_ = maxXMarkerValue;
+  max_x_marker_value_ = maxXMarkerValue;
 }
 
 void PlottingData::SetMaxYMarkerValue(size_t maxYMarkerValue) {
-    max_y_marker_value_ = maxYMarkerValue;
+  max_y_marker_value_ = maxYMarkerValue;
 }
 
 void PlottingData::SetMinXMarkerValue(size_t minXMarkerValue) {
-    min_x_marker_value_ = minXMarkerValue;
+  min_x_marker_value_ = minXMarkerValue;
 }
 
 void PlottingData::SetMinYMarkerValue(size_t minYMarkerValue) {
-    min_y_marker_value_ = minYMarkerValue;
+  min_y_marker_value_ = minYMarkerValue;
 }
-
 
 /// Getters
 const std::vector<sf::RectangleShape> &PlottingData::GetAxisShapes() const {
-    return *axis_shapes_;
+  return *axis_shapes_;
 }
 
 const std::vector<sf::Text> &PlottingData::GetAxisMarkerValues() const {
-    return *axis_marker_values_;
+  return *axis_marker_values_;
 }
 
 const std::vector<sf::RectangleShape> &PlottingData::GetLegendShapes() const {
-    return *legend_shapes_;
+  return *legend_shapes_;
 }
 
 const std::vector<sf::Text> &PlottingData::GetLegendLabelTexts() const {
-    return *legend_labels_;
+  return *legend_labels_;
 }
 
-float PlottingData::GetMaxXValue() const {
-    return max_x_value_;
-}
+float PlottingData::GetMaxXValue() const { return max_x_value_; }
 
-float PlottingData::GetMaxYValue() const {
-    return max_y_value_;
-}
+float PlottingData::GetMaxYValue() const { return max_y_value_; }
 
 const std::vector<DataPoints> &PlottingData::GetDataPointsCollections() const {
-    return *data_points_collection_;
+  return *data_points_collection_;
 }
 
-const std::vector<InputDataValues> &PlottingData::GetInputDataValuesCollection() const {
-    return *input_data_values_collection_;
+const std::vector<DataLines> &PlottingData::GetLineDataValueCollection() const {
+  return *data_lines_collection_;
 }
 
-size_t PlottingData::GetMaxXMarkerValue() const {
-    return max_x_marker_value_;
+const std::vector<InputDataValues> &
+PlottingData::GetInputDataValuesCollection() const {
+  return *input_data_values_collection_;
 }
 
-size_t PlottingData::GetMaxYMarkerValue() const {
-    return max_y_marker_value_;
-}
+size_t PlottingData::GetMaxXMarkerValue() const { return max_x_marker_value_; }
 
-size_t PlottingData::GetMinXMarkerValue() const {
-    return min_x_marker_value_;
-}
+size_t PlottingData::GetMaxYMarkerValue() const { return max_y_marker_value_; }
 
-size_t PlottingData::GetMinYMarkerValue() const {
-    return min_y_marker_value_;
-}
+size_t PlottingData::GetMinXMarkerValue() const { return min_x_marker_value_; }
+
+size_t PlottingData::GetMinYMarkerValue() const { return min_y_marker_value_; }
