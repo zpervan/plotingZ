@@ -16,10 +16,16 @@ An example can be seen in the `Plot/main_run.cpp` file.
 
 ## Preview
 Input data visualized with the scatter plot:
+
 ![](Preview/scatter_plot_example.png)
 
-Sine wave example:
-![](Preview/sine_wave_example.png)
+Scatter plot sine waves:
+
+![](Preview/sine_wave_scatter_plot_example.png)
+
+Line plot sine waves:
+
+![](Preview/sine_wave_line_plot_example.png)
 
 ## Notes
 Following features are available:
