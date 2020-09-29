@@ -50,7 +50,8 @@ std::vector<sf::RectangleShape> Axis::CreateXAxisMarkerShapes() {
         const float position_offset_percentage = static_cast<float>(i) / x_axis_marker_count_;
 
         sf::RectangleShape axis_marker{CreateAxisShapeSkeleton(Config::MARKER_DIMENSION, 90.0)};
-        axis_marker.move({Config::X_AXIS_DIMENSION.x * position_offset_percentage + Config::AXIS_LINE_THICKNESS, 0});
+        axis_marker.move(
+                {Config::X_AXIS_DIMENSION.x * position_offset_percentage + Config::AXIS_LINE_THICKNESS, 0});
 
         axis_markers.emplace_back(std::move(axis_marker));
     }
@@ -133,7 +134,11 @@ sf::Text Axis::CreateMarkerValueText(const std::size_t value, bool is_x_axis, co
 }
 
 std::size_t Axis::CalculateAxisMarkerUpperBoundValue(float max_value) {
-    if (max_value - std::floor(max_value) > 0.5) {
+    if (max_value < 10) {
+        return std::floor(max_value) + 1;
+    }
+
+    if ((max_value - std::floor(max_value)) > 0.5) {
         return std::floor(max_value / 10) * 10 + 10;
     } else {
         return std::floor(max_value / 10) * 10 + 5;
