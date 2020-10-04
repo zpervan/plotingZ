@@ -31,9 +31,6 @@ public:
     const PlottingData &GetPlottingData() const;
 
 protected:
-
-    void SetAxis();
-
     void InitializePlot();
 
     std::unique_ptr<PlottingData> plotting_data_{std::make_unique<PlottingData>()};

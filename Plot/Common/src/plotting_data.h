@@ -42,49 +42,29 @@ class PlottingData {
   /// @section Setters
 
   void SetAxisShapes(std::vector<sf::RectangleShape> &&axis_shapes);
-
   void SetAxisMarkerValues(std::vector<sf::Text> &&axis_marker_values);
-
   void SetLegendShapes(std::vector<sf::RectangleShape> &legend_shapes);
-
   void SetLegendLabels(std::vector<sf::Text> &legend_labels);
-
   void SetTitle(const std::string &title);
-
   void SetMaxXMarkerValue(size_t maxXMarkerValue);
-
   void SetMaxYMarkerValue(size_t maxYMarkerValue);
-
   void SetMinXMarkerValue(size_t minXMarkerValue);
-
   void SetMinYMarkerValue(size_t minYMarkerValue);
 
   /// @section Getters
 
   const std::vector<sf::RectangleShape> &GetAxisShapes() const;
-
   const std::vector<sf::Text> &GetAxisMarkerValues() const;
-
   const std::vector<sf::RectangleShape> &GetLegendShapes() const;
-
   const std::vector<sf::Text> &GetLegendLabelTexts() const;
-
   float GetMaxXValue() const;
-
   float GetMaxYValue() const;
-
   const std::vector<DataPoints> &GetPointDataCollection() const;
-
   const std::vector<DataLines> &GetLineDataValueCollection() const;
-
   const std::vector<InputDataValues> &GetInputDataValuesCollection() const;
-
   std::size_t GetMaxXMarkerValue() const;
-
   std::size_t GetMaxYMarkerValue() const;
-
   std::size_t GetMinXMarkerValue() const;
-
   std::size_t GetMinYMarkerValue() const;
 
  protected:
@@ -100,10 +80,10 @@ class PlottingData {
   std::string title_{"Plot"};
   float max_x_value_{0.0};
   float max_y_value_{0.0};
-  std::size_t max_x_marker_value_{0};
-  std::size_t max_y_marker_value_{0};
-  std::size_t min_x_marker_value_{0};
-  std::size_t min_y_marker_value_{0};
+  uint64_t max_x_marker_value_{0};
+  uint64_t max_y_marker_value_{0};
+  uint64_t min_x_marker_value_{0};
+  uint64_t min_y_marker_value_{0};
 };
 
 #endif // PLOTINGZ_PLOTTING_DATA_H

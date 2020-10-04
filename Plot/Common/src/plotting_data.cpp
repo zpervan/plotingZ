@@ -36,13 +36,12 @@ void PlottingData::EmplaceDataLinesCollections(DataLines &data_lines) {
 }
 
 /// Setters
-void PlottingData::SetAxisShapes(
-	std::vector<sf::RectangleShape> &&axis_shapes) {
+/// @todo: instantiate axis shape when calling this function?
+void PlottingData::SetAxisShapes(std::vector<sf::RectangleShape> &&axis_shapes) {
   *axis_shapes_ = std::move(axis_shapes);
 }
 
-void PlottingData::SetAxisMarkerValues(
-	std::vector<sf::Text> &&axis_marker_values) {
+void PlottingData::SetAxisMarkerValues(std::vector<sf::Text> &&axis_marker_values) {
   std::move(axis_marker_values.begin(), axis_marker_values.end(),
 			std::back_inserter(*axis_marker_values_));
 }

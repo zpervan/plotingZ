@@ -22,7 +22,6 @@ cc_library(
     deps = [
         ":config",
         ":plotting_data",
-        "@fmtlib//:fmt",
     ],
 )
 
@@ -67,6 +66,7 @@ cc_test(
     srcs = ["test/axis_test.cpp"],
     deps = [
         ":axis",
+        "@fmtlib//:fmt",
         "@googletest//:gtest",
     ],
 )

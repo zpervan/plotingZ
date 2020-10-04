@@ -3,49 +3,77 @@
 
 #include "gtest/gtest.h"
 
-class AxisTestFixture : public ::testing::Test {
-protected:
-    PlottingData *plotting_data_{new PlottingData};
-    Axis axis_{plotting_data_};
-    const std::vector<float> valid_x_data{14.28, 3.0, 2.0, 0.021};
-    const std::vector<float> valid_y_data{0.98, 2.0, 3.0, 13.13};
-};
-
 /// @todo: Axis should have a protected constructor which takes a custom config for window height and width,
 /// otherwise the test will fail if we change the window size in the config file
 
-TEST_F(AxisTestFixture, GivenMaxValuesAreSet_WhenCreatingAxis_ThenCorrectNumberOfAxisShapesPresent) {
-    plotting_data_->FindAndSetMaxXValue(valid_x_data);
-    plotting_data_->FindAndSetMaxYValue(valid_y_data);
+class AxisTestFixture : public ::testing::Test {
+ protected:
+  const std::vector<float> valid_x_data{14.28, 3.0, 2.0, 0.021};
+  const std::vector<float> valid_y_data{0.98, 2.0, 3.0, 13.13};
+  const double tolerance{1e-3};
 
-    axis_.SetXAxisMaxMarkerValue(plotting_data_->GetMaxXValue());
-    axis_.SetYAxisMaxMarkerValue(plotting_data_->GetMaxYValue());
+  PlottingData *CreatePlottingDataMock() {
+	PlottingData *plotting_data{new PlottingData()};
+	plotting_data->FindAndSetMaxXValue(valid_x_data);
+	plotting_data->FindAndSetMaxYValue(valid_y_data);
+	return plotting_data;
+  }
+};
 
-    axis_.CreateAxis();
+TEST_F(AxisTestFixture, GivenInputValuesAreSet_WhenAxisCreated_ThenNumberOfAxisShapesIsCorrect) {
+  constexpr std::size_t expected_axis_shape_size{10};
 
-    ASSERT_TRUE(true);
+  PlottingData *plotting_data_mock = CreatePlottingDataMock();
+
+  std::optional<Axis> axis{plotting_data_mock};
+  axis->CreateAxis();
+
+  ASSERT_TRUE(axis.has_value()) << fmt::format("Axis object failed to initialize!");
+  ASSERT_EQ(plotting_data_mock->GetAxisShapes().size(), expected_axis_shape_size);
 }
 
-TEST_F(AxisTestFixture, DISABLED_GivenAxisSizes_WhenCreating_ThenMarkerPositionsAreCorrect) {
-    const std::size_t expected_number_of_shape_elements{8};
-    const std::array<sf::Vector2f, 6> expected_marker_positions
-            {{{40.f, 440.f}, {320.f, 440.f}, {600.f, 440.f}, {40.f, 440.f}, {40.f, 240.f}, {40.f, 40.f}}};
+TEST_F(AxisTestFixture, GivenInputValuesAreSet_WhenAxisShapesCreated_ThenAxisShapePositionsAreCorrect) {
+  constexpr std::size_t expected_number_of_shape_elements{10};
+  const std::array<sf::Vector2f, 10> expected_axis_shape_positions{{{64.0, 432.0},
+																	{66.0, 432.0},
+																	{252.666, 432.0},
+																	{439.333, 432.0},
+																	{626.0, 432.0},
+																	{64.0, 432.0},
+																	{64.0, 432.0},
+																	{64.0, 298.666},
+																	{64.0, 165.333},
+																	{64.0, 32.0}}};
 
-    axis_.SetYAxisMaxMarkerValue(2);
-    axis_.SetXAxisMaxMarkerValue(2);
-    axis_.CreateAxis();
+  PlottingData *plotting_data_mock = CreatePlottingDataMock();
 
-    ASSERT_EQ(plotting_data_->GetAxisShapes().size(), expected_number_of_shape_elements);
+  Axis axis{plotting_data_mock};
+  axis.CreateAxis();
 
-    for (std::size_t i{0}; i < expected_marker_positions.size(); i++) {
-        EXPECT_EQ(plotting_data_->GetAxisShapes()[i + 2].getPosition().x, expected_marker_positions[i].x)
-                            << fmt::format("X at shape element with index {}", i + 2);
-        EXPECT_EQ(plotting_data_->GetAxisShapes()[i + 2].getPosition().y, expected_marker_positions[i].y)
-                            << fmt::format("Y at shape element with index {}", i + 2);;
-    }
+  ASSERT_EQ(plotting_data_mock->GetAxisShapes().size(), expected_number_of_shape_elements);
+
+  for (std::size_t i{0}; i < expected_axis_shape_positions.size(); i++) {
+	EXPECT_NEAR(plotting_data_mock->GetAxisShapes()[i].getPosition().x, expected_axis_shape_positions[i].x, tolerance)
+			  << fmt::format("X at shape element with index {}", i);
+
+	EXPECT_NEAR(plotting_data_mock->GetAxisShapes()[i].getPosition().y, expected_axis_shape_positions[i].y, tolerance)
+			  << fmt::format("Y at shape element with index {}", i);
+  }
 }
 
+TEST_F(AxisTestFixture, GivenInputValuesAreSet_WhenCreatingAxisMarkerValues_ThenCorrectAxisMarkerValuesCreated) {
+  constexpr std::size_t expected_axis_value_size{8};
+
+  PlottingData *plotting_data_mock = CreatePlottingDataMock();
+
+  std::optional<Axis> axis{plotting_data_mock};
+  axis->CreateAxis();
+
+  ASSERT_EQ(plotting_data_mock->GetAxisMarkerValues().size(), expected_axis_value_size);
+}
+
+/// @todo: Marker value shape test
 int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }
