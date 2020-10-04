@@ -10,6 +10,7 @@ cc_library(
         "//Plot/Common:config",
         "//Plot/Common:plotting_data",
         "//Plot/Common:types",
+        "//Plot/Utility:convert_utility",
     ],
 )
 
