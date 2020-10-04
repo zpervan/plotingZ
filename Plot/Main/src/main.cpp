@@ -58,7 +58,7 @@ void PlottingZ::Plot() {
             window.draw(legend_labels);
         }
 
-        for (const auto &data_points : plotting_data_->GetDataPointsCollections()) {
+        for (const auto &data_points : plotting_data_->GetPointDataCollection()) {
             for (const auto &data_point : data_points) {
                 window.draw(data_point);
             }
@@ -88,7 +88,7 @@ void PlottingZ::SetAxis() {
 void PlottingZ::InitializePlot() {
     if (plot_type_ == PlotType::ScatterPlot) {
         scatter_plot_ = ScatterPlot(plotting_data_.get());
-        scatter_plot_.CreateDataPoints();
+        scatter_plot_.CreateScatterPlot();
     }
     if (plot_type_ == PlotType::LinePlot) {
         line_plot_ = LinePlot(plotting_data_.get());

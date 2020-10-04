@@ -32,7 +32,7 @@ TEST_F(ScatterPlotTestFixture,
   ScatterPlot scatter_plot(plotting_data);
   scatter_plot.CreateScatterPlot();
 
-  const auto &point_data_collection = plotting_data->GetDataPointsCollection().front();
+  const auto &point_data_collection = plotting_data->GetPointDataCollection().front();
   ASSERT_EQ(point_data_collection.size(), expected_point_data_collection_size);
 
   for (std::size_t i{0}; i < valid_x_data.size(); i++) {
