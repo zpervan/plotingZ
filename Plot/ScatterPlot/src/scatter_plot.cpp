@@ -16,9 +16,11 @@ void ScatterPlot::CreateScatterPlot() {
   assert(plotting_data_ != nullptr && "Plotting data is not assigned or does not exist!");
 
   const auto &input_data_values_collection = plotting_data_->GetInputDataValuesCollection();
-  std::vector<sf::CircleShape> points;
 
   for (const auto &input_data_values : input_data_values_collection) {
+	std::vector<sf::CircleShape> points;
+	points.reserve(input_data_values.size());
+
 	for (const auto &input_data_value : input_data_values) {
 	  sf::CircleShape data_point = CreateCircleDataPointSkeleton();
 
