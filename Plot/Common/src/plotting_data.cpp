@@ -57,19 +57,19 @@ void PlottingData::SetLegendLabels(std::vector<sf::Text> &legend_labels) {
 
 void PlottingData::SetTitle(const std::string &title) { title_ = title; }
 
-void PlottingData::SetMaxXMarkerValue(size_t maxXMarkerValue) {
+void PlottingData::SetMaxXMarkerValue(uint64_t maxXMarkerValue) {
   max_x_marker_value_ = maxXMarkerValue;
 }
 
-void PlottingData::SetMaxYMarkerValue(size_t maxYMarkerValue) {
+void PlottingData::SetMaxYMarkerValue(uint64_t maxYMarkerValue) {
   max_y_marker_value_ = maxYMarkerValue;
 }
 
-void PlottingData::SetMinXMarkerValue(size_t minXMarkerValue) {
+void PlottingData::SetMinXMarkerValue(uint64_t minXMarkerValue) {
   min_x_marker_value_ = minXMarkerValue;
 }
 
-void PlottingData::SetMinYMarkerValue(size_t minYMarkerValue) {
+void PlottingData::SetMinYMarkerValue(uint64_t minYMarkerValue) {
   min_y_marker_value_ = minYMarkerValue;
 }
 
@@ -106,10 +106,10 @@ const std::vector<InputDataValues> &PlottingData::GetInputDataValuesCollection()
   return *input_data_values_collection_;
 }
 
-size_t PlottingData::GetMaxXMarkerValue() const { return max_x_marker_value_; }
+uint64_t PlottingData::GetMaxXMarkerValue() const { return max_x_marker_value_; }
 
-size_t PlottingData::GetMaxYMarkerValue() const { return max_y_marker_value_; }
+uint64_t PlottingData::GetMaxYMarkerValue() const { return max_y_marker_value_; }
 
-size_t PlottingData::GetMinXMarkerValue() const { return min_x_marker_value_; }
+uint64_t PlottingData::GetMinXMarkerValue() const { return min_x_marker_value_; }
 
-size_t PlottingData::GetMinYMarkerValue() const { return min_y_marker_value_; }
+uint64_t PlottingData::GetMinYMarkerValue() const { return min_y_marker_value_; }

@@ -20,7 +20,6 @@ class ScatterPlot {
   void CreateScatterPlot();
 
  protected:
-
   sf::CircleShape CreateCircleDataPointSkeleton() const;
   sf::Vector2f CalculateDataPointPosition(const sf::Vector2f &normalized_point) const;
 

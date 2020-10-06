@@ -4,8 +4,8 @@
 
 class ScatterPlotTestFixture : public ::testing::Test {
  protected:
-  const std::vector<float> valid_x_data{4.0, 3.0, 2.0, 1.0};
-  const std::vector<float> valid_y_data{1.0, 2.0, 3.0, 4.0};
+  const std::vector<float> valid_x_data{0.0, 4.0, 3.0, 2.0, 1.0};
+  const std::vector<float> valid_y_data{0.0, 1.0, 2.0, 3.0, 4.0};
 
   PlottingData *CreatePlottingDataMock() {
 	PlottingData *plotting_data{new PlottingData()};
@@ -18,15 +18,18 @@ class ScatterPlotTestFixture : public ::testing::Test {
   std::string PrintTestPointDataInformation(std::size_t index, float x, float y) {
 	return fmt::format("Test case {} with X:{},Y:{} failed.", index, valid_x_data[index], valid_y_data[index]);
   }
+
+  const double tolerance{1e-1};
 };
 
 TEST_F(ScatterPlotTestFixture,
-	   GivenValidInputData_WhenCreatingLinePlot_ThenPointDataPositionsAreCorrect) {
-  const std::size_t expected_point_data_collection_size{4};
-  const std::array<sf::Vector2f, 4> expected_point_data_position{{{600.0, 340.0},
-																  {460.0, 240.0},
-																  {320.0, 140.0},
-																  {180.0, 40.0}}};
+	   GivenValidInputData_WhenCreatingScatterPlot_ThenPointDataPositionsAreCorrect) {
+  const std::size_t expected_point_data_collection_size{5};
+  const std::array<sf::Vector2f, 5> expected_point_data_position{{{63.0, 429.5},
+																  {623.0, 329.5},
+																  {483.0, 229.5},
+																  {343.0, 129.5},
+																  {203.0, 29.5}}};
 
   PlottingData *plotting_data = CreatePlottingDataMock();
   ScatterPlot scatter_plot(plotting_data);
@@ -38,9 +41,9 @@ TEST_F(ScatterPlotTestFixture,
   for (std::size_t i{0}; i < valid_x_data.size(); i++) {
 	const auto &actual_point_data_position = point_data_collection[i].getPosition();
 
-	EXPECT_EQ(actual_point_data_position.x, expected_point_data_position[i].x)
+	EXPECT_NEAR(actual_point_data_position.x, expected_point_data_position[i].x, tolerance)
 			  << PrintTestPointDataInformation(i, valid_x_data[i], valid_y_data[i]);
-	EXPECT_EQ(actual_point_data_position.y, expected_point_data_position[i].y)
+	EXPECT_NEAR(actual_point_data_position.y, expected_point_data_position[i].y, tolerance)
 			  << PrintTestPointDataInformation(i, valid_x_data[i], valid_y_data[i]);
   }
 }
