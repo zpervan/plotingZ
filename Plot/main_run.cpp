@@ -1,26 +1,44 @@
-#include "Plot/Common/src/config.h"
 #include "Plot/Main/src/main.h"
+#include <cmath>
+
+using SineData = std::pair<std::vector<float>, std::vector<float>>;
+
+SineData CreateSineWave(double sample) {
+  std::vector<float> sin;
+  std::vector<float> time;
+  double value{0.0};
+  for (std::size_t i{0}; i <= 125; i++) {
+	value += sample;
+	sin.emplace_back(2 * std::sin(value) + 2);
+	time.emplace_back(i);
+  }
+  return {time, sin};
+}
 
 int main() {
+  // Create a plottingZ object instance
+  PlottingZ plottingZ;
 
-    std::vector<float> x{1.5, 2.1, 3.3, 4.1, 3.9, 2.8, 7.5};
-    std::vector<float> y{13.3, 6.1, 5.56, 4.58, 3.91, 2.63, 1};
-    std::vector<float> x1{4.8, 1.2, 3.58, 0.5, 2.63, 9.91, 1};
-    std::vector<float> y1{8.3, 2.1, 9.56, 0.58, 2.91, 4.63, 2};
+  // Set the plot type to line plot
+//  plottingZ.SetPlotType(PlotType::LinePlot);
 
-    std::vector<float> x2{1.8, 3.2, 6.58, 1.5, 0.63, 2.91, 0};
-    std::vector<float> y2{1.3, 7.1, 4.56, 0.58, 5.91, 3.63, 1};
+  // Set the plot type to scatter plot
+  plottingZ.SetPlotType(PlotType::ScatterPlot);
 
-    const std::vector<float> valid_x_data{4.0, 3.0, 2.0, 1.0};
-    const std::vector<float> valid_y_data{1.0, 2.0, 3.0, 4.0};
+  // Create some dummy data
+  const auto&[time, sin] = CreateSineWave(0.1);
+  plottingZ.SetData(time, sin);
 
-    PlottingZ plottingZ;
-    plottingZ.SetPlotType(PlotType::ScatterPlot);
-    plottingZ.SetData(x, y);
-    plottingZ.SetData(x1, y1);
-    plottingZ.SetData(x2, y2);
-    plottingZ.SetData(valid_x_data, valid_y_data);
-    plottingZ.SetLegendLabels({"Data black", "Data red", "Data green", "Data blue"});
-    plottingZ.Plot();
-    return 0;
+  const auto&[time2, sin2] = CreateSineWave(0.05);
+  plottingZ.SetData(time2, sin2);
+
+  const auto&[time3, sin3] = CreateSineWave(0.025);
+  plottingZ.SetData(time3, sin3);
+
+  // Create a legend and give the data some names
+//  plottingZ.SetLegendLabels({"Black sinus", "Red sinus", "Green sinus"});
+
+  // Plot the data!
+  plottingZ.Plot();
+  return 0;
 }

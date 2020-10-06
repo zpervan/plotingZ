@@ -1,18 +1,19 @@
 # plotingZ
 ![Actions Status](https://github.com/zpervan/plotingZ/workflows/CI/badge.svg)
 
-PlotingZ is a data visualization library written in C++. The core of this project is based on the SFML library 
-which is used to visualize the data.
+PlotingZ is a data visualization library written in C++ which is based on [SFML](https://www.sfml-dev.org/).
 Other libraries used in the project:
 - [fmt](https://github.com/fmtlib/fmt)
 - [Google Test](https://github.com/google/googletest)
 
 ## Installation
 In order to build and execute plottingZ, install the following library:
-`sudo apt install libsfml-dev` 
+`sudo apt install libsfml-dev`
 
-After that, build the project, set some input data and you should be ready to go! :)
-An example can be seen in the `Plot/main_run.cpp` file.
+To build the project, [Bazel](https://www.bazel.build/) is needed. The installation instructions can be found [here](https://docs.bazel.build/versions/master/install-ubuntu.html).
+
+After the needed libraries are installed, build the project, set some input data and you should be ready to go! :)
+An example can be seen in the `Plot/main_run.cpp` [file](https://github.com/zpervan/plotingZ/blob/master/Plot/main_run.cpp).
 
 ## Preview
 Input data visualized with the scatter plot:
@@ -49,6 +50,7 @@ Plots:
 
 * Rightmost axis value is cut-off due to the value text is exceeding screen dimension
 * Currently, does not support negative input data values
+* Plotted data is blocking legend data text box
  
 ## Support
 
