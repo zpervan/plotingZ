@@ -1,5 +1,4 @@
 #include "Plot/Common/src/plotting_data.h"
-#include "Plot/Common/src/config.h"
 
 void PlottingData::AppendToInputDataValuesCollection(
 	const std::vector<float> &input_data_x,

@@ -17,9 +17,8 @@ class PlottingData {
   /// @brief Pairs and appends the raw input data to a vector.
   /// @param [in] input_data_x Raw input data X
   /// @param [in] input_data_y Raw input data Y
-  void
-  AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
-									const std::vector<float> &input_data_y);
+  void AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
+										 const std::vector<float> &input_data_y);
 
   /// @brief Finds and sets the maximum value (if possible) for given raw input
   /// data X.

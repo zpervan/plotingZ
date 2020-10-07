@@ -51,6 +51,18 @@ cc_library(
 )
 
 cc_library(
+    name = "plotting_data_builder",
+    srcs = ["src/plotting_data_builder.cpp"],
+    hdrs = ["src/plotting_data_builder.h"],
+    data = ["//Plot/Fonts:fonts"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":config",
+        ":plotting_data",
+    ],
+)
+
+cc_library(
     name = "types",
     srcs = ["src/types.h"],
     hdrs = ["src/types.h"],
@@ -77,6 +89,16 @@ cc_test(
     srcs = ["test/legend_test.cpp"],
     deps = [
         ":legend",
+        "@googletest//:gtest",
+    ],
+)
+
+cc_test(
+    name = "plotting_data_builder_test",
+    srcs = ["test/plotting_data_builder_test.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":plotting_data_builder",
         "@googletest//:gtest",
     ],
 )
