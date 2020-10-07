@@ -1,5 +1,10 @@
 filegroup(
     name = "fonts",
-    srcs = ["JetBrainsMono-Regular.ttf"],
+    srcs = [
+        "JetBrainsMono-Bold.ttf",
+        "JetBrainsMono-Bold-Italic.ttf",
+        "JetBrainsMono-Italic.ttf",
+        "JetBrainsMono-Regular.ttf",
+    ],
     visibility = ["//visibility:public"],
 )
