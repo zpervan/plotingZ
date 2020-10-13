@@ -78,6 +78,7 @@ cc_test(
     srcs = ["test/axis_test.cpp"],
     deps = [
         ":axis",
+        ":plotting_data_builder",
         "@fmtlib//:fmt",
         "@googletest//:gtest",
     ],

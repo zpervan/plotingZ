@@ -1,36 +1,39 @@
 #ifndef PLOTINGZ_LEGEND_H
 #define PLOTINGZ_LEGEND_H
 
-#include "Plot/Common/src/config.h"
 #include "Plot/Common/src/plotting_data.h"
 
-/// @todo: Legend frame should be non-transparent
 class Legend {
-public:
-    explicit Legend(PlottingData *plotting_data) : plotting_data_(plotting_data) {};
+ public:
+  explicit Legend(PlottingData *plotting_data) : plotting_data_(plotting_data) {};
+  Legend() = default;
+  ~Legend() = default;
 
-    Legend() = default;
+  /// @brief Set the text/name for the legend labels
+  /// @param labels Texts/names for given data
+  void SetLegendLabels(const std::vector<std::string> &labels);
 
-    ~Legend() = default;
+  /// @brief Creates the legend with names for each label
+  void CreateLegend();
 
-    /// @brief Set the text/name for the legend labels
-    /// @param labels Texts/names for given data
-    void SetLegendLabels(const std::vector<std::string> &labels);
+  const std::vector<std::string> &GetLabels() const;
 
-    /// @brief Creates the legend with names for each label
-    void CreateLegend();
+ protected:
+  std::vector<sf::RectangleShape> CreateLabelColourBoxes();
+  std::vector<sf::Text> CreateLabelText();
+  sf::RectangleShape CreateLegendFrame();
+  void CalculateLegendFrameDimension();
+  void CalculateLegendFramePosition();
+  float CalculateLabelColourBoxXPosition();
+  float CalculateLabelColourBoxYPosition(const size_t position_offset);
+  float CalculateLabelTextXPosition();
+  float CalculateLabelTextYPosition(std::size_t position_offset);
 
-    const std::vector<std::string> &GetLabels() const;
-
-protected:
-    std::vector<sf::RectangleShape> CreateLabelBoxes();
-
-    std::vector<sf::Text> CreateLabelText();
-
-    sf::RectangleShape CreateLegendFrame();
-
-    std::vector<std::string> labels_{};
-    PlottingData *plotting_data_{nullptr};
+  std::vector<std::string> labels_{};
+  sf::Vector2f legend_frame_dimension_{0.0, 0.0};
+  sf::Vector2f legend_frame_position_{0.0, 0.0};
+  PlottingData *plotting_data_{nullptr};
+  bool IsLegendFrameDimensionCalculated() const;
 };
 
 #endif //PLOTINGZ_LEGEND_H

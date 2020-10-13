@@ -48,14 +48,6 @@ void PlottingZ::Plot() {
 	  window.draw(axis_marker_values);
 	}
 
-	for (const auto &legend_shape : plotting_data_->GetLegendShapes()) {
-	  window.draw(legend_shape);
-	}
-
-	for (const auto &legend_labels : plotting_data_->GetLegendLabelTexts()) {
-	  window.draw(legend_labels);
-	}
-
 	for (const auto &data_points : plotting_data_->GetPointDataCollection()) {
 	  for (const auto &data_point : data_points) {
 		window.draw(data_point);
@@ -66,6 +58,14 @@ void PlottingZ::Plot() {
 	  for (const auto &data_line : data_lines) {
 		window.draw(data_line);
 	  }
+	}
+
+	for (const auto &legend_shape : plotting_data_->GetLegendShapes()) {
+	  window.draw(legend_shape);
+	}
+
+	for (const auto &legend_labels : plotting_data_->GetLegendLabelTexts()) {
+	  window.draw(legend_labels);
 	}
 
 	window.display();

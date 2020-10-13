@@ -20,10 +20,10 @@ int main() {
   PlottingZ plottingZ;
 
   // Set the plot type to line plot
-//  plottingZ.SetPlotType(PlotType::LinePlot);
+  plottingZ.SetPlotType(PlotType::LinePlot);
 
   // Set the plot type to scatter plot
-  plottingZ.SetPlotType(PlotType::ScatterPlot);
+//  plottingZ.SetPlotType(PlotType::ScatterPlot);
 
   // Create some dummy data
   const auto&[time, sin] = CreateSineWave(0.1);
@@ -36,7 +36,7 @@ int main() {
   plottingZ.SetData(time3, sin3);
 
   // Create a legend and give the data some names
-//  plottingZ.SetLegendLabels({"Black sinus", "Red sinus", "Green sinus"});
+  plottingZ.SetLegendLabels({"Black sinus", "Red sinus", "Green sinus"});
 
   // Plot the data!
   plottingZ.Plot();

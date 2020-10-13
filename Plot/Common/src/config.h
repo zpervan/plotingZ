@@ -36,17 +36,17 @@ static std::size_t MAX_NUMBER_OF_MARKERS{10};
 }
 
 namespace Legend {
-static constexpr uint FONT_SIZE{13};
-
+static constexpr float FONT_SIZE{12.0};
+static constexpr float FONT_PIXEL_SCALE{1.33};
 static constexpr float FRAME_LINE_THICKNESS{1.0};
-static constexpr float LABEL_BOX_OFFSET{1.08};
+static constexpr float LABEL_BOX_OFFSET{1.0};
 
 static const sf::Vector2f LABEL_BOX_POSITION_OFFSET{5.0, 17.5};
 static const sf::Vector2f LABEL_BOX_SIZE{13.0, 13.0};
 static const sf::Vector2f LABEL_TEXT_POSITION_OFFSET{LABEL_BOX_POSITION_OFFSET.x * 4,
 													 LABEL_BOX_POSITION_OFFSET.y};
-static const sf::Vector2f FRAME_POSITION_ORIGIN{Config::WINDOW_WIDTH * 0.65, Config::WINDOW_HEIGHT * 0.05};
-static const sf::Vector2f FRAME_SIZE{200.0, 18.0};
+static const sf::Vector2f FRAME_POSITION_ORIGIN{Config::WINDOW_WIDTH * 0.70, Config::WINDOW_HEIGHT * 0.05};
+static const sf::Vector2f FRAME_SIZE{FONT_SIZE, 18};
 }
 
 namespace ScatterPlot {
