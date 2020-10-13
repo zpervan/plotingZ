@@ -16,17 +16,14 @@ After the needed libraries are installed, build the project, set some input data
 An example can be seen in the `Plot/main_run.cpp` [file](https://github.com/zpervan/plotingZ/blob/master/Plot/main_run.cpp).
 
 ## Preview
-Input data visualized with the scatter plot:
-
-![](Preview/scatter_plot_example.png)
 
 Scatter plot sine waves:
 
-![](Preview/sine_wave_scatter_plot_example.png)
+![](Preview/sinus_scatter_plot_legend_example.png)
 
 Line plot sine waves:
 
-![](Preview/sine_wave_line_plot_example.png)
+![](Preview/sinus_line_plot_legend_example.png)
 
 ## Notes
 Following features are available:
@@ -50,7 +47,6 @@ Plots:
 
 * Rightmost axis value is cut-off due to the value text is exceeding screen dimension
 * Currently, does not support negative input data values
-* Plotted data is blocking legend data text box
  
 ## Support
 
