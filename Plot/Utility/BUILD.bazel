@@ -1,3 +1,5 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
+
 cc_library(
     name = "math_utility",
     srcs = ["src/math_utility.cpp"],
@@ -11,6 +13,13 @@ cc_library(
     hdrs = ["src/convert_utility.h"],
     visibility = ["//visibility:public"],
     deps = ["//Plot/Common:config"],
+)
+
+cc_library(
+    name = "input_data_utility",
+    srcs = ["src/input_data_utility.cpp"],
+    hdrs = ["src/input_data_utility.h"],
+    visibility = ["//visibility:public"],
 )
 
 cc_test(
@@ -31,6 +40,16 @@ cc_test(
     deps = [
         ":convert_utility",
         "@fmtlib//:fmt",
+        "@googletest//:gtest",
+    ],
+)
+
+cc_test(
+    name = "input_data_utility_test",
+    timeout = "short",
+    srcs = ["test/math_utility.cpp"],
+    deps = [
+        ":input_data_utility",
         "@googletest//:gtest",
     ],
 )

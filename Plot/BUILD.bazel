@@ -5,5 +5,6 @@ cc_binary(
     srcs = ["main_run.cpp"],
     deps = [
         "//Plot/Main:main",
+        "//Plot/Utility:input_data_utility",
     ],
 )
