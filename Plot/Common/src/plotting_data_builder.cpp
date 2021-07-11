@@ -18,11 +18,10 @@ PlottingDataBuilder &PlottingDataBuilder::SetMaxYMarkerValue(uint64_t value) {
   plotting_data.SetMaxYMarkerValue(value);
   return *this;
 }
-PlottingDataBuilder &PlottingDataBuilder::AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
-																			const std::vector<float> &input_data_y) {
+PlottingDataBuilder &
+PlottingDataBuilder::AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
+                                                       const std::vector<float> &input_data_y) {
   plotting_data.AppendToInputDataValuesCollection(input_data_x, input_data_y);
   return *this;
 }
-PlottingData &PlottingDataBuilder::Build() {
-  return plotting_data;
-}
+PlottingData &PlottingDataBuilder::Build() { return plotting_data; }

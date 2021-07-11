@@ -13,12 +13,12 @@ using DataLines = std::vector<sf::RectangleShape>;
 /// @brief Serves as a central data container for raw and processed data. This
 /// data will be used for visualization.
 class PlottingData {
- public:
+public:
   /// @brief Pairs and appends the raw input data to a vector.
   /// @param [in] input_data_x Raw input data X
   /// @param [in] input_data_y Raw input data Y
   void AppendToInputDataValuesCollection(const std::vector<float> &input_data_x,
-										 const std::vector<float> &input_data_y);
+                                         const std::vector<float> &input_data_y);
 
   /// @brief Finds and sets the maximum value (if possible) for given raw input
   /// data X.
@@ -66,14 +66,17 @@ class PlottingData {
   std::size_t GetMinXMarkerValue() const;
   std::size_t GetMinYMarkerValue() const;
 
- protected:
-  std::unique_ptr<std::vector<InputDataValues>>
-	  input_data_values_collection_ = std::make_unique<std::vector<InputDataValues>>();
-  std::unique_ptr<std::vector<DataPoints>> point_data_collection_ = std::make_unique<std::vector<DataPoints>>();
+protected:
+  std::unique_ptr<std::vector<InputDataValues>> input_data_values_collection_ =
+      std::make_unique<std::vector<InputDataValues>>();
+  std::unique_ptr<std::vector<DataPoints>> point_data_collection_ =
+      std::make_unique<std::vector<DataPoints>>();
   std::unique_ptr<std::vector<DataLines>> line_data_collection_ = std::make_unique<std::vector<DataLines>>();
-  std::unique_ptr<std::vector<sf::RectangleShape>> axis_shapes_ = std::make_unique<std::vector<sf::RectangleShape>>();
+  std::unique_ptr<std::vector<sf::RectangleShape>> axis_shapes_ =
+      std::make_unique<std::vector<sf::RectangleShape>>();
   std::unique_ptr<std::vector<sf::Text>> axis_marker_values_ = std::make_unique<std::vector<sf::Text>>();
-  std::unique_ptr<std::vector<sf::RectangleShape>> legend_shapes_ = std::make_unique<std::vector<sf::RectangleShape>>();
+  std::unique_ptr<std::vector<sf::RectangleShape>> legend_shapes_ =
+      std::make_unique<std::vector<sf::RectangleShape>>();
   std::unique_ptr<std::vector<sf::Text>> legend_labels_ = std::make_unique<std::vector<sf::Text>>();
 
   std::string title_{"Plot"};

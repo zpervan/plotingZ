@@ -5,9 +5,8 @@
 
 /// @brief Contains logic for line plot drawing
 class LinePlot {
- public:
-  explicit LinePlot(PlottingData *plotting_data)
-	  : plotting_data_(plotting_data) {}
+public:
+  explicit LinePlot(PlottingData *plotting_data) : plotting_data_(plotting_data) {}
 
   LinePlot() = default;
   ~LinePlot() = default;
@@ -19,11 +18,11 @@ class LinePlot {
   /// @brief Creates line plot data out of given input 2D data points
   void CreateLinePlot();
 
- private:
+private:
   sf::Vector2f CalculateDataPointPositionOffset(const sf::Vector2f &normalized_point) const;
 
   PlottingData *plotting_data_{nullptr};
   std::size_t color_count_{0};
 };
 
-#endif //PLOTINGZ_LINE_PLOT_H
+#endif // PLOTINGZ_LINE_PLOT_H

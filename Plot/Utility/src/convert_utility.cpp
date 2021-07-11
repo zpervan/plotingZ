@@ -3,9 +3,8 @@
 
 #include <cassert>
 
-sf::Vector2f ConvertUtility::NormalizeValues(const sf::Vector2f &data_point,
-											 float scaling_value_x,
-											 float scaling_value_y) {
+sf::Vector2f ConvertUtility::NormalizeValues(const sf::Vector2f &data_point, float scaling_value_x,
+                                             float scaling_value_y) {
   const float normalized_point_x = ConvertUtility::NormalizeValue(data_point.x, scaling_value_x);
   const float normalized_point_y = ConvertUtility::NormalizeValue(data_point.y, scaling_value_y);
 
@@ -13,10 +12,10 @@ sf::Vector2f ConvertUtility::NormalizeValues(const sf::Vector2f &data_point,
 }
 
 float ConvertUtility::NormalizeValue(float value_to_normalize, float scaling_value) {
-  assert((value_to_normalize >= 0.0) && (scaling_value >= 0.0));
+  assert((value_to_normalize >= 0.0) && (scaling_value > 0.0));
 
-  if ((value_to_normalize > 0.0) && (scaling_value > 0.0)) {
-	return value_to_normalize / scaling_value;
+  if ((value_to_normalize > 0.0) && (scaling_value >= 0.0)) {
+    return value_to_normalize / scaling_value;
   }
   return 0.0;
 }

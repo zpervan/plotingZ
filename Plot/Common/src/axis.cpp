@@ -64,13 +64,13 @@ std::vector<sf::Text> Axis::CreateAxisMarkerValues() {
 /// @todo: Consider negative values as upper bound
 uint64_t Axis::CalculateAxisMarkerUpperBoundValue(float max_value) {
   if (max_value < 10) {
-	return std::floor(max_value) + 1;
+    return std::floor(max_value) + 1;
   }
 
   if ((max_value - std::floor(max_value)) > 0.5) {
-	return std::floor(max_value / 10) * 10 + 10;
+    return std::floor(max_value / 10) * 10 + 10;
   } else {
-	return std::floor(max_value / 10) * 10 + 5;
+    return std::floor(max_value / 10) * 10 + 5;
   }
 }
 
@@ -78,9 +78,9 @@ uint8_t Axis::GenerateNumberOfAxisMarkers(const std::size_t max_marker_value) {
   std::size_t markers_count{Config::Axis::MAX_NUMBER_OF_MARKERS};
 
   for (std::size_t i{Config::Axis::MAX_NUMBER_OF_MARKERS}; i >= Config::Axis::MIN_NUMBER_OF_MARKERS; i--) {
-	if (max_marker_value % i == 0) {
-	  markers_count = i;
-	}
+    if (max_marker_value % i == 0) {
+      markers_count = i;
+    }
   }
   constexpr std::size_t zero_marker_count{1};
   return markers_count + zero_marker_count;
@@ -105,18 +105,19 @@ std::vector<sf::RectangleShape> Axis::CreateXAxisMarkerShapes() {
   std::vector<sf::RectangleShape> x_axis_markers;
   x_axis_markers.reserve(x_axis_marker_count_);
 
-  // Starting at element index 0, Y axis marker count is subtracted with -1 in order to get the correct axis marker
-  // shape position percentage!
+  // Starting at element index 0, Y axis marker count is subtracted with -1 in order to get the correct axis
+  // marker shape position percentage!
   const auto x_axis_marker_count{x_axis_marker_count_ - 1};
 
   for (std::size_t i{0}; i <= x_axis_marker_count; i++) {
-	const float position_percentage_on_x_axis{static_cast<float>(i) / x_axis_marker_count};
+    const float position_percentage_on_x_axis{static_cast<float>(i) / x_axis_marker_count};
 
-	sf::RectangleShape axis_marker{CreateAxisSkeletonShape(Config::MARKER_DIMENSION, 90.0)};
-	sf::Vector2f x_offset{Config::X_AXIS_DIMENSION.x * position_percentage_on_x_axis + Config::AXIS_LINE_THICKNESS, 0};
-	axis_marker.move(x_offset);
+    sf::RectangleShape axis_marker{CreateAxisSkeletonShape(Config::MARKER_DIMENSION, 90.0)};
+    sf::Vector2f x_offset{
+        Config::X_AXIS_DIMENSION.x * position_percentage_on_x_axis + Config::AXIS_LINE_THICKNESS, 0};
+    axis_marker.move(x_offset);
 
-	x_axis_markers.emplace_back(std::move(axis_marker));
+    x_axis_markers.emplace_back(std::move(axis_marker));
   }
   return x_axis_markers;
 }
@@ -125,25 +126,24 @@ std::vector<sf::RectangleShape> Axis::CreateYAxisMarkerShapes() {
   std::vector<sf::RectangleShape> y_axis_markers;
   y_axis_markers.reserve(y_axis_marker_count_);
 
-  // Starting at element index 0, X axis marker count is subtracted with -1 in order to get the correct axis marker
-  // shape position percentage!
+  // Starting at element index 0, X axis marker count is subtracted with -1 in order to get the correct axis
+  // marker shape position percentage!
   const auto y_axis_marker_count{y_axis_marker_count_ - 1};
 
   for (std::size_t i{0}; i <= y_axis_marker_count; i++) {
-	sf::RectangleShape axis_marker{CreateAxisSkeletonShape(Config::MARKER_DIMENSION, 180.0)};
+    sf::RectangleShape axis_marker{CreateAxisSkeletonShape(Config::MARKER_DIMENSION, 180.0)};
 
-	const float position_percentage_on_y_axis{static_cast<float>(i) / y_axis_marker_count};
-	sf::Vector2f y_offset{0, -(Config::Y_AXIS_DIMENSION.y * position_percentage_on_y_axis)};
-	axis_marker.move(y_offset);
+    const float position_percentage_on_y_axis{static_cast<float>(i) / y_axis_marker_count};
+    sf::Vector2f y_offset{0, -(Config::Y_AXIS_DIMENSION.y * position_percentage_on_y_axis)};
+    axis_marker.move(y_offset);
 
-	y_axis_markers.emplace_back(std::move(axis_marker));
+    y_axis_markers.emplace_back(std::move(axis_marker));
   }
   return y_axis_markers;
 }
 
-std::vector<sf::Text> Axis::AddValueToAxisMarkers(std::size_t max_marker_value,
-												  std::size_t marker_count,
-												  bool is_x_axis) {
+std::vector<sf::Text> Axis::AddValueToAxisMarkers(std::size_t max_marker_value, std::size_t marker_count,
+                                                  bool is_x_axis) {
   std::vector<sf::Text> axis_marker_values;
   axis_marker_values.reserve(marker_count);
 
@@ -152,17 +152,17 @@ std::vector<sf::Text> Axis::AddValueToAxisMarkers(std::size_t max_marker_value,
 
   for (std::size_t i{0}; i <= subtracted_marker_count; i++) {
 
-	sf::Text marker_value{CreateMarkerValueSkeleton()};
-	marker_value.setString(std::to_string(i * scaled_marker_value));
+    sf::Text marker_value{CreateMarkerValueSkeleton()};
+    marker_value.setString(std::to_string(i * scaled_marker_value));
 
-	const float position_offset_percentage{static_cast<float>(i) / subtracted_marker_count};
-	if (is_x_axis) {
-	  marker_value.setPosition(CalculateMarkerValueXAxisPosition(position_offset_percentage));
-	} else {
-	  marker_value.setPosition(CalculateMarkerValueYAxisPosition(position_offset_percentage));
-	}
+    const float position_offset_percentage{static_cast<float>(i) / subtracted_marker_count};
+    if (is_x_axis) {
+      marker_value.setPosition(CalculateMarkerValueXAxisPosition(position_offset_percentage));
+    } else {
+      marker_value.setPosition(CalculateMarkerValueYAxisPosition(position_offset_percentage));
+    }
 
-	axis_marker_values.emplace_back(std::move(marker_value));
+    axis_marker_values.emplace_back(std::move(marker_value));
   }
   return axis_marker_values;
 }
@@ -179,13 +179,15 @@ sf::Text Axis::CreateMarkerValueSkeleton() {
 }
 
 sf::Vector2f Axis::CalculateMarkerValueXAxisPosition(float offset) const {
-  const float marker_value_x_position{Config::X_AXIS_MARKER_REFERENCE_POINT.x + (Config::X_AXIS_DIMENSION.x * offset)};
+  const float marker_value_x_position{Config::X_AXIS_MARKER_REFERENCE_POINT.x +
+                                      (Config::X_AXIS_DIMENSION.x * offset)};
   const float marker_value_y_position{Config::X_AXIS_MARKER_REFERENCE_POINT.y};
   return {marker_value_x_position, marker_value_y_position};
 }
 
 sf::Vector2f Axis::CalculateMarkerValueYAxisPosition(float offset) const {
   const float marker_value_x_position{Config::Y_AXIS_MARKER_REFERENCE_POINT.x};
-  const float marker_value_y_position{Config::Y_AXIS_MARKER_REFERENCE_POINT.y - (Config::Y_AXIS_DIMENSION.y * offset)};
+  const float marker_value_y_position{Config::Y_AXIS_MARKER_REFERENCE_POINT.y -
+                                      (Config::Y_AXIS_DIMENSION.y * offset)};
   return {marker_value_x_position, marker_value_y_position};
 }

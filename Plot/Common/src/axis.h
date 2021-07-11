@@ -10,7 +10,7 @@
 /// @todo: Consider smoothing axis lines and a grayish color
 
 class Axis {
- public:
+public:
   explicit Axis(PlottingData *plotting_data) : plotting_data_{plotting_data} {}
   Axis() = default;
   ~Axis() = default;
@@ -22,12 +22,13 @@ class Axis {
   /// @brief Creates the axis based on given input data
   void CreateAxis();
 
- private:
+private:
   std::vector<sf::RectangleShape> CreateAxisShapes();
   std::vector<sf::RectangleShape> CreateXAxisMarkerShapes();
   std::vector<sf::RectangleShape> CreateYAxisMarkerShapes();
   std::vector<sf::Text> CreateAxisMarkerValues();
-  std::vector<sf::Text> AddValueToAxisMarkers(std::size_t max_marker_value, std::size_t marker_count, bool is_x_axis);
+  std::vector<sf::Text> AddValueToAxisMarkers(std::size_t max_marker_value, std::size_t marker_count,
+                                              bool is_x_axis);
   sf::RectangleShape CreateAxisSkeletonShape(const sf::Vector2f &shape_dimension, float angle);
   sf::Text CreateMarkerValueSkeleton();
   sf::Vector2f CalculateMarkerValueXAxisPosition(float offset) const;
@@ -43,4 +44,4 @@ class Axis {
   uint8_t y_axis_marker_count_{0};
 };
 
-#endif //PLOTINGZ_AXIS_H
+#endif // PLOTINGZ_AXIS_H

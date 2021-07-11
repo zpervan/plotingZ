@@ -15,16 +15,16 @@ namespace ConvertUtility {
 /// @return Normalized values
 sf::Vector2f NormalizeValues(const sf::Vector2f &data_point, float scaling_value_x, float scaling_value_y);
 
-/// @brief Normalizes the value with given scaling value. The scaling value can (in most cases) be the max value of a
-/// data set.
+/// @brief Normalizes the value with given scaling value. The scaling value can (in most cases) be the max
+/// value of a data set.
 /// @attention Currently, does not support normalization with negative values!
 /// @param [in] value_to_normalize Value which should be normalized
 /// @param [in] scaling_value Scale (normalize) value to normalize the input value
 /// @return Normalized value (between 0 and 1)
 float NormalizeValue(float value_to_normalize, float scaling_value);
 
-/// @brief Converts normalized point values to axis screen space values (represented in pixels). The axis screen space
-/// represents the space between the horizontal (x) and vertical (y) axis.
+/// @brief Converts normalized point values to axis screen space values (represented in pixels). The axis
+/// screen space represents the space between the horizontal (x) and vertical (y) axis.
 /// @verbatim
 ///    ᴧ
 /// +y |

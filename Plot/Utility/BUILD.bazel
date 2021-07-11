@@ -25,7 +25,7 @@ cc_library(
 cc_test(
     name = "math_utility_test",
     timeout = "short",
-    srcs = ["test/math_utility.cpp"],
+    srcs = ["test/math_utility_test.cpp"],
     deps = [
         ":math_utility",
         "@fmtlib//:fmt",

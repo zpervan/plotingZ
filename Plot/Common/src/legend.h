@@ -4,8 +4,8 @@
 #include "Plot/Common/src/plotting_data.h"
 
 class Legend {
- public:
-  explicit Legend(PlottingData *plotting_data) : plotting_data_(plotting_data) {};
+public:
+  explicit Legend(PlottingData *plotting_data) : plotting_data_(plotting_data){};
   Legend() = default;
   ~Legend() = default;
 
@@ -18,7 +18,7 @@ class Legend {
 
   const std::vector<std::string> &GetLabels() const;
 
- protected:
+protected:
   std::vector<sf::RectangleShape> CreateLabelColourBoxes();
   std::vector<sf::Text> CreateLabelText();
   sf::RectangleShape CreateLegendFrame();
@@ -36,4 +36,4 @@ class Legend {
   bool IsLegendFrameDimensionCalculated() const;
 };
 
-#endif //PLOTINGZ_LEGEND_H
+#endif // PLOTINGZ_LEGEND_H

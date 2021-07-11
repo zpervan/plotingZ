@@ -11,7 +11,7 @@ void Legend::SetLegendLabels(const std::vector<std::string> &labels) {
 
 void Legend::CreateLegend() {
   if (labels_.empty()) {
-	throw std::invalid_argument("Legend labels are not set!");
+    throw std::invalid_argument("Legend labels are not set!");
   }
 
   sf::RectangleShape legend_frame{CreateLegendFrame()};
@@ -51,14 +51,14 @@ std::vector<sf::RectangleShape> Legend::CreateLabelColourBoxes() {
   const float x_position{CalculateLabelColourBoxXPosition()};
 
   for (std::size_t i{0}; i < labels_.size(); i++) {
-	sf::RectangleShape label_colour_box;
-	label_colour_box.setSize(Config::Legend::LABEL_BOX_SIZE);
-	label_colour_box.setFillColor(mapped_colors.at(i));
+    sf::RectangleShape label_colour_box;
+    label_colour_box.setSize(Config::Legend::LABEL_BOX_SIZE);
+    label_colour_box.setFillColor(mapped_colors.at(i));
 
-	const float y_position{CalculateLabelColourBoxYPosition(i)};
-	label_colour_box.setPosition(x_position, y_position);
+    const float y_position{CalculateLabelColourBoxYPosition(i)};
+    label_colour_box.setPosition(x_position, y_position);
 
-	label_colour_boxes.emplace_back(std::move(label_colour_box));
+    label_colour_boxes.emplace_back(std::move(label_colour_box));
   }
   return label_colour_boxes;
 }
@@ -71,16 +71,16 @@ std::vector<sf::Text> Legend::CreateLabelText() {
 
   std::vector<sf::Text> label_texts;
   for (std::size_t i{0}; i < labels_.size(); i++) {
-	sf::Text label_text;
-	label_text.setFont(Config::Global::FONT);
-	label_text.setFillColor(sf::Color::Black);
-	label_text.setCharacterSize(Config::Legend::FONT_SIZE);
-	label_text.setString(labels_.at(i));
+    sf::Text label_text;
+    label_text.setFont(Config::Global::FONT);
+    label_text.setFillColor(sf::Color::Black);
+    label_text.setCharacterSize(Config::Legend::FONT_SIZE);
+    label_text.setString(labels_.at(i));
 
-	const float y_position{CalculateLabelTextYPosition(i)};
-	label_text.setPosition(x_position, y_position);
+    const float y_position{CalculateLabelTextYPosition(i)};
+    label_text.setPosition(x_position, y_position);
 
-	label_texts.emplace_back(label_text);
+    label_texts.emplace_back(label_text);
   }
   return label_texts;
 }
@@ -90,20 +90,20 @@ float Legend::CalculateLabelColourBoxXPosition() {
 }
 
 float Legend::CalculateLabelColourBoxYPosition(const std::size_t position_offset) {
-  const float offset_from_frame{((legend_frame_dimension_.y / labels_.size()) - Config::Legend::LABEL_BOX_SIZE.y) / 2};
-  const float colour_box_y_offset{(legend_frame_dimension_.y / labels_.size()) * position_offset + offset_from_frame};
+  const float offset_from_frame{
+      ((legend_frame_dimension_.y / labels_.size()) - Config::Legend::LABEL_BOX_SIZE.y) / 2};
+  const float colour_box_y_offset{(legend_frame_dimension_.y / labels_.size()) * position_offset +
+                                  offset_from_frame};
   return legend_frame_position_.y + colour_box_y_offset;
 }
 
-const std::vector<std::string> &Legend::GetLabels() const {
-  return labels_;
-}
+const std::vector<std::string> &Legend::GetLabels() const { return labels_; }
 
 void Legend::CalculateLegendFrameDimension() {
   const auto max_label_size =
-	  std::max_element(labels_.cbegin(), labels_.cend(), [](const std::string &lhs, const std::string &rhs) {
-		return lhs.length() < rhs.length();
-	  })->size();
+      std::max_element(labels_.cbegin(), labels_.cend(), [](const std::string &lhs, const std::string &rhs) {
+        return lhs.length() < rhs.length();
+      })->size();
 
   const float x_dimension{Config::Legend::FRAME_SIZE.x * (max_label_size / Config::Legend::FONT_PIXEL_SCALE)};
   const float y_dimension{Config::Legend::FRAME_SIZE.y * labels_.size()};
