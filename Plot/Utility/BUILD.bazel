@@ -47,7 +47,7 @@ cc_test(
 cc_test(
     name = "input_data_utility_test",
     timeout = "short",
-    srcs = ["test/math_utility.cpp"],
+    srcs = ["test/input_data_utility_test.cpp"],
     deps = [
         ":input_data_utility",
         "@googletest//:gtest",

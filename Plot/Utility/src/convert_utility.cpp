@@ -12,7 +12,7 @@ sf::Vector2f ConvertUtility::NormalizeValues(const sf::Vector2f &data_point, flo
 }
 
 float ConvertUtility::NormalizeValue(float value_to_normalize, float scaling_value) {
-  assert((value_to_normalize >= 0.0) && (scaling_value > 0.0));
+  assert((value_to_normalize >= 0.0) && (scaling_value >= 0.0));
 
   if ((value_to_normalize > 0.0) && (scaling_value >= 0.0)) {
     return value_to_normalize / scaling_value;

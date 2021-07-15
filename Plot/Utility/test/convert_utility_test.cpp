@@ -18,7 +18,7 @@ INSTANTIATE_TEST_SUITE_P(NormalizeValueParametrizedDeathTest, NormalizeValueDeat
 
 class NormalizeValueTestFixture : public testing::TestWithParam<std::tuple<float, float, float>> {};
 
-TEST_P(NormalizeValueTestFixture, GivenNonNegativeValue_WhenNormalazingValue_ThenNormalizedValueIsCorrect) {
+TEST_P(NormalizeValueTestFixture, GivenPositiveValue_WhenNormalazingValue_ThenNormalizedValueIsCorrect) {
   const auto &[value, scaling_value, expected_normalized_value] = GetParam();
 
   const float actual_normalized_value = ConvertUtility::NormalizeValue(value, scaling_value);
