@@ -1,12 +1,16 @@
-# plotingZ
-![Actions Status](https://github.com/zpervan/plotingZ/workflows/CI/badge.svg)
+# plotingZ #
+![Actions Status](https://github.com/zpervan/plotingZ/workflows/Linux/badge.svg) [![Build status](https://ci.appveyor.com/api/projects/status/pa0du2x70ycrd67q?svg=true)](https://ci.appveyor.com/project/zpervan/plotingz)
+
 
 PlotingZ is a data visualization library written in C++ which is based on [SFML](https://www.sfml-dev.org/).
 Other libraries used in the project:
 - [fmt](https://github.com/fmtlib/fmt)
 - [Google Test](https://github.com/google/googletest)
 
-## Installation
+## Installation ##
+
+@TODO: Add installation guide for Windows and update for Linux
+
 In order to build and execute plottingZ, install the following library:
 `sudo apt install libsfml-dev`
 
@@ -15,7 +19,7 @@ To build the project, [Bazel](https://www.bazel.build/) is needed. The installat
 After the needed libraries are installed, build the project, set some input data and you should be ready to go! :)
 An example can be seen in the `Plot/main_run.cpp` [file](https://github.com/zpervan/plotingZ/blob/master/Plot/main_run.cpp).
 
-## Preview
+## Preview ##
 
 Scatter plot sine waves:
 
@@ -25,7 +29,7 @@ Line plot sine waves:
 
 ![](Preview/sinus_line_plot_legend_example.png)
 
-## Notes
+## Notes ##
 Following features are available:
 
 Common:
@@ -36,19 +40,19 @@ Plots:
 * Scatter
 * Line
 
-## Features to be developed
+## Features to be developed ##
 Common:
 * Grid
 
 Plots:
 * Histogram
 
-## Known issues
+## Known issues ## 
 
 * Rightmost axis value is cut-off due to the value text is exceeding screen dimension
 * Currently, does not support negative input data values
  
-## Support
+## Support ##
 
 Big thanks to [JetBrains](https://www.jetbrains.com/?from=plotingZ) for supporting this project with 
 a free open-source CLion license.

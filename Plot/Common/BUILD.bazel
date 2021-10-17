@@ -15,8 +15,6 @@ cc_library(
         "@sfmllib//:sfml-graphics",
         "@sfmllib//:sfml-window",
         "@sfmllib//:sfml-system",
-        # "@sfmllib//:sfml-network",
-        # "@sfmllib//:sfml-audio"
     ],
 )
 
