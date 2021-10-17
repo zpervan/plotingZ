@@ -1,0 +1,67 @@
+package(default_visibility = ["//visibility:public"])
+
+cc_import(
+    name = "sfml-audio",
+    hdrs = glob([
+        "include/SFML/Audio/*.hpp",
+        "include/SFML/Audio/*.inl",
+    ]) + [
+        "include/SFML/Audio.hpp",
+        "include/SFML/System.hpp",
+    ],
+    shared_library = "bin/sfml-audio-2.dll",
+    static_library = "lib/sfml-audio.lib",
+)
+
+cc_import(
+    name = "sfml-graphics",
+    hdrs = glob([
+        "include/SFML/Graphics/*.hpp",
+        "include/SFML/Graphics/*.inl",
+    ]) + [
+        "include/SFML/Graphics.hpp",
+        "include/SFML/GpuPreference.hpp",
+        "include/SFML/Window.hpp",
+    ],
+    shared_library = "bin/sfml-graphics-2.dll",
+    static_library = "lib/sfml-graphics.lib",
+)
+
+cc_import(
+    name = "sfml-network",
+    hdrs = glob([
+        "include/SFML/Network/*.hpp",
+        "include/SFML/Network/*.inl",
+    ]) + [
+        "include/SFML/Network.hpp",
+        "include/SFML/System.hpp",
+    ],
+    shared_library = "bin/sfml-network-2.dll",
+    static_library = "lib/sfml-network.lib",
+)
+
+cc_import(
+    name = "sfml-system",
+    hdrs = glob([
+        "include/SFML/System/*.hpp",
+        "include/SFML/System/*.inl",
+    ]) + [
+        "include/SFML/System.hpp",
+        "include/SFML/Config.hpp",
+    ],
+    shared_library = "bin/sfml-system-2.dll",
+    static_library = "lib/sfml-system.lib",
+)
+
+cc_import(
+    name = "sfml-window",
+    hdrs = glob([
+        "include/SFML/Window/*.hpp",
+        "include/SFML/Window/*.inl",
+    ]) + [
+        "include/SFML/Window.hpp",
+        "include/SFML/System.hpp",
+    ],
+    shared_library = "bin/sfml-window-2.dll",
+    static_library = "lib/sfml-window.lib",
+)
