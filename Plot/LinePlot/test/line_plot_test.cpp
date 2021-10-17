@@ -3,6 +3,8 @@
 
 #include "gtest/gtest.h"
 
+#include <array>
+
 class LinePlotTestFixture : public ::testing::Test {
 protected:
   const std::vector<float> valid_x_data{1.0, 2.0, 3.0, 4.0};

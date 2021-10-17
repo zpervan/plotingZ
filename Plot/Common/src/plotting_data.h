@@ -1,7 +1,7 @@
 #ifndef PLOTINGZ_PLOTTING_DATA_H
 #define PLOTINGZ_PLOTTING_DATA_H
 
-#include <SFML/Graphics.hpp>
+#include "include/SFML/Graphics.hpp"
 #include <memory>
 #include <vector>
 
@@ -12,7 +12,8 @@ using DataLines = std::vector<sf::RectangleShape>;
 
 /// @brief Serves as a central data container for raw and processed data. This
 /// data will be used for visualization.
-class PlottingData {
+class PlottingData
+{
 public:
   /// @brief Pairs and appends the raw input data to a vector.
   /// @param [in] input_data_x Raw input data X

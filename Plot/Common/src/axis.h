@@ -3,7 +3,7 @@
 
 #include "Plot/Common/src/plotting_data.h"
 
-#include <SFML/Graphics.hpp>
+#include "include/SFML/Graphics.hpp"
 
 /// @todo: Scale axis values text when values are more than one character
 /// @todo: Grid?

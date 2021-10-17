@@ -28,148 +28,139 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Export.hpp>
-#include <SFML/System/String.hpp>
+#include "include/SFML/System/String.hpp"
+#include "include/SFML/Window/Export.hpp"
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \brief Give access to the real-time state of the joysticks
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API Joystick
-{
+class SFML_WINDOW_API Joystick {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Constants related to joysticks capabilities
+  ///
+  ////////////////////////////////////////////////////////////
+  enum {
+    Count = 8,        ///< Maximum number of supported joysticks
+    ButtonCount = 32, ///< Maximum number of supported buttons
+    AxisCount = 8     ///< Maximum number of supported axes
+  };
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Constants related to joysticks capabilities
-    ///
-    ////////////////////////////////////////////////////////////
-    enum
-    {
-        Count       = 8,  ///< Maximum number of supported joysticks
-        ButtonCount = 32, ///< Maximum number of supported buttons
-        AxisCount   = 8   ///< Maximum number of supported axes
-    };
+  ////////////////////////////////////////////////////////////
+  /// \brief Axes supported by SFML joysticks
+  ///
+  ////////////////////////////////////////////////////////////
+  enum Axis {
+    X,    ///< The X axis
+    Y,    ///< The Y axis
+    Z,    ///< The Z axis
+    R,    ///< The R axis
+    U,    ///< The U axis
+    V,    ///< The V axis
+    PovX, ///< The X axis of the point-of-view hat
+    PovY  ///< The Y axis of the point-of-view hat
+  };
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Axes supported by SFML joysticks
-    ///
-    ////////////////////////////////////////////////////////////
-    enum Axis
-    {
-        X,    ///< The X axis
-        Y,    ///< The Y axis
-        Z,    ///< The Z axis
-        R,    ///< The R axis
-        U,    ///< The U axis
-        V,    ///< The V axis
-        PovX, ///< The X axis of the point-of-view hat
-        PovY  ///< The Y axis of the point-of-view hat
-    };
+  ////////////////////////////////////////////////////////////
+  /// \brief Structure holding a joystick's identification
+  ///
+  ////////////////////////////////////////////////////////////
+  struct SFML_WINDOW_API Identification {
+    Identification();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Structure holding a joystick's identification
-    ///
-    ////////////////////////////////////////////////////////////
-    struct SFML_WINDOW_API Identification
-    {
-        Identification();
+    String name;            ///< Name of the joystick
+    unsigned int vendorId;  ///< Manufacturer identifier
+    unsigned int productId; ///< Product identifier
+  };
 
-        String       name;      ///< Name of the joystick
-        unsigned int vendorId;  ///< Manufacturer identifier
-        unsigned int productId; ///< Product identifier
-    };
+  ////////////////////////////////////////////////////////////
+  /// \brief Check if a joystick is connected
+  ///
+  /// \param joystick Index of the joystick to check
+  ///
+  /// \return True if the joystick is connected, false otherwise
+  ///
+  ////////////////////////////////////////////////////////////
+  static bool isConnected(unsigned int joystick);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Check if a joystick is connected
-    ///
-    /// \param joystick Index of the joystick to check
-    ///
-    /// \return True if the joystick is connected, false otherwise
-    ///
-    ////////////////////////////////////////////////////////////
-    static bool isConnected(unsigned int joystick);
+  ////////////////////////////////////////////////////////////
+  /// \brief Return the number of buttons supported by a joystick
+  ///
+  /// If the joystick is not connected, this function returns 0.
+  ///
+  /// \param joystick Index of the joystick
+  ///
+  /// \return Number of buttons supported by the joystick
+  ///
+  ////////////////////////////////////////////////////////////
+  static unsigned int getButtonCount(unsigned int joystick);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Return the number of buttons supported by a joystick
-    ///
-    /// If the joystick is not connected, this function returns 0.
-    ///
-    /// \param joystick Index of the joystick
-    ///
-    /// \return Number of buttons supported by the joystick
-    ///
-    ////////////////////////////////////////////////////////////
-    static unsigned int getButtonCount(unsigned int joystick);
+  ////////////////////////////////////////////////////////////
+  /// \brief Check if a joystick supports a given axis
+  ///
+  /// If the joystick is not connected, this function returns false.
+  ///
+  /// \param joystick Index of the joystick
+  /// \param axis     Axis to check
+  ///
+  /// \return True if the joystick supports the axis, false otherwise
+  ///
+  ////////////////////////////////////////////////////////////
+  static bool hasAxis(unsigned int joystick, Axis axis);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Check if a joystick supports a given axis
-    ///
-    /// If the joystick is not connected, this function returns false.
-    ///
-    /// \param joystick Index of the joystick
-    /// \param axis     Axis to check
-    ///
-    /// \return True if the joystick supports the axis, false otherwise
-    ///
-    ////////////////////////////////////////////////////////////
-    static bool hasAxis(unsigned int joystick, Axis axis);
+  ////////////////////////////////////////////////////////////
+  /// \brief Check if a joystick button is pressed
+  ///
+  /// If the joystick is not connected, this function returns false.
+  ///
+  /// \param joystick Index of the joystick
+  /// \param button   Button to check
+  ///
+  /// \return True if the button is pressed, false otherwise
+  ///
+  ////////////////////////////////////////////////////////////
+  static bool isButtonPressed(unsigned int joystick, unsigned int button);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Check if a joystick button is pressed
-    ///
-    /// If the joystick is not connected, this function returns false.
-    ///
-    /// \param joystick Index of the joystick
-    /// \param button   Button to check
-    ///
-    /// \return True if the button is pressed, false otherwise
-    ///
-    ////////////////////////////////////////////////////////////
-    static bool isButtonPressed(unsigned int joystick, unsigned int button);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current position of a joystick axis
+  ///
+  /// If the joystick is not connected, this function returns 0.
+  ///
+  /// \param joystick Index of the joystick
+  /// \param axis     Axis to check
+  ///
+  /// \return Current position of the axis, in range [-100 .. 100]
+  ///
+  ////////////////////////////////////////////////////////////
+  static float getAxisPosition(unsigned int joystick, Axis axis);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current position of a joystick axis
-    ///
-    /// If the joystick is not connected, this function returns 0.
-    ///
-    /// \param joystick Index of the joystick
-    /// \param axis     Axis to check
-    ///
-    /// \return Current position of the axis, in range [-100 .. 100]
-    ///
-    ////////////////////////////////////////////////////////////
-    static float getAxisPosition(unsigned int joystick, Axis axis);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the joystick information
+  ///
+  /// \param joystick Index of the joystick
+  ///
+  /// \return Structure containing joystick information.
+  ///
+  ////////////////////////////////////////////////////////////
+  static Identification getIdentification(unsigned int joystick);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the joystick information
-    ///
-    /// \param joystick Index of the joystick
-    ///
-    /// \return Structure containing joystick information.
-    ///
-    ////////////////////////////////////////////////////////////
-    static Identification getIdentification(unsigned int joystick);
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Update the states of all joysticks
-    ///
-    /// This function is used internally by SFML, so you normally
-    /// don't have to call it explicitly. However, you may need to
-    /// call it if you have no window yet (or no window at all):
-    /// in this case the joystick states are not updated automatically.
-    ///
-    ////////////////////////////////////////////////////////////
-    static void update();
+  ////////////////////////////////////////////////////////////
+  /// \brief Update the states of all joysticks
+  ///
+  /// This function is used internally by SFML, so you normally
+  /// don't have to call it explicitly. However, you may need to
+  /// call it if you have no window yet (or no window at all):
+  /// in this case the joystick states are not updated automatically.
+  ///
+  ////////////////////////////////////////////////////////////
+  static void update();
 };
 
 } // namespace sf
 
-
 #endif // SFML_JOYSTICK_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::Joystick

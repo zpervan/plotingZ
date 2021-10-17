@@ -28,17 +28,14 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Export.hpp>
-#include <SFML/Window/GlResource.hpp>
-#include <SFML/Window/ContextSettings.hpp>
-#include <SFML/System/NonCopyable.hpp>
+#include "include/SFML/System/NonCopyable.hpp"
+#include "include/SFML/Window/ContextSettings.hpp"
+#include "include/SFML/Window/Export.hpp"
+#include "include/SFML/Window/GlResource.hpp"
 
-
-namespace sf
-{
-namespace priv
-{
-    class GlContext;
+namespace sf {
+namespace priv {
+class GlContext;
 }
 
 typedef void (*GlFunctionPointer)();
@@ -47,114 +44,110 @@ typedef void (*GlFunctionPointer)();
 /// \brief Class holding a valid drawing context
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API Context : GlResource, NonCopyable
-{
+class SFML_WINDOW_API Context : GlResource, NonCopyable {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  /// The constructor creates and activates the context
+  ///
+  ////////////////////////////////////////////////////////////
+  Context();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Default constructor
-    ///
-    /// The constructor creates and activates the context
-    ///
-    ////////////////////////////////////////////////////////////
-    Context();
+  ////////////////////////////////////////////////////////////
+  /// \brief Destructor
+  ///
+  /// The destructor deactivates and destroys the context
+  ///
+  ////////////////////////////////////////////////////////////
+  ~Context();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Destructor
-    ///
-    /// The destructor deactivates and destroys the context
-    ///
-    ////////////////////////////////////////////////////////////
-    ~Context();
+  ////////////////////////////////////////////////////////////
+  /// \brief Activate or deactivate explicitly the context
+  ///
+  /// \param active True to activate, false to deactivate
+  ///
+  /// \return True on success, false on failure
+  ///
+  ////////////////////////////////////////////////////////////
+  bool setActive(bool active);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Activate or deactivate explicitly the context
-    ///
-    /// \param active True to activate, false to deactivate
-    ///
-    /// \return True on success, false on failure
-    ///
-    ////////////////////////////////////////////////////////////
-    bool setActive(bool active);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the settings of the context
+  ///
+  /// Note that these settings may be different than the ones
+  /// passed to the constructor; they are indeed adjusted if the
+  /// original settings are not directly supported by the system.
+  ///
+  /// \return Structure containing the settings
+  ///
+  ////////////////////////////////////////////////////////////
+  const ContextSettings &getSettings() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the settings of the context
-    ///
-    /// Note that these settings may be different than the ones
-    /// passed to the constructor; they are indeed adjusted if the
-    /// original settings are not directly supported by the system.
-    ///
-    /// \return Structure containing the settings
-    ///
-    ////////////////////////////////////////////////////////////
-    const ContextSettings& getSettings() const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Check whether a given OpenGL extension is available
+  ///
+  /// \param name Name of the extension to check for
+  ///
+  /// \return True if available, false if unavailable
+  ///
+  ////////////////////////////////////////////////////////////
+  static bool isExtensionAvailable(const char *name);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Check whether a given OpenGL extension is available
-    ///
-    /// \param name Name of the extension to check for
-    ///
-    /// \return True if available, false if unavailable
-    ///
-    ////////////////////////////////////////////////////////////
-    static bool isExtensionAvailable(const char* name);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the address of an OpenGL function
+  ///
+  /// \param name Name of the function to get the address of
+  ///
+  /// \return Address of the OpenGL function, 0 on failure
+  ///
+  ////////////////////////////////////////////////////////////
+  static GlFunctionPointer getFunction(const char *name);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the address of an OpenGL function
-    ///
-    /// \param name Name of the function to get the address of
-    ///
-    /// \return Address of the OpenGL function, 0 on failure
-    ///
-    ////////////////////////////////////////////////////////////
-    static GlFunctionPointer getFunction(const char* name);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the currently active context
+  ///
+  /// This function will only return sf::Context objects.
+  /// Contexts created e.g. by RenderTargets or for internal
+  /// use will not be returned by this function.
+  ///
+  /// \return The currently active context or NULL if none is active
+  ///
+  ////////////////////////////////////////////////////////////
+  static const Context *getActiveContext();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the currently active context
-    ///
-    /// This function will only return sf::Context objects.
-    /// Contexts created e.g. by RenderTargets or for internal
-    /// use will not be returned by this function.
-    ///
-    /// \return The currently active context or NULL if none is active
-    ///
-    ////////////////////////////////////////////////////////////
-    static const Context* getActiveContext();
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the currently active context's ID
+  ///
+  /// The context ID is used to identify contexts when
+  /// managing unshareable OpenGL resources.
+  ///
+  /// \return The active context's ID or 0 if no context is currently active
+  ///
+  ////////////////////////////////////////////////////////////
+  static Uint64 getActiveContextId();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the currently active context's ID
-    ///
-    /// The context ID is used to identify contexts when
-    /// managing unshareable OpenGL resources.
-    ///
-    /// \return The active context's ID or 0 if no context is currently active
-    ///
-    ////////////////////////////////////////////////////////////
-    static Uint64 getActiveContextId();
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct a in-memory context
-    ///
-    /// This constructor is for internal use, you don't need
-    /// to bother with it.
-    ///
-    /// \param settings Creation parameters
-    /// \param width    Back buffer width
-    /// \param height   Back buffer height
-    ///
-    ////////////////////////////////////////////////////////////
-    Context(const ContextSettings& settings, unsigned int width, unsigned int height);
+  ////////////////////////////////////////////////////////////
+  /// \brief Construct a in-memory context
+  ///
+  /// This constructor is for internal use, you don't need
+  /// to bother with it.
+  ///
+  /// \param settings Creation parameters
+  /// \param width    Back buffer width
+  /// \param height   Back buffer height
+  ///
+  ////////////////////////////////////////////////////////////
+  Context(const ContextSettings &settings, unsigned int width, unsigned int height);
 
 private:
-
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
-    priv::GlContext* m_context; ///< Internal OpenGL context
+  ////////////////////////////////////////////////////////////
+  // Member data
+  ////////////////////////////////////////////////////////////
+  priv::GlContext *m_context; ///< Internal OpenGL context
 };
 
 } // namespace sf
-
 
 #endif // SFML_CONTEXT_HPP
 

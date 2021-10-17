@@ -28,110 +28,102 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Export.hpp>
-#include <SFML/System/Vector2.hpp>
+#include "include/SFML/System/Vector2.hpp"
+#include "include/SFML/Window/Export.hpp"
 
-
-namespace sf
-{
+namespace sf {
 class Window;
 
 ////////////////////////////////////////////////////////////
 /// \brief Give access to the real-time state of the mouse
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API Mouse
-{
+class SFML_WINDOW_API Mouse {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Mouse buttons
+  ///
+  ////////////////////////////////////////////////////////////
+  enum Button {
+    Left,     ///< The left mouse button
+    Right,    ///< The right mouse button
+    Middle,   ///< The middle (wheel) mouse button
+    XButton1, ///< The first extra mouse button
+    XButton2, ///< The second extra mouse button
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Mouse buttons
-    ///
-    ////////////////////////////////////////////////////////////
-    enum Button
-    {
-        Left,       ///< The left mouse button
-        Right,      ///< The right mouse button
-        Middle,     ///< The middle (wheel) mouse button
-        XButton1,   ///< The first extra mouse button
-        XButton2,   ///< The second extra mouse button
+    ButtonCount ///< Keep last -- the total number of mouse buttons
+  };
 
-        ButtonCount ///< Keep last -- the total number of mouse buttons
-    };
+  ////////////////////////////////////////////////////////////
+  /// \brief Mouse wheels
+  ///
+  ////////////////////////////////////////////////////////////
+  enum Wheel {
+    VerticalWheel,  ///< The vertical mouse wheel
+    HorizontalWheel ///< The horizontal mouse wheel
+  };
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Mouse wheels
-    ///
-    ////////////////////////////////////////////////////////////
-    enum Wheel
-    {
-        VerticalWheel,  ///< The vertical mouse wheel
-        HorizontalWheel ///< The horizontal mouse wheel
-    };
+  ////////////////////////////////////////////////////////////
+  /// \brief Check if a mouse button is pressed
+  ///
+  /// \param button Button to check
+  ///
+  /// \return True if the button is pressed, false otherwise
+  ///
+  ////////////////////////////////////////////////////////////
+  static bool isButtonPressed(Button button);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Check if a mouse button is pressed
-    ///
-    /// \param button Button to check
-    ///
-    /// \return True if the button is pressed, false otherwise
-    ///
-    ////////////////////////////////////////////////////////////
-    static bool isButtonPressed(Button button);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current position of the mouse in desktop coordinates
+  ///
+  /// This function returns the global position of the mouse
+  /// cursor on the desktop.
+  ///
+  /// \return Current position of the mouse
+  ///
+  ////////////////////////////////////////////////////////////
+  static Vector2i getPosition();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current position of the mouse in desktop coordinates
-    ///
-    /// This function returns the global position of the mouse
-    /// cursor on the desktop.
-    ///
-    /// \return Current position of the mouse
-    ///
-    ////////////////////////////////////////////////////////////
-    static Vector2i getPosition();
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current position of the mouse in window coordinates
+  ///
+  /// This function returns the current position of the mouse
+  /// cursor, relative to the given window.
+  ///
+  /// \param relativeTo Reference window
+  ///
+  /// \return Current position of the mouse
+  ///
+  ////////////////////////////////////////////////////////////
+  static Vector2i getPosition(const Window &relativeTo);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current position of the mouse in window coordinates
-    ///
-    /// This function returns the current position of the mouse
-    /// cursor, relative to the given window.
-    ///
-    /// \param relativeTo Reference window
-    ///
-    /// \return Current position of the mouse
-    ///
-    ////////////////////////////////////////////////////////////
-    static Vector2i getPosition(const Window& relativeTo);
+  ////////////////////////////////////////////////////////////
+  /// \brief Set the current position of the mouse in desktop coordinates
+  ///
+  /// This function sets the global position of the mouse
+  /// cursor on the desktop.
+  ///
+  /// \param position New position of the mouse
+  ///
+  ////////////////////////////////////////////////////////////
+  static void setPosition(const Vector2i &position);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Set the current position of the mouse in desktop coordinates
-    ///
-    /// This function sets the global position of the mouse
-    /// cursor on the desktop.
-    ///
-    /// \param position New position of the mouse
-    ///
-    ////////////////////////////////////////////////////////////
-    static void setPosition(const Vector2i& position);
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Set the current position of the mouse in window coordinates
-    ///
-    /// This function sets the current position of the mouse
-    /// cursor, relative to the given window.
-    ///
-    /// \param position New position of the mouse
-    /// \param relativeTo Reference window
-    ///
-    ////////////////////////////////////////////////////////////
-    static void setPosition(const Vector2i& position, const Window& relativeTo);
+  ////////////////////////////////////////////////////////////
+  /// \brief Set the current position of the mouse in window coordinates
+  ///
+  /// This function sets the current position of the mouse
+  /// cursor, relative to the given window.
+  ///
+  /// \param position New position of the mouse
+  /// \param relativeTo Reference window
+  ///
+  ////////////////////////////////////////////////////////////
+  static void setPosition(const Vector2i &position, const Window &relativeTo);
 };
 
 } // namespace sf
 
-
 #endif // SFML_MOUSE_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::Mouse

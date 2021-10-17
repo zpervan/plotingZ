@@ -28,98 +28,91 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Export.hpp>
-#include <SFML/Graphics/Shape.hpp>
+#include "include/SFML/Graphics/Export.hpp"
+#include "include/SFML/Graphics/Shape.hpp"
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \brief Specialized shape representing a circle
 ///
 ////////////////////////////////////////////////////////////
-class SFML_GRAPHICS_API CircleShape : public Shape
-{
+class SFML_GRAPHICS_API CircleShape : public Shape {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  /// \param radius     Radius of the circle
+  /// \param pointCount Number of points composing the circle
+  ///
+  ////////////////////////////////////////////////////////////
+  explicit CircleShape(float radius = 0, std::size_t pointCount = 30);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Default constructor
-    ///
-    /// \param radius     Radius of the circle
-    /// \param pointCount Number of points composing the circle
-    ///
-    ////////////////////////////////////////////////////////////
-    explicit CircleShape(float radius = 0, std::size_t pointCount = 30);
+  ////////////////////////////////////////////////////////////
+  /// \brief Set the radius of the circle
+  ///
+  /// \param radius New radius of the circle
+  ///
+  /// \see getRadius
+  ///
+  ////////////////////////////////////////////////////////////
+  void setRadius(float radius);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Set the radius of the circle
-    ///
-    /// \param radius New radius of the circle
-    ///
-    /// \see getRadius
-    ///
-    ////////////////////////////////////////////////////////////
-    void setRadius(float radius);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the radius of the circle
+  ///
+  /// \return Radius of the circle
+  ///
+  /// \see setRadius
+  ///
+  ////////////////////////////////////////////////////////////
+  float getRadius() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the radius of the circle
-    ///
-    /// \return Radius of the circle
-    ///
-    /// \see setRadius
-    ///
-    ////////////////////////////////////////////////////////////
-    float getRadius() const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Set the number of points of the circle
+  ///
+  /// \param count New number of points of the circle
+  ///
+  /// \see getPointCount
+  ///
+  ////////////////////////////////////////////////////////////
+  void setPointCount(std::size_t count);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Set the number of points of the circle
-    ///
-    /// \param count New number of points of the circle
-    ///
-    /// \see getPointCount
-    ///
-    ////////////////////////////////////////////////////////////
-    void setPointCount(std::size_t count);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the number of points of the circle
+  ///
+  /// \return Number of points of the circle
+  ///
+  /// \see setPointCount
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual std::size_t getPointCount() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the number of points of the circle
-    ///
-    /// \return Number of points of the circle
-    ///
-    /// \see setPointCount
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual std::size_t getPointCount() const;
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Get a point of the circle
-    ///
-    /// The returned point is in local coordinates, that is,
-    /// the shape's transforms (position, rotation, scale) are
-    /// not taken into account.
-    /// The result is undefined if \a index is out of the valid range.
-    ///
-    /// \param index Index of the point to get, in range [0 .. getPointCount() - 1]
-    ///
-    /// \return index-th point of the shape
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Vector2f getPoint(std::size_t index) const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Get a point of the circle
+  ///
+  /// The returned point is in local coordinates, that is,
+  /// the shape's transforms (position, rotation, scale) are
+  /// not taken into account.
+  /// The result is undefined if \a index is out of the valid range.
+  ///
+  /// \param index Index of the point to get, in range [0 .. getPointCount() - 1]
+  ///
+  /// \return index-th point of the shape
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Vector2f getPoint(std::size_t index) const;
 
 private:
-
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
-    float       m_radius;     ///< Radius of the circle
-    std::size_t m_pointCount; ///< Number of points composing the circle
+  ////////////////////////////////////////////////////////////
+  // Member data
+  ////////////////////////////////////////////////////////////
+  float m_radius;           ///< Radius of the circle
+  std::size_t m_pointCount; ///< Number of points composing the circle
 };
 
 } // namespace sf
 
-
 #endif // SFML_CIRCLESHAPE_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::CircleShape

@@ -1,6 +1,9 @@
 #include "Plot/ScatterPlot/src/scatter_plot.h"
+
 #include "ThirdParty/fmt/include/fmt/core.h"
 #include "gtest/gtest.h"
+
+#include <array>
 
 class ScatterPlotTestFixture : public ::testing::Test {
  protected:

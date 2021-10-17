@@ -28,92 +28,85 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.hpp>
-#include <SFML/System/InputStream.hpp>
-#include <SFML/System/Export.hpp>
+#include "include/SFML/Config.hpp"
+#include "include/SFML/System/Export.hpp"
+#include "include/SFML/System/InputStream.hpp"
 #include <cstdlib>
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \brief Implementation of input stream based on a memory chunk
 ///
 ////////////////////////////////////////////////////////////
-class SFML_SYSTEM_API MemoryInputStream : public InputStream
-{
+class SFML_SYSTEM_API MemoryInputStream : public InputStream {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  ////////////////////////////////////////////////////////////
+  MemoryInputStream();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Default constructor
-    ///
-    ////////////////////////////////////////////////////////////
-    MemoryInputStream();
+  ////////////////////////////////////////////////////////////
+  /// \brief Open the stream from its data
+  ///
+  /// \param data        Pointer to the data in memory
+  /// \param sizeInBytes Size of the data, in bytes
+  ///
+  ////////////////////////////////////////////////////////////
+  void open(const void *data, std::size_t sizeInBytes);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Open the stream from its data
-    ///
-    /// \param data        Pointer to the data in memory
-    /// \param sizeInBytes Size of the data, in bytes
-    ///
-    ////////////////////////////////////////////////////////////
-    void open(const void* data, std::size_t sizeInBytes);
+  ////////////////////////////////////////////////////////////
+  /// \brief Read data from the stream
+  ///
+  /// After reading, the stream's reading position must be
+  /// advanced by the amount of bytes read.
+  ///
+  /// \param data Buffer where to copy the read data
+  /// \param size Desired number of bytes to read
+  ///
+  /// \return The number of bytes actually read, or -1 on error
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 read(void *data, Int64 size);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Read data from the stream
-    ///
-    /// After reading, the stream's reading position must be
-    /// advanced by the amount of bytes read.
-    ///
-    /// \param data Buffer where to copy the read data
-    /// \param size Desired number of bytes to read
-    ///
-    /// \return The number of bytes actually read, or -1 on error
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 read(void* data, Int64 size);
+  ////////////////////////////////////////////////////////////
+  /// \brief Change the current reading position
+  ///
+  /// \param position The position to seek to, from the beginning
+  ///
+  /// \return The position actually sought to, or -1 on error
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 seek(Int64 position);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Change the current reading position
-    ///
-    /// \param position The position to seek to, from the beginning
-    ///
-    /// \return The position actually sought to, or -1 on error
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 seek(Int64 position);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current reading position in the stream
+  ///
+  /// \return The current position, or -1 on error.
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 tell();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current reading position in the stream
-    ///
-    /// \return The current position, or -1 on error.
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 tell();
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Return the size of the stream
-    ///
-    /// \return The total number of bytes available in the stream, or -1 on error
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 getSize();
+  ////////////////////////////////////////////////////////////
+  /// \brief Return the size of the stream
+  ///
+  /// \return The total number of bytes available in the stream, or -1 on error
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 getSize();
 
 private:
-
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
-    const char* m_data;   ///< Pointer to the data in memory
-    Int64       m_size;   ///< Total size of the data
-    Int64       m_offset; ///< Current reading position
+  ////////////////////////////////////////////////////////////
+  // Member data
+  ////////////////////////////////////////////////////////////
+  const char *m_data; ///< Pointer to the data in memory
+  Int64 m_size;       ///< Total size of the data
+  Int64 m_offset;     ///< Current reading position
 };
 
 } // namespace sf
 
-
 #endif // SFML_MEMORYINPUTSTREAM_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::MemoryInputStream

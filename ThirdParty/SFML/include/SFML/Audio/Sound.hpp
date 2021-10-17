@@ -28,203 +28,196 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Audio/Export.hpp>
-#include <SFML/Audio/SoundSource.hpp>
-#include <SFML/System/Time.hpp>
+#include "include/SFML/Audio/Export.hpp"
+#include "include/SFML/Audio/SoundSource.hpp"
+#include "include/SFML/System/Time.hpp"
 #include <cstdlib>
 
-
-namespace sf
-{
+namespace sf {
 class SoundBuffer;
 
 ////////////////////////////////////////////////////////////
 /// \brief Regular sound that can be played in the audio environment
 ///
 ////////////////////////////////////////////////////////////
-class SFML_AUDIO_API Sound : public SoundSource
-{
+class SFML_AUDIO_API Sound : public SoundSource {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  ////////////////////////////////////////////////////////////
+  Sound();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Default constructor
-    ///
-    ////////////////////////////////////////////////////////////
-    Sound();
+  ////////////////////////////////////////////////////////////
+  /// \brief Construct the sound with a buffer
+  ///
+  /// \param buffer Sound buffer containing the audio data to play with the sound
+  ///
+  ////////////////////////////////////////////////////////////
+  explicit Sound(const SoundBuffer &buffer);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct the sound with a buffer
-    ///
-    /// \param buffer Sound buffer containing the audio data to play with the sound
-    ///
-    ////////////////////////////////////////////////////////////
-    explicit Sound(const SoundBuffer& buffer);
+  ////////////////////////////////////////////////////////////
+  /// \brief Copy constructor
+  ///
+  /// \param copy Instance to copy
+  ///
+  ////////////////////////////////////////////////////////////
+  Sound(const Sound &copy);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Copy constructor
-    ///
-    /// \param copy Instance to copy
-    ///
-    ////////////////////////////////////////////////////////////
-    Sound(const Sound& copy);
+  ////////////////////////////////////////////////////////////
+  /// \brief Destructor
+  ///
+  ////////////////////////////////////////////////////////////
+  ~Sound();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Destructor
-    ///
-    ////////////////////////////////////////////////////////////
-    ~Sound();
+  ////////////////////////////////////////////////////////////
+  /// \brief Start or resume playing the sound
+  ///
+  /// This function starts the stream if it was stopped, resumes
+  /// it if it was paused, and restarts it from beginning if it
+  /// was it already playing.
+  /// This function uses its own thread so that it doesn't block
+  /// the rest of the program while the sound is played.
+  ///
+  /// \see pause, stop
+  ///
+  ////////////////////////////////////////////////////////////
+  void play();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Start or resume playing the sound
-    ///
-    /// This function starts the stream if it was stopped, resumes
-    /// it if it was paused, and restarts it from beginning if it
-    /// was it already playing.
-    /// This function uses its own thread so that it doesn't block
-    /// the rest of the program while the sound is played.
-    ///
-    /// \see pause, stop
-    ///
-    ////////////////////////////////////////////////////////////
-    void play();
+  ////////////////////////////////////////////////////////////
+  /// \brief Pause the sound
+  ///
+  /// This function pauses the sound if it was playing,
+  /// otherwise (sound already paused or stopped) it has no effect.
+  ///
+  /// \see play, stop
+  ///
+  ////////////////////////////////////////////////////////////
+  void pause();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Pause the sound
-    ///
-    /// This function pauses the sound if it was playing,
-    /// otherwise (sound already paused or stopped) it has no effect.
-    ///
-    /// \see play, stop
-    ///
-    ////////////////////////////////////////////////////////////
-    void pause();
+  ////////////////////////////////////////////////////////////
+  /// \brief stop playing the sound
+  ///
+  /// This function stops the sound if it was playing or paused,
+  /// and does nothing if it was already stopped.
+  /// It also resets the playing position (unlike pause()).
+  ///
+  /// \see play, pause
+  ///
+  ////////////////////////////////////////////////////////////
+  void stop();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief stop playing the sound
-    ///
-    /// This function stops the sound if it was playing or paused,
-    /// and does nothing if it was already stopped.
-    /// It also resets the playing position (unlike pause()).
-    ///
-    /// \see play, pause
-    ///
-    ////////////////////////////////////////////////////////////
-    void stop();
+  ////////////////////////////////////////////////////////////
+  /// \brief Set the source buffer containing the audio data to play
+  ///
+  /// It is important to note that the sound buffer is not copied,
+  /// thus the sf::SoundBuffer instance must remain alive as long
+  /// as it is attached to the sound.
+  ///
+  /// \param buffer Sound buffer to attach to the sound
+  ///
+  /// \see getBuffer
+  ///
+  ////////////////////////////////////////////////////////////
+  void setBuffer(const SoundBuffer &buffer);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Set the source buffer containing the audio data to play
-    ///
-    /// It is important to note that the sound buffer is not copied,
-    /// thus the sf::SoundBuffer instance must remain alive as long
-    /// as it is attached to the sound.
-    ///
-    /// \param buffer Sound buffer to attach to the sound
-    ///
-    /// \see getBuffer
-    ///
-    ////////////////////////////////////////////////////////////
-    void setBuffer(const SoundBuffer& buffer);
+  ////////////////////////////////////////////////////////////
+  /// \brief Set whether or not the sound should loop after reaching the end
+  ///
+  /// If set, the sound will restart from beginning after
+  /// reaching the end and so on, until it is stopped or
+  /// setLoop(false) is called.
+  /// The default looping state for sound is false.
+  ///
+  /// \param loop True to play in loop, false to play once
+  ///
+  /// \see getLoop
+  ///
+  ////////////////////////////////////////////////////////////
+  void setLoop(bool loop);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Set whether or not the sound should loop after reaching the end
-    ///
-    /// If set, the sound will restart from beginning after
-    /// reaching the end and so on, until it is stopped or
-    /// setLoop(false) is called.
-    /// The default looping state for sound is false.
-    ///
-    /// \param loop True to play in loop, false to play once
-    ///
-    /// \see getLoop
-    ///
-    ////////////////////////////////////////////////////////////
-    void setLoop(bool loop);
+  ////////////////////////////////////////////////////////////
+  /// \brief Change the current playing position of the sound
+  ///
+  /// The playing position can be changed when the sound is
+  /// either paused or playing. Changing the playing position
+  /// when the sound is stopped has no effect, since playing
+  /// the sound will reset its position.
+  ///
+  /// \param timeOffset New playing position, from the beginning of the sound
+  ///
+  /// \see getPlayingOffset
+  ///
+  ////////////////////////////////////////////////////////////
+  void setPlayingOffset(Time timeOffset);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Change the current playing position of the sound
-    ///
-    /// The playing position can be changed when the sound is
-    /// either paused or playing. Changing the playing position
-    /// when the sound is stopped has no effect, since playing
-    /// the sound will reset its position.
-    ///
-    /// \param timeOffset New playing position, from the beginning of the sound
-    ///
-    /// \see getPlayingOffset
-    ///
-    ////////////////////////////////////////////////////////////
-    void setPlayingOffset(Time timeOffset);
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the audio buffer attached to the sound
+  ///
+  /// \return Sound buffer attached to the sound (can be NULL)
+  ///
+  ////////////////////////////////////////////////////////////
+  const SoundBuffer *getBuffer() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the audio buffer attached to the sound
-    ///
-    /// \return Sound buffer attached to the sound (can be NULL)
-    ///
-    ////////////////////////////////////////////////////////////
-    const SoundBuffer* getBuffer() const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Tell whether or not the sound is in loop mode
+  ///
+  /// \return True if the sound is looping, false otherwise
+  ///
+  /// \see setLoop
+  ///
+  ////////////////////////////////////////////////////////////
+  bool getLoop() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Tell whether or not the sound is in loop mode
-    ///
-    /// \return True if the sound is looping, false otherwise
-    ///
-    /// \see setLoop
-    ///
-    ////////////////////////////////////////////////////////////
-    bool getLoop() const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current playing position of the sound
+  ///
+  /// \return Current playing position, from the beginning of the sound
+  ///
+  /// \see setPlayingOffset
+  ///
+  ////////////////////////////////////////////////////////////
+  Time getPlayingOffset() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current playing position of the sound
-    ///
-    /// \return Current playing position, from the beginning of the sound
-    ///
-    /// \see setPlayingOffset
-    ///
-    ////////////////////////////////////////////////////////////
-    Time getPlayingOffset() const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current status of the sound (stopped, paused, playing)
+  ///
+  /// \return Current status of the sound
+  ///
+  ////////////////////////////////////////////////////////////
+  Status getStatus() const;
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current status of the sound (stopped, paused, playing)
-    ///
-    /// \return Current status of the sound
-    ///
-    ////////////////////////////////////////////////////////////
-    Status getStatus() const;
+  ////////////////////////////////////////////////////////////
+  /// \brief Overload of assignment operator
+  ///
+  /// \param right Instance to assign
+  ///
+  /// \return Reference to self
+  ///
+  ////////////////////////////////////////////////////////////
+  Sound &operator=(const Sound &right);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Overload of assignment operator
-    ///
-    /// \param right Instance to assign
-    ///
-    /// \return Reference to self
-    ///
-    ////////////////////////////////////////////////////////////
-    Sound& operator =(const Sound& right);
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Reset the internal buffer of the sound
-    ///
-    /// This function is for internal use only, you don't have
-    /// to use it. It is called by the sf::SoundBuffer that
-    /// this sound uses, when it is destroyed in order to prevent
-    /// the sound from using a dead buffer.
-    ///
-    ////////////////////////////////////////////////////////////
-    void resetBuffer();
+  ////////////////////////////////////////////////////////////
+  /// \brief Reset the internal buffer of the sound
+  ///
+  /// This function is for internal use only, you don't have
+  /// to use it. It is called by the sf::SoundBuffer that
+  /// this sound uses, when it is destroyed in order to prevent
+  /// the sound from using a dead buffer.
+  ///
+  ////////////////////////////////////////////////////////////
+  void resetBuffer();
 
 private:
-
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
-    const SoundBuffer* m_buffer; ///< Sound buffer bound to the source
+  ////////////////////////////////////////////////////////////
+  // Member data
+  ////////////////////////////////////////////////////////////
+  const SoundBuffer *m_buffer; ///< Sound buffer bound to the source
 };
 
 } // namespace sf
 
-
 #endif // SFML_SOUND_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::Sound

@@ -28,73 +28,67 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Export.hpp>
-#include <SFML/System/NonCopyable.hpp>
+#include "include/SFML/System/NonCopyable.hpp"
+#include "include/SFML/Window/Export.hpp"
 
-
-namespace sf
-{
+namespace sf {
 
 class Context;
 
-typedef void(*ContextDestroyCallback)(void*);
+typedef void (*ContextDestroyCallback)(void *);
 
 ////////////////////////////////////////////////////////////
 /// \brief Base class for classes that require an OpenGL context
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API GlResource
-{
+class SFML_WINDOW_API GlResource {
 protected:
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  ////////////////////////////////////////////////////////////
+  GlResource();
 
+  ////////////////////////////////////////////////////////////
+  /// \brief Destructor
+  ///
+  ////////////////////////////////////////////////////////////
+  ~GlResource();
+
+  ////////////////////////////////////////////////////////////
+  /// \brief Register a function to be called when a context is destroyed
+  ///
+  /// This is used for internal purposes in order to properly
+  /// clean up OpenGL resources that cannot be shared between
+  /// contexts.
+  ///
+  /// \param callback Function to be called when a context is destroyed
+  /// \param arg      Argument to pass when calling the function
+  ///
+  ////////////////////////////////////////////////////////////
+  static void registerContextDestroyCallback(ContextDestroyCallback callback, void *arg);
+
+  ////////////////////////////////////////////////////////////
+  /// \brief RAII helper class to temporarily lock an available context for use
+  ///
+  ////////////////////////////////////////////////////////////
+  class SFML_WINDOW_API TransientContextLock : NonCopyable {
+  public:
     ////////////////////////////////////////////////////////////
     /// \brief Default constructor
     ///
     ////////////////////////////////////////////////////////////
-    GlResource();
+    TransientContextLock();
 
     ////////////////////////////////////////////////////////////
     /// \brief Destructor
     ///
     ////////////////////////////////////////////////////////////
-    ~GlResource();
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Register a function to be called when a context is destroyed
-    ///
-    /// This is used for internal purposes in order to properly
-    /// clean up OpenGL resources that cannot be shared between
-    /// contexts.
-    ///
-    /// \param callback Function to be called when a context is destroyed
-    /// \param arg      Argument to pass when calling the function
-    ///
-    ////////////////////////////////////////////////////////////
-    static void registerContextDestroyCallback(ContextDestroyCallback callback, void* arg);
-
-    ////////////////////////////////////////////////////////////
-    /// \brief RAII helper class to temporarily lock an available context for use
-    ///
-    ////////////////////////////////////////////////////////////
-    class SFML_WINDOW_API TransientContextLock : NonCopyable
-    {
-    public:
-        ////////////////////////////////////////////////////////////
-        /// \brief Default constructor
-        ///
-        ////////////////////////////////////////////////////////////
-        TransientContextLock();
-
-        ////////////////////////////////////////////////////////////
-        /// \brief Destructor
-        ///
-        ////////////////////////////////////////////////////////////
-        ~TransientContextLock();
-    };
+    ~TransientContextLock();
+  };
 };
 
 } // namespace sf
-
 
 #endif // SFML_GLRESOURCE_HPP
 

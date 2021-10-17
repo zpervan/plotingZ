@@ -28,55 +28,49 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Export.hpp>
-#include <SFML/System/String.hpp>
+#include "include/SFML/System/String.hpp"
+#include "include/SFML/Window/Export.hpp"
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \brief Give access to the system clipboard
 ///
 ////////////////////////////////////////////////////////////
-class SFML_WINDOW_API Clipboard
-{
+class SFML_WINDOW_API Clipboard {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the content of the clipboard as string data
+  ///
+  /// This function returns the content of the clipboard
+  /// as a string. If the clipboard does not contain string
+  /// it returns an empty sf::String object.
+  ///
+  /// \return Clipboard contents as sf::String object
+  ///
+  ////////////////////////////////////////////////////////////
+  static String getString();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the content of the clipboard as string data
-    ///
-    /// This function returns the content of the clipboard
-    /// as a string. If the clipboard does not contain string
-    /// it returns an empty sf::String object.
-    ///
-    /// \return Clipboard contents as sf::String object
-    ///
-    ////////////////////////////////////////////////////////////
-    static String getString();
-
-    ////////////////////////////////////////////////////////////
-    /// \brief Set the content of the clipboard as string data
-    ///
-    /// This function sets the content of the clipboard as a
-    /// string.
-    ///
-    /// \warning Due to limitations on some operating systems,
-    ///          setting the clipboard contents is only
-    ///          guaranteed to work if there is currently an
-    ///          open window for which events are being handled.
-    ///
-    /// \param text sf::String containing the data to be sent
-    /// to the clipboard
-    ///
-    ////////////////////////////////////////////////////////////
-    static void setString(const String& text);
+  ////////////////////////////////////////////////////////////
+  /// \brief Set the content of the clipboard as string data
+  ///
+  /// This function sets the content of the clipboard as a
+  /// string.
+  ///
+  /// \warning Due to limitations on some operating systems,
+  ///          setting the clipboard contents is only
+  ///          guaranteed to work if there is currently an
+  ///          open window for which events are being handled.
+  ///
+  /// \param text sf::String containing the data to be sent
+  /// to the clipboard
+  ///
+  ////////////////////////////////////////////////////////////
+  static void setString(const String &text);
 };
 
 } // namespace sf
 
-
 #endif // SFML_CLIPBOARD_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::Clipboard

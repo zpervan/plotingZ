@@ -28,27 +28,25 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.hpp>
+#include "include/SFML/Config.hpp"
 #include <algorithm>
+#include <cstdlib>
 #include <locale>
 #include <string>
-#include <cstdlib>
-
 
 namespace sf
 {
-template <unsigned int N>
-class Utf;
+  template <unsigned int N>
+  class Utf;
 
-////////////////////////////////////////////////////////////
-/// \brief Specialization of the Utf template for UTF-8
-///
-////////////////////////////////////////////////////////////
-template <>
-class Utf<8>
-{
-public:
-
+  ////////////////////////////////////////////////////////////
+  /// \brief Specialization of the Utf template for UTF-8
+  ///
+  ////////////////////////////////////////////////////////////
+  template <>
+  class Utf<8>
+  {
+  public:
     ////////////////////////////////////////////////////////////
     /// \brief Decode a single UTF-8 character
     ///
@@ -64,7 +62,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In>
-    static In decode(In begin, In end, Uint32& output, Uint32 replacement = 0);
+    static In decode(In begin, In end, Uint32 &output, Uint32 replacement = 0);
 
     ////////////////////////////////////////////////////////////
     /// \brief Encode a single UTF-8 character
@@ -128,7 +126,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
-    static Out fromAnsi(In begin, In end, Out output, const std::locale& locale = std::locale());
+    static Out fromAnsi(In begin, In end, Out output, const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Convert a wide characters range to UTF-8
@@ -172,7 +170,8 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
-    static Out toAnsi(In begin, In end, Out output, char replacement = 0, const std::locale& locale = std::locale());
+    static Out toAnsi(In begin, In end, Out output, char replacement = 0,
+                      const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Convert an UTF-8 characters range to wide characters
@@ -245,17 +244,16 @@ public:
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
     static Out toUtf32(In begin, In end, Out output);
-};
+  };
 
-////////////////////////////////////////////////////////////
-/// \brief Specialization of the Utf template for UTF-16
-///
-////////////////////////////////////////////////////////////
-template <>
-class Utf<16>
-{
-public:
-
+  ////////////////////////////////////////////////////////////
+  /// \brief Specialization of the Utf template for UTF-16
+  ///
+  ////////////////////////////////////////////////////////////
+  template <>
+  class Utf<16>
+  {
+  public:
     ////////////////////////////////////////////////////////////
     /// \brief Decode a single UTF-16 character
     ///
@@ -271,7 +269,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In>
-    static In decode(In begin, In end, Uint32& output, Uint32 replacement = 0);
+    static In decode(In begin, In end, Uint32 &output, Uint32 replacement = 0);
 
     ////////////////////////////////////////////////////////////
     /// \brief Encode a single UTF-16 character
@@ -335,7 +333,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
-    static Out fromAnsi(In begin, In end, Out output, const std::locale& locale = std::locale());
+    static Out fromAnsi(In begin, In end, Out output, const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Convert a wide characters range to UTF-16
@@ -379,7 +377,8 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
-    static Out toAnsi(In begin, In end, Out output, char replacement = 0, const std::locale& locale = std::locale());
+    static Out toAnsi(In begin, In end, Out output, char replacement = 0,
+                      const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Convert an UTF-16 characters range to wide characters
@@ -452,17 +451,16 @@ public:
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
     static Out toUtf32(In begin, In end, Out output);
-};
+  };
 
-////////////////////////////////////////////////////////////
-/// \brief Specialization of the Utf template for UTF-32
-///
-////////////////////////////////////////////////////////////
-template <>
-class Utf<32>
-{
-public:
-
+  ////////////////////////////////////////////////////////////
+  /// \brief Specialization of the Utf template for UTF-32
+  ///
+  ////////////////////////////////////////////////////////////
+  template <>
+  class Utf<32>
+  {
+  public:
     ////////////////////////////////////////////////////////////
     /// \brief Decode a single UTF-32 character
     ///
@@ -479,7 +477,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In>
-    static In decode(In begin, In end, Uint32& output, Uint32 replacement = 0);
+    static In decode(In begin, In end, Uint32 &output, Uint32 replacement = 0);
 
     ////////////////////////////////////////////////////////////
     /// \brief Encode a single UTF-32 character
@@ -543,7 +541,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
-    static Out fromAnsi(In begin, In end, Out output, const std::locale& locale = std::locale());
+    static Out fromAnsi(In begin, In end, Out output, const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Convert a wide characters range to UTF-32
@@ -587,7 +585,8 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In, typename Out>
-    static Out toAnsi(In begin, In end, Out output, char replacement = 0, const std::locale& locale = std::locale());
+    static Out toAnsi(In begin, In end, Out output, char replacement = 0,
+                      const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Convert an UTF-32 characters range to wide characters
@@ -675,7 +674,7 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename In>
-    static Uint32 decodeAnsi(In input, const std::locale& locale = std::locale());
+    static Uint32 decodeAnsi(In input, const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Decode a single wide character to UTF-32
@@ -708,7 +707,8 @@ public:
     ///
     ////////////////////////////////////////////////////////////
     template <typename Out>
-    static Out encodeAnsi(Uint32 codepoint, Out output, char replacement = 0, const std::locale& locale = std::locale());
+    static Out encodeAnsi(Uint32 codepoint, Out output, char replacement = 0,
+                          const std::locale &locale = std::locale());
 
     ////////////////////////////////////////////////////////////
     /// \brief Encode a single UTF-32 character to wide
@@ -726,20 +726,18 @@ public:
     ////////////////////////////////////////////////////////////
     template <typename Out>
     static Out encodeWide(Uint32 codepoint, Out output, wchar_t replacement = 0);
-};
+  };
 
-#include <SFML/System/Utf.inl>
+#include "include/SFML/System/Utf.inl"
 
-// Make typedefs to get rid of the template syntax
-typedef Utf<8>  Utf8;
-typedef Utf<16> Utf16;
-typedef Utf<32> Utf32;
+  // Make typedefs to get rid of the template syntax
+  typedef Utf<8> Utf8;
+  typedef Utf<16> Utf16;
+  typedef Utf<32> Utf32;
 
 } // namespace sf
 
-
 #endif // SFML_UTF_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::Utf

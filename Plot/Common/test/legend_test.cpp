@@ -3,6 +3,8 @@
 #include "ThirdParty/fmt/include/fmt/core.h"
 #include "gtest/gtest.h"
 
+#include <array>
+
 class LegendTestFixture : public ::testing::Test {
 protected:
   const std::vector<std::string> legend_labels{"This", "Labels", "Are", "Really", "Cool"};

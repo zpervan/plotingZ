@@ -2,6 +2,8 @@
 
 #include "gtest/gtest.h"
 
+#include <array>
+
 TEST(PlottingDataBuilderTest,
      GivenValidData_WhenCreatingPlottingDataMock_ThenPlottingDataMockFilledWithCorrectData) {
   PlottingDataBuilder plotting_data_builder;

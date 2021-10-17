@@ -5,6 +5,7 @@ cc_library(
     srcs = ["src/math_utility.cpp"],
     hdrs = ["src/math_utility.h"],
     visibility = ["//visibility:public"],
+    deps = ["//Plot/Common:config"],
 )
 
 cc_library(

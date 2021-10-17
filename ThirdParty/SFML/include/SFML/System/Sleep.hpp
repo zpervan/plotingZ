@@ -28,12 +28,10 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/System/Export.hpp>
-#include <SFML/System/Time.hpp>
+#include "include/SFML/System/Export.hpp"
+#include "include/SFML/System/Time.hpp"
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \ingroup system
 /// \brief Make the current thread sleep for a given duration
@@ -47,6 +45,5 @@ namespace sf
 void SFML_SYSTEM_API sleep(Time duration);
 
 } // namespace sf
-
 
 #endif // SFML_SLEEP_HPP

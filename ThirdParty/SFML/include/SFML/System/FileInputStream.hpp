@@ -28,112 +28,104 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.hpp>
-#include <SFML/System/Export.hpp>
-#include <SFML/System/InputStream.hpp>
-#include <SFML/System/NonCopyable.hpp>
+#include "include/SFML/Config.hpp"
+#include "include/SFML/System/Export.hpp"
+#include "include/SFML/System/InputStream.hpp"
+#include "include/SFML/System/NonCopyable.hpp"
 #include <cstdio>
 #include <string>
 
 #ifdef SFML_SYSTEM_ANDROID
-namespace sf
-{
-namespace priv
-{
+namespace sf {
+namespace priv {
 class SFML_SYSTEM_API ResourceStream;
 }
-}
+} // namespace sf
 #endif
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \brief Implementation of input stream based on a file
 ///
 ////////////////////////////////////////////////////////////
-class SFML_SYSTEM_API FileInputStream : public InputStream, NonCopyable
-{
+class SFML_SYSTEM_API FileInputStream : public InputStream, NonCopyable {
 public:
-    ////////////////////////////////////////////////////////////
-    /// \brief Default constructor
-    ///
-    ////////////////////////////////////////////////////////////
-    FileInputStream();
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  ////////////////////////////////////////////////////////////
+  FileInputStream();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Default destructor
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual ~FileInputStream();
+  ////////////////////////////////////////////////////////////
+  /// \brief Default destructor
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual ~FileInputStream();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Open the stream from a file path
-    ///
-    /// \param filename Name of the file to open
-    ///
-    /// \return True on success, false on error
-    ///
-    ////////////////////////////////////////////////////////////
-    bool open(const std::string& filename);
+  ////////////////////////////////////////////////////////////
+  /// \brief Open the stream from a file path
+  ///
+  /// \param filename Name of the file to open
+  ///
+  /// \return True on success, false on error
+  ///
+  ////////////////////////////////////////////////////////////
+  bool open(const std::string &filename);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Read data from the stream
-    ///
-    /// After reading, the stream's reading position must be
-    /// advanced by the amount of bytes read.
-    ///
-    /// \param data Buffer where to copy the read data
-    /// \param size Desired number of bytes to read
-    ///
-    /// \return The number of bytes actually read, or -1 on error
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 read(void* data, Int64 size);
+  ////////////////////////////////////////////////////////////
+  /// \brief Read data from the stream
+  ///
+  /// After reading, the stream's reading position must be
+  /// advanced by the amount of bytes read.
+  ///
+  /// \param data Buffer where to copy the read data
+  /// \param size Desired number of bytes to read
+  ///
+  /// \return The number of bytes actually read, or -1 on error
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 read(void *data, Int64 size);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Change the current reading position
-    ///
-    /// \param position The position to seek to, from the beginning
-    ///
-    /// \return The position actually sought to, or -1 on error
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 seek(Int64 position);
+  ////////////////////////////////////////////////////////////
+  /// \brief Change the current reading position
+  ///
+  /// \param position The position to seek to, from the beginning
+  ///
+  /// \return The position actually sought to, or -1 on error
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 seek(Int64 position);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Get the current reading position in the stream
-    ///
-    /// \return The current position, or -1 on error.
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 tell();
+  ////////////////////////////////////////////////////////////
+  /// \brief Get the current reading position in the stream
+  ///
+  /// \return The current position, or -1 on error.
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 tell();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Return the size of the stream
-    ///
-    /// \return The total number of bytes available in the stream, or -1 on error
-    ///
-    ////////////////////////////////////////////////////////////
-    virtual Int64 getSize();
+  ////////////////////////////////////////////////////////////
+  /// \brief Return the size of the stream
+  ///
+  /// \return The total number of bytes available in the stream, or -1 on error
+  ///
+  ////////////////////////////////////////////////////////////
+  virtual Int64 getSize();
 
 private:
-
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////
+  // Member data
+  ////////////////////////////////////////////////////////////
 #ifdef SFML_SYSTEM_ANDROID
-    priv::ResourceStream* m_file;
+  priv::ResourceStream *m_file;
 #else
-    std::FILE* m_file; ///< stdio file stream
+  std::FILE *m_file; ///< stdio file stream
 #endif
 };
 
 } // namespace sf
 
-
 #endif // SFML_FILEINPUTSTREAM_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::FileInputStream

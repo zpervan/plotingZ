@@ -1,7 +1,7 @@
 #ifndef PLOTINGZ_MATH_UTILITY_H
 #define PLOTINGZ_MATH_UTILITY_H
 
-#include <SFML/System/Vector2.hpp>
+#include "include/SFML/System/Vector2.hpp"
 
 namespace MathUtility {
 /// @brief Calculates the angle of two 2D points in degrees

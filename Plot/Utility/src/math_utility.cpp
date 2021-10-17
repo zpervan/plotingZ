@@ -1,6 +1,11 @@
 #include "Plot/Utility/src/math_utility.h"
 
+#ifndef M_PI
+    #define M_PI 3.14159265358979323846
+#endif
+
 #include <cmath>
+#include <utility>
 
 static inline std::pair<float, float> CalculateDeltas(const sf::Vector2f &first_point,
                                                       const sf::Vector2f &second_point);

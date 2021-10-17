@@ -3,14 +3,21 @@ load("@rules_cc//cc:defs.bzl", "cc_library", "cc_test")
 cc_library(
     name = "config",
     srcs = ["src/config.h"],
-    linkopts = [
-        "-lsfml-graphics",
-        "-lsfml-window",
-        "-lsfml-system",
-        "-lsfml-network",
-        "-lsfml-audio",
-    ],
     visibility = ["//visibility:public"],
+    # linkopts = [
+    #     "-lsfml-graphics",
+    #     "-lsfml-window",
+    #     "-lsfml-system",
+    #     "-lsfml-network",
+    #     "-lsfml-audio",
+    # ],
+    deps = [
+        "@sfmllib//:sfml-graphics",
+        "@sfmllib//:sfml-window",
+        "@sfmllib//:sfml-system",
+        # "@sfmllib//:sfml-network",
+        # "@sfmllib//:sfml-audio"
+    ],
 )
 
 cc_library(

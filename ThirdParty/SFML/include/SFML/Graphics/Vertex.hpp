@@ -28,82 +28,76 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Export.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/System/Vector2.hpp>
+#include "include/SFML/Graphics/Color.hpp"
+#include "include/SFML/Graphics/Export.hpp"
+#include "include/SFML/System/Vector2.hpp"
 
-
-namespace sf
-{
+namespace sf {
 ////////////////////////////////////////////////////////////
 /// \brief Define a point with color and texture coordinates
 ///
 ////////////////////////////////////////////////////////////
-class SFML_GRAPHICS_API Vertex
-{
+class SFML_GRAPHICS_API Vertex {
 public:
+  ////////////////////////////////////////////////////////////
+  /// \brief Default constructor
+  ///
+  ////////////////////////////////////////////////////////////
+  Vertex();
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Default constructor
-    ///
-    ////////////////////////////////////////////////////////////
-    Vertex();
+  ////////////////////////////////////////////////////////////
+  /// \brief Construct the vertex from its position
+  ///
+  /// The vertex color is white and texture coordinates are (0, 0).
+  ///
+  /// \param thePosition Vertex position
+  ///
+  ////////////////////////////////////////////////////////////
+  Vertex(const Vector2f &thePosition);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct the vertex from its position
-    ///
-    /// The vertex color is white and texture coordinates are (0, 0).
-    ///
-    /// \param thePosition Vertex position
-    ///
-    ////////////////////////////////////////////////////////////
-    Vertex(const Vector2f& thePosition);
+  ////////////////////////////////////////////////////////////
+  /// \brief Construct the vertex from its position and color
+  ///
+  /// The texture coordinates are (0, 0).
+  ///
+  /// \param thePosition Vertex position
+  /// \param theColor    Vertex color
+  ///
+  ////////////////////////////////////////////////////////////
+  Vertex(const Vector2f &thePosition, const Color &theColor);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct the vertex from its position and color
-    ///
-    /// The texture coordinates are (0, 0).
-    ///
-    /// \param thePosition Vertex position
-    /// \param theColor    Vertex color
-    ///
-    ////////////////////////////////////////////////////////////
-    Vertex(const Vector2f& thePosition, const Color& theColor);
+  ////////////////////////////////////////////////////////////
+  /// \brief Construct the vertex from its position and texture coordinates
+  ///
+  /// The vertex color is white.
+  ///
+  /// \param thePosition  Vertex position
+  /// \param theTexCoords Vertex texture coordinates
+  ///
+  ////////////////////////////////////////////////////////////
+  Vertex(const Vector2f &thePosition, const Vector2f &theTexCoords);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct the vertex from its position and texture coordinates
-    ///
-    /// The vertex color is white.
-    ///
-    /// \param thePosition  Vertex position
-    /// \param theTexCoords Vertex texture coordinates
-    ///
-    ////////////////////////////////////////////////////////////
-    Vertex(const Vector2f& thePosition, const Vector2f& theTexCoords);
+  ////////////////////////////////////////////////////////////
+  /// \brief Construct the vertex from its position, color and texture coordinates
+  ///
+  /// \param thePosition  Vertex position
+  /// \param theColor     Vertex color
+  /// \param theTexCoords Vertex texture coordinates
+  ///
+  ////////////////////////////////////////////////////////////
+  Vertex(const Vector2f &thePosition, const Color &theColor, const Vector2f &theTexCoords);
 
-    ////////////////////////////////////////////////////////////
-    /// \brief Construct the vertex from its position, color and texture coordinates
-    ///
-    /// \param thePosition  Vertex position
-    /// \param theColor     Vertex color
-    /// \param theTexCoords Vertex texture coordinates
-    ///
-    ////////////////////////////////////////////////////////////
-    Vertex(const Vector2f& thePosition, const Color& theColor, const Vector2f& theTexCoords);
-
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
-    Vector2f  position;  ///< 2D position of the vertex
-    Color     color;     ///< Color of the vertex
-    Vector2f  texCoords; ///< Coordinates of the texture's pixel to map to the vertex
+  ////////////////////////////////////////////////////////////
+  // Member data
+  ////////////////////////////////////////////////////////////
+  Vector2f position;  ///< 2D position of the vertex
+  Color color;        ///< Color of the vertex
+  Vector2f texCoords; ///< Coordinates of the texture's pixel to map to the vertex
 };
 
 } // namespace sf
 
-
 #endif // SFML_VERTEX_HPP
-
 
 ////////////////////////////////////////////////////////////
 /// \class sf::Vertex

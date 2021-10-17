@@ -29,23 +29,21 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include <SFML/System.hpp>
-#include <SFML/Window/Clipboard.hpp>
-#include <SFML/Window/Context.hpp>
-#include <SFML/Window/ContextSettings.hpp>
-#include <SFML/Window/Cursor.hpp>
-#include <SFML/Window/Event.hpp>
-#include <SFML/Window/Joystick.hpp>
-#include <SFML/Window/Keyboard.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <SFML/Window/Sensor.hpp>
-#include <SFML/Window/Touch.hpp>
-#include <SFML/Window/VideoMode.hpp>
-#include <SFML/Window/Window.hpp>
-#include <SFML/Window/WindowHandle.hpp>
-#include <SFML/Window/WindowStyle.hpp>
-
-
+#include "include/SFML/System.hpp"
+#include "include/SFML/Window/Clipboard.hpp"
+#include "include/SFML/Window/Context.hpp"
+#include "include/SFML/Window/ContextSettings.hpp"
+#include "include/SFML/Window/Cursor.hpp"
+#include "include/SFML/Window/Event.hpp"
+#include "include/SFML/Window/Joystick.hpp"
+#include "include/SFML/Window/Keyboard.hpp"
+#include "include/SFML/Window/Mouse.hpp"
+#include "include/SFML/Window/Sensor.hpp"
+#include "include/SFML/Window/Touch.hpp"
+#include "include/SFML/Window/VideoMode.hpp"
+#include "include/SFML/Window/Window.hpp"
+#include "include/SFML/Window/WindowHandle.hpp"
+#include "include/SFML/Window/WindowStyle.hpp"
 
 #endif // SFML_SFML_WINDOW_HPP
 

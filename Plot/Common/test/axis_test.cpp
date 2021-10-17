@@ -3,6 +3,9 @@
 
 #include "gtest/gtest.h"
 
+#include <array>
+#include <optional>
+
 /// @todo: Axis should have a protected constructor which takes a custom config for window height and width,
 /// otherwise the test will fail if we change the window size in the config file
 

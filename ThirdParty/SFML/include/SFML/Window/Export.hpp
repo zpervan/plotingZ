@@ -28,21 +28,19 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.hpp>
-
+#include "include/SFML/Config.hpp"
 
 ////////////////////////////////////////////////////////////
 // Define portable import / export macros
 ////////////////////////////////////////////////////////////
 #if defined(SFML_WINDOW_EXPORTS)
 
-    #define SFML_WINDOW_API SFML_API_EXPORT
+#define SFML_WINDOW_API SFML_API_EXPORT
 
 #else
 
-    #define SFML_WINDOW_API SFML_API_IMPORT
+#define SFML_WINDOW_API SFML_API_IMPORT
 
 #endif
-
 
 #endif // SFML_WINDOW_EXPORT_HPP
