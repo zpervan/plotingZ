@@ -1,9 +1,12 @@
-# avoid ccache (can't build when ccache is installed)
-build --client_env=CC=/usr/bin/clang
-build --client_env=CXX=/usr/bin/clang
+# Specific compiler paths for Linux and Windows
+build:linux --client_env=CC=/usr/bin/clang
+build:linux --client_env=CXX=/usr/bin/clang
+build:windows --client_env=CC="C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.29.30037/bin/Hostx64/x64/cl.exe"
+build:windows --client_env=CXX="C:/Program Files (x86)/Microsoft Visual Studio/2019/Professional/VC/Tools/MSVC/14.29.30037/bin/Hostx64/x64/cl.exe"
 
 # Compiler options
-build --cxxopt=-std=c++17
+build:linux --cxxopt=-std=c++17
+build:windows --cxxopt=/std:c++17
 
 # Test environmentx
 test --test_env="GTEST_COLOR=1"
