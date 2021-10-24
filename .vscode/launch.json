@@ -2,17 +2,36 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "plottingZ | Debug",
+            "name": "Win32 | Debug",
             "preLaunchTask": "Build | Debug",
+            "program": "${workspaceFolder}/bazel-out/x64_windows-dbg/bin/Plot/main_run.exe",
+            "MIMode": "lldb",
+            "miDebuggerPath": "${workspaceFolder}/Tools/LLDB9/lldb.exe",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/Plot/main",
-            "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Linux | Debug",
+            "preLaunchTask": "Build | Debug",
+            "program": "${workspaceFolder}/bazel-out/k8-dbg/bin/Plot/main_run",
             "MIMode": "gdb",
+            "type": "cppdbg",
+            "request": "launch",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",

@@ -1,10 +1,6 @@
 {
     "editor.formatOnSave": true,
-    "clang-format.executable": "/usr/bin/clang-format",
-    "clang-tidy.executable": "/usr/bin/clang-tidy",
     "clang-tidy.lintOnSave": true,
-    "testMate.cpp.test.executables": "bazel-out/k8-dbg/bin/Plot/{**, !**.runfiles}/*{_test}",
-    "testMate.cpp.test.workingDirectory": "${workspaceFolder}",
     "files.associations": {
         "array": "cpp",
         "atomic": "cpp",

@@ -8,3 +8,6 @@ directories:
   -bazel-out
   -bazel-plotingZ
   -bazel-testlogs
+
+targets:
+  -//ThirdParty/...
