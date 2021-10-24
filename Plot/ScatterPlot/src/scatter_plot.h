@@ -3,7 +3,7 @@
 
 #include "Plot/Common/src/plotting_data.h"
 
-#include "include/SFML/System/Vector2.hpp"
+#include "ThirdParty/SFML/include/SFML/System/Vector2.hpp"
 
 /// @brief Contains the logic for converting input data to points/dots/circle shapes.
 class ScatterPlot {

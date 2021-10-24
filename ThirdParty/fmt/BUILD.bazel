@@ -1,7 +1,10 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+package(default_visibility = ["//visibility:public"])
+
 cc_library(
     name = "fmt",
     srcs = glob(["src/*.cc"]),
     hdrs = glob(["include/fmt/*.h"]),
     include_prefix = "ThirdParty/fmt/",
-    visibility = ["//visibility:public"],
 )

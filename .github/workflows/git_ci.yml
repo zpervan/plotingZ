@@ -24,10 +24,9 @@ jobs:
         run: |
           sudo apt update
           sudo apt install bazel
-          sudo apt install libsfml-dev
 
       - name: Build Project | All
-        run: bazel build //...
+        run: bazel build //... --config=linux
 
       - name: Run Tests | All
-        run: bazel test //...
+        run: bazel test //... --config=linux

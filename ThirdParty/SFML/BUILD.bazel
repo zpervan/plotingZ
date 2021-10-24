@@ -1,20 +1,21 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
 package(default_visibility = ["//visibility:public"])
 
-cc_import(
-    name = "sfml-audio",
-    hdrs = glob([
-        "include/SFML/Audio/*.hpp",
-        "include/SFML/Audio/*.inl",
-    ]) + [
-        "include/SFML/Audio.hpp",
-        "include/SFML/System.hpp",
-    ],
-    shared_library = "bin/sfml-audio-2.dll",
-    static_library = "lib/sfml-audio.lib",
-)
-
-cc_import(
+cc_library(
     name = "sfml-graphics",
+    srcs = select({
+        "@bazel_tools//src/conditions:windows": [
+            "bin/sfml-graphics-2.dll",
+            "bin/sfml-graphics-d-2.dll",
+            "lib/sfml-graphics.lib",
+        ],
+        "//conditions:default": [
+            "lib/libsfml-graphics.so",
+            "lib/libsfml-graphics.so.2.5",
+            "lib/libsfml-graphics.so.2.5.1",
+        ],
+    }),
     hdrs = glob([
         "include/SFML/Graphics/*.hpp",
         "include/SFML/Graphics/*.inl",
@@ -23,25 +24,27 @@ cc_import(
         "include/SFML/GpuPreference.hpp",
         "include/SFML/Window.hpp",
     ],
-    shared_library = "bin/sfml-graphics-2.dll",
-    static_library = "lib/sfml-graphics.lib",
-)
-
-cc_import(
-    name = "sfml-network",
-    hdrs = glob([
-        "include/SFML/Network/*.hpp",
-        "include/SFML/Network/*.inl",
-    ]) + [
-        "include/SFML/Network.hpp",
-        "include/SFML/System.hpp",
+    include_prefix = "ThirdParty/SFML",
+    includes = [
+        "include/SFML",
+        "include/SFML/Graphics",
     ],
-    shared_library = "bin/sfml-network-2.dll",
-    static_library = "lib/sfml-network.lib",
 )
 
-cc_import(
+cc_library(
     name = "sfml-system",
+    srcs = select({
+        "@bazel_tools//src/conditions:windows": [
+            "bin/sfml-system-2.dll",
+            "bin/sfml-system-d-2.dll",
+            "lib/sfml-system.lib",
+        ],
+        "//conditions:default": [
+            "lib/libsfml-system.so",
+            "lib/libsfml-system.so.2.5",
+            "lib/libsfml-system.so.2.5.1",
+        ],
+    }),
     hdrs = glob([
         "include/SFML/System/*.hpp",
         "include/SFML/System/*.inl",
@@ -49,12 +52,27 @@ cc_import(
         "include/SFML/System.hpp",
         "include/SFML/Config.hpp",
     ],
-    shared_library = "bin/sfml-system-2.dll",
-    static_library = "lib/sfml-system.lib",
+    include_prefix = "ThirdParty/SFML",
+    includes = [
+        "include/SFML",
+        "include/SFML/System",
+    ],
 )
 
-cc_import(
+cc_library(
     name = "sfml-window",
+    srcs = select({
+        "@bazel_tools//src/conditions:windows": [
+            "bin/sfml-window-2.dll",
+            "bin/sfml-window-d-2.dll",
+            "lib/sfml-window.lib",
+        ],
+        "//conditions:default": [
+            "lib/libsfml-window.so",
+            "lib/libsfml-window.so.2.5",
+            "lib/libsfml-window.so.2.5.1",
+        ],
+    }),
     hdrs = glob([
         "include/SFML/Window/*.hpp",
         "include/SFML/Window/*.inl",
@@ -62,6 +80,65 @@ cc_import(
         "include/SFML/Window.hpp",
         "include/SFML/System.hpp",
     ],
-    shared_library = "bin/sfml-window-2.dll",
-    static_library = "lib/sfml-window.lib",
+    include_prefix = "ThirdParty/SFML",
+    includes = [
+        "include/SFML",
+        "include/SFML/Window",
+    ],
+)
+
+cc_library(
+    name = "sfml-audio",
+    srcs = select({
+        "@bazel_tools//src/conditions:windows": [
+            "bin/sfml-audio-2.dll",
+            "bin/sfml-audio-d-2.dll",
+            "lib/sfml-audio.lib",
+        ],
+        "//conditions:default": [
+            "lib/libsfml-audio.so",
+            "lib/libsfml-audio.so.2.5",
+            "lib/libsfml-audio.so.2.5.1",
+        ],
+    }),
+    hdrs = glob([
+        "include/SFML/Audio/*.hpp",
+        "include/SFML/Audio/*.inl",
+    ]) + [
+        "include/SFML/Audio.hpp",
+        "include/SFML/System.hpp",
+    ],
+    include_prefix = "ThirdParty/SFML",
+    includes = [
+        "include/SFML",
+        "include/SFML/Audio",
+    ],
+)
+
+cc_library(
+    name = "sfml-network",
+    srcs = select({
+        "@bazel_tools//src/conditions:windows": [
+            "bin/sfml-network-2.dll",
+            "bin/sfml-network-d-2.dll",
+            "lib/sfml-network.lib",
+        ],
+        "//conditions:default": [
+            "lib/libsfml-network.so",
+            "lib/libsfml-network.so.2.5",
+            "lib/libsfml-network.so.2.5.1",
+        ],
+    }),
+    hdrs = glob([
+        "include/SFML/Network/*.hpp",
+        "include/SFML/Network/*.inl",
+    ]) + [
+        "include/SFML/Network.hpp",
+        "include/SFML/System.hpp",
+    ],
+    include_prefix = "ThirdParty/SFML",
+    includes = [
+        "include/SFML",
+        "include/SFML/Window",
+    ],
 )

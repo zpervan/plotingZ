@@ -1,7 +1,7 @@
 #ifndef PLOTINGZ_PLOTTING_DATA_H
 #define PLOTINGZ_PLOTTING_DATA_H
 
-#include "include/SFML/Graphics.hpp"
+#include "ThirdParty/SFML/include/SFML/Graphics.hpp"
 #include <memory>
 #include <vector>
 

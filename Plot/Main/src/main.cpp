@@ -1,7 +1,7 @@
 #include "Plot/Main/src/main.h"
 #include "Plot/Common/src/config.h"
 
-#include "include/SFML/Graphics.hpp"
+#include "ThirdParty/SFML/include/SFML/Graphics.hpp"
 
 void PlottingZ::SetData(const std::vector<float> &input_data_x, const std::vector<float> &input_data_y) {
   if (input_data_x.empty() || input_data_y.empty()) {

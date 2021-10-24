@@ -1,7 +1,7 @@
 #ifndef PLOTINGZ_TYPES_H
 #define PLOTINGZ_TYPES_H
 
-#include "include/SFML/Graphics/Color.hpp"
+#include "ThirdParty/SFML/include/SFML/Graphics/Color.hpp"
 #include <map>
 
 static const std::map<std::size_t, sf::Color> mapped_colors{

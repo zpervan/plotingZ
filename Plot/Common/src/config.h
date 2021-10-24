@@ -6,9 +6,9 @@
 #pragma GCC diagnostic ignored "-Wunused-function"
 #endif
 
-#include "include/SFML/Graphics/RectangleShape.hpp"
-#include "include/SFML/Graphics/Text.hpp"
-#include "include/SFML/System/Vector2.hpp"
+#include "ThirdParty/SFML/include/SFML/Graphics/RectangleShape.hpp"
+#include "ThirdParty/SFML/include/SFML/Graphics/Text.hpp"
+#include "ThirdParty/SFML/include/SFML/System/Vector2.hpp"
 // #include <zconf.h>
 
 using AxisData = std::pair<std::vector<sf::RectangleShape>, std::vector<sf::Text>>;

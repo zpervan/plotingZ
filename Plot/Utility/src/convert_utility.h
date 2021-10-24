@@ -1,7 +1,7 @@
 #ifndef PLOTINGZ_CONVERT_UTILITY_H
 #define PLOTINGZ_CONVERT_UTILITY_H
 
-#include "include/SFML/System/Vector2.hpp"
+#include "ThirdParty/SFML/include/SFML/System/Vector2.hpp"
 #include <utility>
 
 using ScalingValues = std::pair<float, float>;

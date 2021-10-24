@@ -19,4 +19,4 @@ before_build:
 
 build_script:
   - call "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Auxiliary/Build/vcvars64.bat"
-  - bazel build --config=windows //... -c opt
+  - bazel build //... --config=windows

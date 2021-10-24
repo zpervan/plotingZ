@@ -10,7 +10,11 @@
             "${workspaceFolder}/ThirdParty/GoogleTest/googletest/include",
             "${workspaceFolder}/ThirdParty/GoogleTest/googlemock/include",
             "${workspaceFolder}/ThirdParty/SFML/include/SFML",
-            "${workspaceFolder}/ThirdParty/SFML/include/SFML/**"
+            "${workspaceFolder}/ThirdParty/SFML/include/SFML/Audio",
+            "${workspaceFolder}/ThirdParty/SFML/include/SFML/Graphics",
+            "${workspaceFolder}/ThirdParty/SFML/include/SFML/Network",
+            "${workspaceFolder}/ThirdParty/SFML/include/SFML/System",
+            "${workspaceFolder}/ThirdParty/SFML/include/SFML/Window"
         ]
     },
     "configurations": [
