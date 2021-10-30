@@ -14,12 +14,36 @@ cc_library(
     ],
 )
 
+cc_library(
+    name = "scatter_plot",
+    srcs = ["src/scatter_plot.cpp"],
+    hdrs = ["src/scatter_plot.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//Plot/Common:axis",
+        "//Plot/Common:config",
+        "//Plot/Common:plotting_data",
+        "//Plot/Common:types",
+        "//Plot/Utility:convert_utility",
+    ],
+)
+
 cc_test(
     name = "line_plot_test",
     srcs = ["test/line_plot_test.cpp"],
     tags = ["test"],
     deps = [
         ":line_plot",
+        "@fmtlib//:fmt",
+        "@googletest//:gtest",
+    ],
+)
+
+cc_test(
+    name = "scatter_plot_test",
+    srcs = ["test/scatter_plot_test.cpp"],
+    deps = [
+        ":scatter_plot",
         "@fmtlib//:fmt",
         "@googletest//:gtest",
     ],

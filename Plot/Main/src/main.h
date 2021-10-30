@@ -5,8 +5,8 @@
 #include "Plot/Common/src/legend.h"
 #include "Plot/Common/src/plotting_data.h"
 #include "Plot/Common/src/types.h"
-#include "Plot/LinePlot/src/line_plot.h"
-#include "Plot/ScatterPlot/src/scatter_plot.h"
+#include "Plot/Plots/src/line_plot.h"
+#include "Plot/Plots/src/scatter_plot.h"
 #include <vector>
 
 class PlottingZ {

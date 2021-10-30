@@ -11,8 +11,8 @@ cc_library(
         "//Plot/Common:legend",
         "//Plot/Common:plotting_data",
         "//Plot/Common:types",
-        "//Plot/LinePlot:line_plot",
-        "//Plot/ScatterPlot:scatter_plot",
+        "//Plot/Plots:line_plot",
+        "//Plot/Plots:scatter_plot",
         "@fmtlib//:fmt",
     ],
 )

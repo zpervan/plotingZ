@@ -1,4 +1,4 @@
-#include "Plot/ScatterPlot/src/scatter_plot.h"
+#include "Plot/Plots/src/scatter_plot.h"
 
 #include "ThirdParty/fmt/include/fmt/core.h"
 #include "gtest/gtest.h"

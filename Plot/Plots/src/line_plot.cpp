@@ -1,4 +1,4 @@
-#include "Plot/LinePlot/src/line_plot.h"
+#include "Plot/Plots/src/line_plot.h"
 #include "Plot/Common/src/config.h"
 #include "Plot/Common/src/types.h"
 #include "Plot/Utility/src/convert_utility.h"

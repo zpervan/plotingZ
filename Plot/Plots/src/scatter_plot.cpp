@@ -1,4 +1,4 @@
-#include "Plot/ScatterPlot/src/scatter_plot.h"
+#include "Plot/Plots/src/scatter_plot.h"
 #include "Plot/Common/src/config.h"
 #include "Plot/Common/src/types.h"
 #include "Plot/Utility/src/convert_utility.h"

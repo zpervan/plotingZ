@@ -1,4 +1,4 @@
-#include "Plot/LinePlot/src/line_plot.h"
+#include "Plot/Plots/src/line_plot.h"
 #include "ThirdParty/fmt/include/fmt/format.h"
 
 #include "gtest/gtest.h"
