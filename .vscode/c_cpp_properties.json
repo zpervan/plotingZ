@@ -2,9 +2,8 @@
     "env": {
         "myDefaultIncludePath": [
             "${workspaceFolder}/Plot/Common/src",
-            "${workspaceFolder}/Plot/LinePlot/src",
             "${workspaceFolder}/Plot/Main/src",
-            "${workspaceFolder}/Plot/ScatterPlot/src",
+            "${workspaceFolder}/Plot/Plots/src",
             "${workspaceFolder}/Plot/Utility/src",
             "${workspaceFolder}/ThirdParty/fmt/include",
             "${workspaceFolder}/ThirdParty/GoogleTest/googletest/include",

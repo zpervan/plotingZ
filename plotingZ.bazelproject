@@ -13,3 +13,13 @@ targets:
   -@fmtlib//...
   -@googletest//...
   -@sfmllib//...
+
+import_run_configurations:
+  .clion_targets/linux_build_debug.xml
+  .clion_targets/linux_build_release.xml
+  .clion_targets/linux_run_debug.xml
+  .clion_targets/linux_run_release.xml
+  .clion_targets/windows_build_debug.xml
+  .clion_targets/windows_build_release.xml
+  .clion_targets/windows_run_debug.xml
+  .clion_targets/windows_run_release.xml
