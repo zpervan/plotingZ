@@ -1,10 +1,8 @@
 filegroup(
     name = "fonts",
     srcs = [
-        "JetBrainsMono-Bold.ttf",
-        "JetBrainsMono-Bold-Italic.ttf",
-        "JetBrainsMono-Italic.ttf",
-        "JetBrainsMono-Regular.ttf",
+        "CodeNewRoman_NerdFont.otf",
+        "CodeNewRoman_NerdFont_Win32.otf",
     ],
     visibility = ["//visibility:public"],
 )

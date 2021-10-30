@@ -70,7 +70,7 @@ namespace Config
     static void SetFont()
     {
       sf::Font font;
-      font.loadFromFile("Plot/Fonts/JetBrainsMono-Regular.ttf");
+      font.loadFromFile("Plot/Fonts/CodeNewRoman_NerdFont.otf");
       FONT = font;
     }
   } // namespace Global
