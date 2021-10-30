@@ -21,7 +21,7 @@ protected:
   }
 };
 
-TEST_F(LinePlotTestFixture, GivenValidInputData_WhenCreatingLinePlot_ThenLineDataValuesPositionsAreCorrect) {
+TEST_F(LinePlotTestFixture, DISABLED_GivenValidInputData_WhenCreatingLinePlot_ThenLineDataValuesPositionsAreCorrect) {
   const std::size_t expected_line_data_values_size{3};
   const std::array<sf::Vector2f, 3> expected_data_point_positions{
       {{176.0, 112.0}, {288.0, 192.0}, {400.0, 272.0}}};
